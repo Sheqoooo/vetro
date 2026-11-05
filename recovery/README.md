@@ -7,6 +7,16 @@ Dieses Verzeichnis enthält ein **Offline-Archivierungswerkzeug**, keinen fertig
 TV-Restore. Es führt keine Befehle auf einem Fernseher aus und hat keinen Netzwerkcode.
 Es benötigt Python 3.8+ ohne zusätzliche Pakete.
 
+## Dokumentation und Verlauf
+
+- [Arbeitsprotokoll: Schritte, Befehle, Ergebnisse und offene Punkte](WORKLOG.md)
+- [Vorlage für zukünftige Arbeitsschritte](STEP-TEMPLATE.md)
+- [Einrichtungs- und Rücknahmeplan](ROLLOUT-AND-RECOVERY.md)
+- [Geprüfte Quellversionen](SOURCE-REVIEW.json)
+
+Das Arbeitsprotokoll wird mit den weiteren Änderungen fortgeführt. Echte
+Gerätebaselines und Rohlogs bleiben privat. Die Repo-Regeln stehen in [AGENTS.md](../AGENTS.md).
+
 ## Was das Werkzeug kann
 
 Später manuell beziehungsweise über einen separat freigegebenen Collector erfasste
