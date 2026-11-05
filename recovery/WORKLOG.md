@@ -162,6 +162,35 @@ erneuter Hardware- oder App-Test behauptet. Commitnummern dieser Ergänzung sind
 in der Git-Historie des PR nachzulesen; ein Dokument kann seinen eigenen finalen
 Commit-Hash nicht ohne eine weitere Änderung enthalten.
 
+## 2026-11-05 — Netztrennung des Heimrouters geprüft
+
+**Durchgeführt:** Offizielle FRITZ!-Dokumentation zum Gastzugang gelesen, keine
+Routeroberfläche geöffnet und keine Netzwerkgeräte kontaktiert.
+
+**Belegt:** Gast- und Heimnetz sind getrennt. Kommunikation innerhalb des
+Gast-WLANs ist eine separate, gemeinsam geltende Option. Alle Gastgeräte
+verwenden das Gast-Zugangsprofil. Das dokumentierte Menü ist keine belegte
+Regelverwaltung für einzelne Client-/TV-Portpaare.
+
+**Folgerung für die Planung:** TV und Entwicklungsumgebung könnten gemeinsam
+ein ausschließlich für sie verwendetes Gastnetz nutzen, wenn Kommunikation
+zwischen Gästen erlaubt wird. Dann dürfen keine weiteren Gastgeräte dort
+sein. Zusätzliche Heimnetzverbindungen des Entwicklungsgeräts, etwa Ethernet,
+VPN oder eine zweite Schnittstelle, würden die gewünschte Abschottung gefährden.
+
+Diese Variante isoliert das Heimnetz, aber nicht den Entwicklungs-Mac vom TV
+und beschränkt das Internet nicht automatisch auf notwendige Codex-Ziele.
+Sie erfüllt daher allein nicht alle bisherigen Sicherheitsanforderungen.
+Eine unabhängig kontrollierte Firewall/isolierte Entwicklungsumgebung bleibt
+für diese weitergehenden Anforderungen zu planen. Keine Freigabe erweitert.
+
+**Noch zu klären:** Bestehende Gastnetz-Nutzung, Anschluss des Entwicklungsgeräts,
+FRITZ!OS-Stand und zusätzliche Netzwerkkomponenten. Keine IP-Adressen oder
+Zugangsdaten veröffentlicht. Kein technischer Isolationstest durchgeführt.
+
+**Quelle:** [FRITZ!: WLAN-Gastzugang, Dokument 294](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-6660-Cable/294_Setting-up-Wi-Fi-guest-access-in-the-FRITZ-Box/).
+Die konkrete installierte FRITZ!OS-Oberfläche wurde nicht eingesehen.
+
 ## Noch offen
 
 - Netzwerkisolation und erlaubte Verbindungsziele konkret einrichten und abnehmen.
