@@ -379,3 +379,26 @@ erfolgreiche/fehlgeschlagene Quellabrufe, Einschränkungen, Quellen und Phasen:
 geschrieben/veröffentlicht; keine Binärdateien, Werkzeuginstallation,
 TV-Kommandos, Zertifikatserzeugung oder globalen Konfigurationsänderungen.
 Anpassung/Alternative bleibt vorzubereiten. Bisherige Isolation bleibt bestehen.
+
+## 2026-11-06 — Unveränderten Installer auf Besitzerwunsch versucht
+
+**Freigabe:** Besitzer möchte die normale Apps2Samsung-Version mit bestehenden
+Berechtigungen ausprobieren; kein zweiter Fork. Vorbereitung und Startprüfung,
+noch keine TV-Installation oder Root-Ausführung.
+
+**Durchführung:** Projektinterne Ordner tools/downloads, tools/apps2samsung,
+recovery/private/apps2samsung und recovery/private/tool-tmp angelegt. Download
+des festgehaltenen originalen macOS-arm64-CLI-Assets v3.1.0 über curl versucht.
+Die verwaltete Netzwerkprüfung blockierte github.com, weil die Domain nicht auf
+der Allowlist steht. Anschließend für genau denselben Download eine einzelne
+erweiterte Ausführung angefordert; auch dieser Versuch wurde mit derselben
+Netzwerk-Allowlist-Meldung blockiert. Kein alternativer Downloadweg verwendet.
+
+**Ergebnis:** Download nicht erfolgreich; keine Prüfsummenvalidierung,
+Entpackung oder Werkzeugausführung. Keine Verbindung zum TV in diesem Schritt,
+keine TV-Änderung, keine Änderung der globalen Berechtigungen.
+Nächste Option: Besitzer lädt das genau verlinkte Release-Asset selbst herunter
+und legt es im Projektordner tools/downloads ab. Erst danach Integrität,
+Archivpfade und unveränderten Start mit weiterhin bestehenden Grenzen prüfen.
+
+**Rücknahme:** Nur neue leere Vorbereitungsordner angelegt; nichts gelöscht.
