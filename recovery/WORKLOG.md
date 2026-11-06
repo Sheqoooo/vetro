@@ -228,6 +228,47 @@ erneut PermissionError, Errno 1, Operation not permitted. Keine HTTP-Antwort;
 keine Installation oder TV-Schreiboperation. Die konkrete blockierende Schicht
 bleibt ungeklärt. Keine Umgehung über andere Verbindungswerkzeuge versucht.
 
+## 2026-11-06 — IP-Freigabe über den verwalteten Proxy bestätigt
+
+**Anlass:** Der Eigentümer hat eine auf die TV-IP begrenzte Netzwerkfreigabe
+eingerichtet und um eine positive und negative Gegenprobe gebeten.
+
+**Durchführung und Ergebnis:**
+
+1. Direkter Python-HTTP-Zugriff auf die freigegebene TV-IP, TCP 8001:
+   PermissionError / EPERM.
+2. Direkter TCP-Verbindungsversuch zur öffentlichen Kontrolladresse 1.1.1.1,
+   TCP 443: ebenfalls EPERM. Keine weiteren Heimnetzgeräte als Kontrollziele benutzt.
+3. Proxy-Variablen sind vorhanden (nur deren Vorhandensein geprüft, keine
+   Zugangsdaten oder vollständigen Proxy-URLs protokolliert).
+4. Gezielte TV-Abfrage mit curl über den konfigurierten Proxy, GET /api/v2/:
+   HTTP 200, Tizen und mit dem lokal bekannten Modell übereinstimmende Gerätekennung.
+   Entwicklerstatus 0, also Entwicklermodus laut API aus.
+5. HTTPS-Gegenprobe zu 1.1.1.1 über denselben Proxy: Der Harness verweigerte sie
+   ausdrücklich mit "domain is not on the allowlist for the current sandbox mode".
+   Keine Eskalation oder alternative Umgehung dieser erwarteten Sperre angefordert.
+   Der kombinierte Aufruf lieferte wegen dieser Sperre kein positives Teilergebnis;
+   deshalb wurde die erlaubte TV-Abfrage anschließend separat ausgeführt.
+
+**Parameter:** Direkte Versuche mit 4 Sekunden Timeout; curl mit 4 Sekunden
+Verbindungs- und 6 Sekunden Gesamttimeout, ohne Weiterleitung und mit 256-KiB-
+Antwortlimit. curl verwendete die vorhandenen Proxy-Variablen; --noproxy mit
+leerem Wert verhinderte einen direkten lokalen Bypass. Kein Netzwerkscan,
+keine Installation und keine TV-Schreiboperation.
+
+**Korrektur früherer Diagnose:** Die vorherigen direkten Python-Abfragen nutzten
+den verwalteten Proxy nicht. Ihr EPERM allein belegte weder Unerreichbarkeit
+des TVs noch eine fehlende macOS-Lokalnetzfreigabe. Der nun funktionierende
+Proxy-Weg ist für weitere HTTP-Abfragen zu verwenden.
+
+**Aussagegrenze:** Positiver Test des TV-Ziels und negativer Test einer öffentlichen
+Kontrolladresse, keine vollständige Prüfung aller IPs, Ports, IPv6-/DNS-Wege oder
+des gesamten effektiven Regelwerks. Websuche, Connectoren, Browser und externe
+MCP-Prozesse können eigenen Richtlinien unterliegen. SDB-Zugriff und die
+Root-/Installationsverbindung sind noch nicht geprüft; ein funktionierendes
+HTTP-GET beweist keine SDB-Kompatibilität mit dem Proxy.
+Die reale TV-IP und private Gerätekennung bleiben außerhalb dieses Protokolls.
+
 ## Noch offen
 
 - Netzwerkisolation und erlaubte Verbindungsziele konkret einrichten und abnehmen.
