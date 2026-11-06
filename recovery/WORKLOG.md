@@ -282,3 +282,49 @@ Die reale TV-IP und private Gerätekennung bleiben außerhalb dieses Protokolls.
 Für weitere Einträge die [Protokollvorlage](STEP-TEMPLATE.md) verwenden. Frühere
 Fehler und Einschränkungen nicht stillschweigend aus der Historie entfernen;
 Korrekturen als neuen Eintrag kenntlich machen.
+
+## 2026-11-06 — Launcher offline geprüft, Geräteschritt vorbereitet
+
+**Status:** durchgeführt; kein Hardware-Funktionstest und keine Installation.
+
+**Ziel/Freigabe:** Projekt auf Wunsch des Besitzers fortsetzen, vorhandene
+Launcher- und Rückweglogik vor einem TV-Schreibzugriff prüfen. Die Freigabe zur
+Weiterarbeit wurde nicht als neue Installations- oder Root-Freigabe ausgelegt.
+
+**Ausgangsstand:** Fork-Head e35b8548f8d81377209a6434bd5051f06885baa5.
+GitHub-PR-Metadaten und rekursiven Git-Baum über den Connector gelesen. Ein
+vorheriger Branch-URL-Aufruf mit kodiertem Schrägstrich wurde vom Connector als
+ungültiger Repositorypfad abgewiesen; keine Änderung. Eine ausgewählte lokale
+Quellkopie mit Blob-Manifest angelegt, ausdrücklich kein vollständiger Checkout.
+AGENTS.md, CONTRIBUTING.md und LICENSE mit aufgenommen. Keine Fernskripte
+installiert oder Buildskripte ausgeführt.
+
+**Durchführung/Ergebnis:** Vorhandenes gebündeltes Node 24.22.1 für zwei
+Launcher-Tests verwendet. Erster Start beider Tests scheiterte am gesperrten
+System-OpenSSL-Konfigurationszugriff. Prozesslokale leere Konfiguration und
+TMPDIR im ignorierten Projektunterordner verwendet, ohne zusätzliche Rechte.
+Katalogtest danach bestanden. Docktest zunächst wegen gesperrter Host-Uptime
+abgebrochen; ausschließlich im Testprozess os.uptime auf 3600 Sekunden gesetzt
+(`offline-test-host.cjs`). Explizite Boot-Zeitmodelle der Tests bleiben wirksam.
+Docktest danach bestanden. Keine Produktänderung.
+Aufrufe und Grenzen: [LAUNCHER-PREFLIGHT.md](LAUNCHER-PREFLIGHT.md).
+
+**TV-Prüfung:** Erneutes ausschließlich lesendes GET auf TV_IP:8001/api/v2/
+über curl mit erzwungenem verwaltetem Proxy und Zeitlimit. Nur OS und
+developerMode ausgegeben: Tizen, Modus 0. Keine private API-Antwort gespeichert
+oder veröffentlicht, keine anderen LAN-Ziele, keine SDB-Verbindung.
+Mac-Architektur über uname -m als arm64 festgestellt.
+
+**Quellen/Plan:** Samsung-Geräteanleitung und Apps2Samsung-Projektinformationen
+gelesen. Ein vermuteter Apps2Samsung.Cli/README.md-Rawpfad lieferte 404; stattdessen
+den vorhandenen README-Abschnitt Command line gelesen. CLI als noch zu prüfender
+Kandidat, kein Download. Projektinterne Datenhaltung und SDB-Transport noch offen.
+Aktuelle Quellen und Reihenfolge in LAUNCHER-PREFLIGHT.md.
+
+**Rücknahme/Risiken:** Neue Vorbereitung lässt sich durch Entfernen genau der neu
+angelegten Quellkopie, Testhilfsdatei, synthetischen temporären Testdaten und
+Dokumente rückgängig machen; kein TV- oder System-Rollback erforderlich.
+Keine Löschung ausgeführt. Der Dock-Quellcode meldet fehlgeschlagene
+Autostart-Wiederherstellung über einen Statusfehler; das ist noch nicht auf
+Hardware geprüft. Kein Nachweis für vollständige Root-Rücknahme. Nächster
+Besitzerschritt ist zunächst nur das Öffnen des Entwicklermenüs.
