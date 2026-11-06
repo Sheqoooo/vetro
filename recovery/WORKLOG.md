@@ -191,6 +191,34 @@ Zugangsdaten veröffentlicht. Kein technischer Isolationstest durchgeführt.
 **Quelle:** [FRITZ!: WLAN-Gastzugang, Dokument 294](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-6660-Cable/294_Setting-up-Wi-Fi-guest-access-in-the-FRITZ-Box/).
 Die konkrete installierte FRITZ!OS-Oberfläche wurde nicht eingesehen.
 
+## 2026-11-06 — Erster gezielter Verbindungsversuch
+
+Der Eigentümer möchte vorerst im vorhandenen Heimnetz weiterarbeiten, ohne
+VM oder Gastnetz. Es wurde erläutert und akzeptiert, dass die Beschränkung
+auf den TV damit eine Arbeitsregel und keine technische Zielnetz-Sperre ist.
+Die ursprüngliche Vorgabe zur technischen Isolation ist damit für diesen
+vorläufigen Ablauf nicht erfüllt; die Dateilesesperre bleibt bestehen.
+
+**Autorisierter Test:** Einmaliger HTTP-GET an den vom Eigentümer genannten
+TV, TCP 8001, Pfad /api/v2/. Python http.client mit numerischer Zieladresse,
+5 Sekunden Timeout, begrenzter Antwortgröße, ohne Proxy, Redirect-Verfolgung,
+Gerätesuche, Installation oder Root. Die echte IP bleibt privat.
+
+**Ergebnis:** Der normale Sandbox-Aufruf lieferte PermissionError,
+Errno 1, Operation not permitted. Auch der daraufhin separat angefragte
+Ausführungsversuch lieferte denselben Fehler. Keine HTTP-Antwort erhalten;
+Geräteidentität, Erreichbarkeit und API-Inhalt bleiben unbestätigt.
+Aus dem Fehler lässt sich nicht sicher zwischen Harness-/Sandbox-Regeln
+und macOS-Netzwerk-Datenschutz unterscheiden.
+
+**Nächste Diagnose:** Lokale Netzwerkfreigabe der ausführenden App in macOS
+zunächst vom Eigentümer prüfen lassen; nicht automatisch ändern oder die
+Blockade über Browser/andere Werkzeuge umgehen. Keine weiteren Geräte
+angesprochen und keine TV-Einstellungen verändert.
+
+Quelle für die macOS-Berechtigung:
+[Apple: Zugriff auf das lokale Netzwerk steuern](https://support.apple.com/de-de/guide/mac-help/mchla4f49138/mac).
+
 ## Noch offen
 
 - Netzwerkisolation und erlaubte Verbindungsziele konkret einrichten und abnehmen.
