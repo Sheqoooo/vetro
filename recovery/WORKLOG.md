@@ -328,3 +328,36 @@ Keine Löschung ausgeführt. Der Dock-Quellcode meldet fehlgeschlagene
 Autostart-Wiederherstellung über einen Statusfehler; das ist noch nicht auf
 Hardware geprüft. Kein Nachweis für vollständige Root-Rücknahme. Nächster
 Besitzerschritt ist zunächst nur das Öffnen des Entwicklermenüs.
+
+## 2026-11-06 — Entwicklermodus nach Besitzer-Neustart bestätigt
+
+**Status/Freigabe:** Besitzer hat das Entwicklermenü geöffnet, die lokale
+Host-PC-Adresse angegeben und den TV auf Anleitung neu gestartet. Diese manuelle
+TV-Einstellung wurde vom Besitzer vorgenommen, nicht durch Agenten-Schreibzugriff.
+Reale Host-/TV-Adressen bleiben außerhalb des öffentlichen Protokolls.
+
+**Validierung:** Ausschließlich lesendes GET auf TV_IP:8001/api/v2/ über
+curl mit erzwungenem verwaltetem Proxy, 3 Sekunden Verbindungs- und 6 Sekunden
+Gesamtlimit. Ausgabe auf OS und developerMode begrenzt: Tizen, developerMode "1".
+Zuvor wurde "0" gelesen. Dies bestätigt den Entwicklermodus, nicht die eingetragene
+Host-PC-Adresse oder eine erfolgreiche Geräteautorisierung.
+
+**Transportprüfung:** Anschließend Python-Standardbibliothek http.client mit
+dem vorhandenen verwalteten Proxy verwendet: HTTP CONNECT ausschließlich zu
+TV_IP:26101, 4 Sekunden Timeout; Tunnel erfolgreich aufgebaut und sofort geschlossen.
+Keine SDB-Protokollnachrichten, Authentifizierungsbefehle oder Installationsdaten
+gesendet. Proxy-Zugangsdaten wurden weder ausgegeben noch gespeichert.
+Der erfolgreiche CONNECT bestätigt den Tunnelaufbau; eine vollständige
+SDB-Protokollverbindung oder die Proxy-Unterstützung eines späteren Installers
+ist damit noch nicht bewiesen. Keine Umgehung der bestehenden Netzfreigabe.
+
+**Änderungen/Rücknahme:** Keine Software installiert, kein Root, keine App
+gestartet oder ersetzt. Einziger TV-Änderungsschritt in dieser Phase ist die vom
+Besitzer vorgenommene Entwicklermodus-Konfiguration. Für deren Rücknahme ursprüngliche
+Host-PC-Einstellung wiederherstellen, Entwicklermodus wie ursprünglich ausschalten
+und TV neu starten; dieser Rückweg wurde noch nicht durchgeführt. Ursprünglich
+war der Modus ausgeschaltet, der genaue frühere Feldinhalt wurde nicht archiviert.
+
+**Nächster Schritt:** Installer-Version, projektinterne Daten-/Zertifikatsablage
+und Nutzung des verwalteten TV-Tunnels konkret prüfen. Werkzeugdownload und
+Installation bleiben separat freizugebende Schritte.
