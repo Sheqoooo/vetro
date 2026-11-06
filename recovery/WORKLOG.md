@@ -361,3 +361,21 @@ war der Modus ausgeschaltet, der genaue frühere Feldinhalt wurde nicht archivie
 **Nächster Schritt:** Installer-Version, projektinterne Daten-/Zertifikatsablage
 und Nutzung des verwalteten TV-Tunnels konkret prüfen. Werkzeugdownload und
 Installation bleiben separat freizugebende Schritte.
+
+## 2026-11-06 — Installationswerkzeug gegen Sicherheitsanforderungen geprüft
+
+**Status/Freigabe:** Auf Wunsch Ablauf konkretisiert, ausschließlich öffentliche
+Quellen und Release-Metadaten gelesen. Keine Installationsfreigabe abgeleitet.
+
+**Ergebnis:** Apps2Samsung CLI v3.1.0/macOS arm64 mit Release-Commit und erwarteter
+Prüfsumme festgehalten. --data-dir deckt laut Quellcode nicht alle macOS-Pfade ab;
+zusätzlich automatischer KillSdbServers-Callback vor Verbindungen gefunden.
+Proxy-Kompatibilität der SDB-Integration noch nicht bestätigt. Daher unveränderte
+CLI nicht ausgeführt oder als einsatzbereit eingestuft. Vollständige Befunde,
+erfolgreiche/fehlgeschlagene Quellabrufe, Einschränkungen, Quellen und Phasen:
+[INSTALLER-REVIEW.md](INSTALLER-REVIEW.md).
+
+**Änderungen/Rücknahme:** Nur dieses Protokoll und neue Prüfungsdokumentation
+geschrieben/veröffentlicht; keine Binärdateien, Werkzeuginstallation,
+TV-Kommandos, Zertifikatserzeugung oder globalen Konfigurationsänderungen.
+Anpassung/Alternative bleibt vorzubereiten. Bisherige Isolation bleibt bestehen.
