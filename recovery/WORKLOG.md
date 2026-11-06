@@ -219,6 +219,15 @@ angesprochen und keine TV-Einstellungen verändert.
 Quelle für die macOS-Berechtigung:
 [Apple: Zugriff auf das lokale Netzwerk steuern](https://support.apple.com/de-de/guide/mac-help/mchla4f49138/mac).
 
+## 2026-11-06 — Geräteabfrage auf Wunsch wiederholt
+
+Denselben begrenzten GET /api/v2/ an den privat festgelegten TV auf TCP 8001
+erneut ausgeführt, ohne Scan, Proxy oder Redirect-Verfolgung.
+Normaler Sandbox-Versuch und separat angefragter erweiterter Versuch lieferten
+erneut PermissionError, Errno 1, Operation not permitted. Keine HTTP-Antwort;
+keine Installation oder TV-Schreiboperation. Die konkrete blockierende Schicht
+bleibt ungeklärt. Keine Umgehung über andere Verbindungswerkzeuge versucht.
+
 ## Noch offen
 
 - Netzwerkisolation und erlaubte Verbindungsziele konkret einrichten und abnehmen.
