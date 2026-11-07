@@ -1,0 +1,65 @@
+{
+  "repository": "Sheqoooo/vetro",
+  "ref_at_read": "main",
+  "review_date": "2026-11-05",
+  "scope": "Selected source review only. No TV contacted. No full repository checkout. Blob hashes do not pin the full build.",
+  "files": [
+    {
+      "path": "README.md",
+      "git_blob_sha": "84718c2f72e9cf98cf130d4397df93eb4efaa695"
+    },
+    {
+      "path": "app/service/main.js",
+      "git_blob_sha": "2b544ae5df568c97e31cebcddb79275df8477a27"
+    },
+    {
+      "path": "app/service/platform.js",
+      "git_blob_sha": "5ee070e39c5688b8a61e2867351f38a80683043d"
+    },
+    {
+      "path": "rooting/service/platform.js",
+      "git_blob_sha": "a13f7f332a41d9ee6b5cdb16d45ed679ce15090e"
+    },
+    {
+      "path": ".gitignore",
+      "git_blob_sha": "2fb52b682e18fa4643917acb4a1f88b39c73b800"
+    },
+    {
+      "path": "app/service/dock.js",
+      "git_blob_sha": "158aa10a0ee7471f7fd765c03303136fec57d965"
+    },
+    {
+      "path": "app/service/component-actions.js",
+      "git_blob_sha": "4e8432fad45d5c8cbbde36de66bf463492e3f7f1"
+    },
+    {
+      "path": "app/service/settings.js",
+      "git_blob_sha": "0b68a7da423b013ee8f1e0889df9dc0ad7cc923c"
+    },
+    {
+      "path": "app/service/tv-settings.js",
+      "git_blob_sha": "b710071e78e3792d2c393bf83753df25bc64e5ba"
+    },
+    {
+      "path": "app/service/home-order.js",
+      "git_blob_sha": "582339dbaa1b17e8ea99c988111a8d0054521ea9"
+    },
+    {
+      "path": "app/service/quick-wins.js",
+      "git_blob_sha": "04e406955f5b4219d97a3c47cda207175a140bd6"
+    },
+    {
+      "path": "app/service/remap.js",
+      "git_blob_sha": "9c95628dfce2aea1491c76f714a5e1d956321853"
+    },
+    {
+      "path": "app/service/local-dns.js",
+      "git_blob_sha": "b7281b7b1294fda587ed2389878de789e3770613"
+    },
+    {
+      "path": "app/service/privacy.js",
+      "git_blob_sha": "ac508d0420d6fc1f29b2434deb718dd683901d6d"
+    }
+  ]
+}
+
