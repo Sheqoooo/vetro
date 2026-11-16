@@ -1,7 +1,11 @@
 # Vetro: Sicherung vor Launcher-Änderungen
 
-Status: Vorbereitung. Kein TV kontaktiert, kein Root eingerichtet, kein vollständiger
-Checkout vorhanden und keine Wiederherstellung am Gerät getestet.
+Status 16. November 2026: Vollständiger Fork lokal, Original-Apps2Samsung startet,
+zwei unsignierte Pakete gebaut und fünf gezielte Offline-Tests bestanden.
+Heute kein TV-Kontakt. Noch keine TV-Installation, kein Root und kein echter Restore-Test.
+
+**Einfach anfangen: [Was fertig ist und was du später tun musst](START-HIER.md).**
+Technische Einzelheiten: [Offline-Vorbereitung](OFFLINE-PREPARATION.md).
 
 Dieses Verzeichnis enthält ein **Offline-Archivierungswerkzeug**, keinen fertigen
 TV-Restore. Es führt keine Befehle auf einem Fernseher aus und hat keinen Netzwerkcode.
@@ -67,6 +71,8 @@ Starter-Cache zu vermeiden:
 /Library/Developer/CommandLineTools/usr/bin/python3 -B -m unittest discover -s recovery -p 'test_*.py' -v
 ```
 
-Den Ablauf in `ROLLOUT-AND-RECOVERY.md` abnehmen. Erst nach Klärung der Netzwerkisolation
-und ausdrücklicher Installationsfreigabe beginnt die Arbeit am TV. Ein echter Restore
-wird erst mit geprüften Originalwerten und gerätespezifischer Rückleseprüfung implementiert.
+Nächster Schritt zu Hause: aktuelle TV-Adresse und Entwicklermodus prüfen, dann
+die Original-CLI gezielt mit diesem TV testen. Die vorhandenen Einschränkungen
+bleiben bestehen; fehlende Rechte werden konkret gemeldet. TV-Installation und
+Root benötigen weiterhin eine ausdrückliche Freigabe. Ein echter Restore wird erst
+mit geprüften Originalwerten und gerätespezifischer Rückleseprüfung implementiert.

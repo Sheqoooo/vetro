@@ -402,3 +402,75 @@ und legt es im Projektordner tools/downloads ab. Erst danach Integrität,
 Archivpfade und unveränderten Start mit weiterhin bestehenden Grenzen prüfen.
 
 **Rücknahme:** Nur neue leere Vorbereitungsordner angelegt; nichts gelöscht.
+
+## 2026-11-16 — Originalinstaller und Vetro vollständig offline vorbereitet
+
+**Status:** durchgeführt und offline geprüft; keine Hardwareprüfung.
+
+**Freigabe und Ausgangslage:** Besitzer erlaubt jetzt den Download der normalen
+Apps2Samsung-Version und bittet um vollständige Vorbereitung mit einfacher
+Dokumentation. Besitzer ist in einem anderen Netz; deshalb heute keinerlei
+TV-Kontakt, Netzscan, SDB-Verbindung, Anmeldung oder TV-Schreiboperation.
+Vorherige geplante Apps2Samsung-Anpassung wird nicht umgesetzt. Die historischen
+Quellbefunde werden nicht entfernt und bleiben für den späteren Installationspfad
+relevant.
+
+**Durchführung, in Reihenfolge:**
+1. Lokale Prüfunterlagen und Repo-Anweisungen gelesen. GitHub-Release-Metadaten für
+   das bereits festgehaltene v3.1.0 erneut gelesen, kein automatisches Versionsupdate.
+2. Original-Asset macOS arm64 mit curl über den verwalteten Proxy nach
+   tools/downloads geladen; erfolgreich, ohne zusätzliche Freigabeanforderung.
+   SHA-256 stimmt mit dem Release überein. Archivpfade und Dateitypen vor Extraktion
+   geprüft; genau Verzeichnis plus reguläre Programmdatei. Nur diese Datei ins
+   Projekt extrahiert und dort ausführbar gemacht; kein Systeminstaller.
+3. codesign-Integritätsprüfung erfolgreich. Ausführliche Anzeige bestätigt eine
+   Ad-hoc-Signatur ohne TeamIdentifier: kein Beleg einer Entwickleridentität oder
+   Notarisierung. Keine Quarantäneattribute entfernt. Exakte Hashes in TOOLS.json.
+4. --version und --help erfolgreich mit prozesslokalen Daten-/Temp-/Dotnet-Pfaden.
+   Meldung 3.1.0+dea1eb391d559b3176f40f612550bdae0cebc493.
+5. Den vollständigen öffentlichen Vetro-Fork in neues Unterverzeichnis vetro
+   geklont; Branch codex/recovery-preparation, Ausgangscommit
+   af64ee55d0af29c6d87aa360adb02ce70c17f176. Bestehende Workspace-Dateien erhalten.
+   Git dabei ohne globale Benutzer-/Systemkonfiguration und ohne Terminalprompt.
+6. Original-CLI-Quellen Program.cs und CertCommand.cs am festen Release gelesen.
+   cert --json ohne TV-Adresse/--prepare erfolgreich: Public und Partner fehlen.
+   Keine Zertifikate erzeugt. Daten liegen im eigenen privaten Projektunterordner.
+7. apps2samsung_offline.py angelegt: prüft Archivhash plus Programmvergleich,
+   setzt nur Prozesspfade, erhält echten HOME-Wert und erlaubt nur vier lokale
+   Aktionen. Zertifikatsliste und Installationshilfe darüber erfolgreich.
+   Negativtest scan: Exitcode 2 vor Start der CLI, keine Netzsuche.
+8. build-unsigned.cjs angelegt: nutzt unveränderte Upstream-Kollektoren und
+   ZIP-Funktion. Zwei unsignierte Pakete erzeugt, ohne npm-Installation,
+   Signierungsabhängigkeiten oder Ausführen der eingepackten TV-Payloads.
+   Quellstand und Hashes in dist/OFFLINE-BUILD.json. Keine Produktquelle geändert.
+9. Fünf gezielte vorhandene Offline-Tests bestanden: App-Build, Integrationsgrenze,
+   Node-4-Syntaxwächter, Dock-Lebenszyklus und Dock-Katalog. Node 24.22.1, bestehender
+   Test-Preload für Host-Uptime; OPENSSL_CONF und TMPDIR projektintern.
+10. Beide Pakete zusätzlich mit unabhängigem Python-ZIP/XML-Leser auf CRC,
+    Hash, Manifest, eindeutige Einträge, fehlende Signaturen und korrekte
+    Payload-Trennung geprüft; erfolgreich.
+11. Einfache Anleitung START-HIER.md, technische Reproduktion
+    OFFLINE-PREPARATION.md, Werkzeugmanifest TOOLS.json und README-Verweis
+    vorbereitet. Keine Binärdateien, echten Exporte oder persönlichen Pfade
+    werden veröffentlicht.
+
+**Ergebnis/Validierung:** Originalwerkzeug startet und kann seinen leeren lokalen
+Zertifikatsspeicher lesen. App-Paket: 775968 Bytes/64 Einträge; Integrationspaket:
+901117 Bytes/79 Einträge. Beide unsigniert, nicht auf Hardware getestet, nicht
+installationsbereit. Exakte Kommandos/Hashes stehen in OFFLINE-PREPARATION.md.
+Kein vollständiger Testlauf aller Tests, keine Vetro-Serverinstanz auf dem Mac.
+
+**Sicherheitsgrenzen:** Bestehende verwaltete Dateisperren bleiben die technische
+Grenze. Umgebungsvariablen, Gitignore und der Offline-Starthelfer ersetzen sie nicht.
+SDB über den Proxy sowie produktive Cache-/Logpfade der Original-CLI sind weiterhin
+nicht geprüft. Kein automatisches Beenden eines SDB-Prozesses ausgelöst, weil
+keine Verbindung aufgebaut wurde. Keine globalen Codex-/macOS-Einstellungen
+verändert, kein sudo und keine neuen Administratorrechte.
+
+**Rücknahme/offen:** Neu angelegte Werkzeugdateien, Checkout, Buildausgaben und
+synthetische temporäre Daten sind projektlokal und können gezielt entfernt werden;
+keine Löschung durchgeführt. Vor später vorhandenen Zertifikaten/Sicherungen
+separate Sicherung/Freigabe. Heute kein TV-Rollback nötig. Frühere manuelle
+Entwicklermodus-Einstellung bleibt bestehen; aktuelle Adressen erst zu Hause
+erneut prüfen. Samsung-Zertifikat, Signierung, Installation, Root und echter
+Launcher-Rückweg bleiben die nächsten einzeln zu bestätigenden Schritte.
