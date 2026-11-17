@@ -1,15 +1,17 @@
 # Vetro: Sicherung vor Launcher-Änderungen
 
-Status 16. November 2026: Vollständiger Fork lokal, Original-Apps2Samsung startet,
-zwei unsignierte Pakete gebaut und fünf gezielte Offline-Tests bestanden.
-Heute kein TV-Kontakt. Noch keine TV-Installation, kein Root und kein echter Restore-Test.
+Status 17. November 2026: Vetro signiert und nach ausdrücklicher Freigabe
+installiert. Nach manuellem Developer-Host-Wechsel und Neustart ist der Root-Agent
+verbunden und meldet UID 0. Launcher noch nicht durch Agenten aktiviert;
+kein echter Launcher-Restore, Standby oder vollständiger Root-Rollback getestet.
 
 **Einfach anfangen: [Was fertig ist und was du später tun musst](START-HIER.md).**
 Technische Einzelheiten: [Offline-Vorbereitung](OFFLINE-PREPARATION.md).
 
-Dieses Verzeichnis enthält ein **Offline-Archivierungswerkzeug**, keinen fertigen
-TV-Restore. Es führt keine Befehle auf einem Fernseher aus und hat keinen Netzwerkcode.
-Es benötigt Python 3.8+ ohne zusätzliche Pakete.
+Das **Offline-Archivierungswerkzeug backup_exports.py** ist kein fertiger
+TV-Restore. Dieses einzelne Werkzeug führt keine TV-Befehle aus und hat keinen
+Netzwerkcode; es benötigt Python 3.8+ ohne zusätzliche Pakete. Ergänzende
+Verbindungs-, Signierungs- und Installationshelfer sind separat dokumentiert.
 
 ## Dokumentation und Verlauf
 

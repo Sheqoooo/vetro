@@ -825,3 +825,41 @@ freigegebene App umgeschaltet; kein Schließ-/Umschaltbefehl ausgeführt.
 Hintergrundaktivität der installierten Integration ist von unseren expliziten
 Befehlen zu unterscheiden. Root-Verbindung zum Prüfzeitpunkt nicht bestätigt,
 vollständige Rücknahme weiterhin nicht hardwarevalidiert.
+
+## 2026-11-17 — Nach Besitzer-Neustart Root-Verbindung und UID 0 bestätigt
+
+**Freigabe/Besitzerschritt:** Besitzer bestätigt sichtbare Vetro-Ansicht.
+Danach Anleitung erläutert: Developer Mode bleibt an, Host PC IP auf 127.0.0.1
+(TV selbst) ändern und neu starten; dies ermöglicht Vetros automatischen Root-Start.
+Besitzer meldet Done. Änderung und Neustart wurden vom Besitzer durchgeführt,
+nicht durch ein Mac-/TV-Schreibkommando des Agenten.
+
+**Prüfung:** Repo-Anweisungen gelesen. Ausschließlich lesende HTTP-GETs über den
+bestehenden verwalteten Proxy auf TV_IP:8099/status und TV_IP:8001/api/v2/,
+jeweils 3 Sekunden Verbindungs-/5 bis 6 Sekunden Gesamtlimit.
+Ergebnis: Dienst erreichbar nach gemeldetem Neustart, mode=tv-integration,
+Version 0.3.5, running=true, prepared=true, unsupported=false,
+agent.connected=true. Separate lesende Statusbestätigung: uid=0, gid=0.
+Developer Mode aktiv und Developer-Host tatsächlich TV-Loopback.
+Nur ausgewählte nicht-identifizierende Felder ausgegeben; keine Rohantworten,
+Gerätekennung, Prozess-ID oder echte LAN-Adressen veröffentlicht.
+
+**Bedeutung/Grenzen:** Root-Agent meldet Root-Identität und aktive Verbindung;
+kein zusätzlicher beliebiger Root-Befehl ausgeführt. Kein Launcher eingeschaltet.
+Der Besitzer hat einen Neustart gemeldet; das ist kein eigener Nachweis eines
+physischen Strom-Aus-/Ein-Tests. Standby und Home-Verhalten noch ungeprüft.
+Kein Anspruch eines vollständigen Firmware-/Root-Restore.
+
+**Quellprüfung für nächsten Schritt:** Dock-/Diagnose-/Startup-Routen gelesen.
+GET /dock verwendet preview=true und kann eine App-Katalogdatei schreiben;
+dieser GET wurde in diesem reinen Prüfschritt deshalb nicht ausgeführt.
+Keine Einstellungsänderung oder Export-/Restore-Aktion ausgeführt.
+Nächster Schritt wäre eine private Post-Installations-/Post-Root-Baseline vor
+Launcher-Änderungen und ein anschließend gesondert freigegebener An-/Aus-Test.
+
+**Dokumentation/Rücknahme:** Nicht-identifizierender ROOT-RESULT.json angelegt,
+einfache Anleitung und aktueller README-Status aktualisiert. Frühere Resultate
+bleiben als datierte Belege erhalten. Der normale PC-SDB-Zugang ist durch den
+Besitzer-Hostwechsel vorerst nicht verfügbar; für spätere Installation Host wieder
+auf die aktuelle Mac-Adresse setzen und TV neu starten. Dieser Rückwechsel wurde
+nicht ausgeführt. Sonstige Root-Rücknahme weiterhin nicht hardwarevalidiert.

@@ -1,9 +1,14 @@
 # Hier anfangen
 
-**Update 17. November 2026: Vetro ist nach deiner Freigabe installiert.**
+**Update 17. November 2026: Vetro ist installiert und der Root-Agent verbunden.**
+Nach deinem Host-IP-Wechsel auf TV-Loopback und dem gemeldeten Neustart antwortet
+der Agent mit **UID 0/GID 0**. [Root-Prüfung](ROOT-RESULT.json).
+Der Launcher wurde noch nicht durch den Agenten aktiviert. Standby, echter
+Strom-Aus-/Ein-Test und Launcher-Rücknahme sind noch nicht geprüft.
+
 Beide Übertragungen wurden zurückgelesen und geprüft; der TV bestätigt die
 Installation und listet Vetro. Der Hintergrunddienst antwortet im Modus
-`tv-integration`, der Root-Agent ist bei der Prüfung noch nicht verbunden.
+`tv-integration`.
 Nach weiterer Freigabe hat der TV auch den ausdrücklichen Start der Vetro-App
 bestätigt. Was auf dem Bildschirm sichtbar ist, muss der Besitzer noch bestätigen.
 Kein Neustart oder Launcher-Wechsel durch den Agenten.
@@ -13,10 +18,13 @@ Aktueller Stand: [Signierung mit Vetro](SIGNING-WITH-VETRO.md).
 Hintergrund des ursprünglichen Fehlers: [Zertifikatsstatus](SIGNING-STATUS.md).
 
 **Verwendeter Installationsweg:** [Ablauf und Grenzen](INSTALL-NEXT.md).
-Nächster Schritt: sichtbare Vetro-Ansicht mit dem Besitzer abgleichen, danach
-die vom Besitzer vorzunehmende Developer-Host-Konfiguration für den Root-Test
-gesondert abstimmen.
-Der Launcher bleibt bis zu seinem eigenen An-/Aus-Test unangetastet.
+Die sichtbare Vetro-Ansicht wurde vom Besitzer bestätigt. Der Besitzer hat den
+Developer-Host auf TV-Loopback geändert und neu gestartet; dazu wurde kein
+zusätzlicher Mac-Zugriff freigegeben. Für spätere Installationen muss der Host
+wieder auf die dann aktuelle Mac-IP umgestellt werden.
+Nächster Schritt: Zustand vor Launcher-Änderungen lokal sichern und einen
+kontrollierten Launcher-An-/Aus-Test gesondert freigeben. Launcher bis dahin
+unangetastet lassen.
 
 Die folgende Übersicht beschreibt die Offline-Vorbereitung vom 16. November.
 
