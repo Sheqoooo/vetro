@@ -11,8 +11,8 @@ Home-Taste sichtbar zu testen. [Aktueller Teststand](HOME-TEST.json).
 Der Besitzer hat vor dem Neustart die Vetro-Leiste auf Home bestätigt.
 Nach dem Neustart erschien zunächst Samsung Home. Beim ersten Check antwortete
 Vetro noch nicht; kurz darauf kamen Dienst, Root-Agent und Launcher ohne
-manuellen Start wieder. Eine erneute Home-Sichtprüfung im jetzt laufenden Zustand
-steht aus. [Neustart-Beobachtung](REBOOT-OBSERVATION.json).
+manuellen Start wieder. Der Besitzer hat danach erneut Home gedrückt und die
+Vetro-Leiste bestätigt. [Neustart-Beobachtung](REBOOT-OBSERVATION.json).
 Ein sofort sauberer Start ohne Samsung-Zwischenanzeige ist nicht bestätigt.
 
 Beide Übertragungen wurden zurückgelesen und geprüft; der TV bestätigt die
@@ -32,9 +32,10 @@ Developer-Host auf TV-Loopback geändert und neu gestartet; dazu wurde kein
 zusätzlicher Mac-Zugriff freigegeben. Für spätere Installationen muss der Host
 wieder auf die dann aktuelle Mac-IP umgestellt werden.
 Eine private Post-Root-Baseline liegt vor, der kontrollierte An-/Aus-Test ist
-abgeschlossen. Jetzt nach dem verzögerten Wiederanlauf nochmals Home drücken
-und die sichtbare Oberfläche melden. Keine Einstellungen zur Behebung auf
-Verdacht ändern. Standby und echter Strom-Aus-/Ein-Test bleiben ungeprüft.
+abgeschlossen. Home funktioniert auch nach dem verzögerten Wiederanlauf.
+Offen bleibt die Startverzögerung: Samsung erscheint anfangs noch, die genaue
+Dauer ist nicht gemessen. Keine Einstellungen zur Behebung auf Verdacht ändern.
+Standby und echter Strom-Aus-/Ein-Test bleiben ungeprüft.
 
 Die folgende Übersicht beschreibt die Offline-Vorbereitung vom 16. November.
 

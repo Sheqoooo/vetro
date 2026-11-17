@@ -983,3 +983,22 @@ aktualisiert; REBOOT-OBSERVATION.json mit getrennten Phasen angelegt,
 START-HIER entsprechend angepasst. Kein TV-Zustand in dieser Diagnose
 geändert, keine Rücknahme erforderlich. Launcher bleibt wie vor Neustart
 gespeichert eingeschaltet. Standby/physischer Stromzyklus nicht geprüft.
+
+## 2026-11-17 — Besitzer bestätigt Home nach verzögertem Wiederanlauf
+
+**Beobachtung:** Nach den bereits dokumentierten Backendprüfungen drückt der
+Besitzer erneut Home und meldet ausdrücklich die Vetro-Leiste. Damit sind
+sichtbare Home-Funktion vor Neustart und nach selbstständigem verzögertem
+Wiederanlauf bestätigt. Keine zusätzliche Geräteabfrage oder Zustandsänderung
+für diese Bestätigung ausgeführt.
+
+**Aussagegrenzen:** Erfolg ist nicht gleich sofortiger Start ohne Samsung.
+Anfangs erschien nach Neustart Samsung Home; Vetro war zunächst nicht erreichbar
+und kam später selbstständig. Dauer seit Besitzer-Neustart bleibt ungemessen.
+Keine allgemeine 90-Sekunden-Garantie, kein Standby- oder echter Stromzyklustest.
+
+**Dokumentation/Stand:** HOME-TEST und REBOOT-OBSERVATION um datensparsame
+Besitzerbestätigung ergänzt, START-HIER auf aktuellen Stand gebracht.
+Launcher bleibt wie freigegeben eingeschaltet. Offene Anforderung: Verzögerung
+und Samsung-Zwischenanzeige. Keine neue Systemeinstellung, keine Rücknahme
+oder zusätzliche Berechtigung angefordert.

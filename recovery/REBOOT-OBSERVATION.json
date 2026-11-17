@@ -15,7 +15,9 @@
   "launcher_failures_at_later_check": 0,
   "samsung_home_process_reported_at_later_check": false,
   "exact_time_since_restart_known": false,
-  "home_key_visual_confirmation_after_later_check_pending": true,
+  "home_key_visual_confirmation_after_later_check_pending": false,
+  "owner_confirmed_vetro_bar_after_delayed_start": true,
+  "immediate_samsung_free_start_verified": false,
   "settings_changed_during_diagnosis": false,
   "manual_launch_or_restart_during_diagnosis": false
 }

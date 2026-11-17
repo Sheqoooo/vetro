@@ -8,5 +8,7 @@
   "home_key_visual_confirmation_pending": false,
   "owner_confirmed_vetro_bar_before_reboot": true,
   "reboot_test_started": true,
-  "reboot_with_launcher_verified": false
+  "reboot_with_launcher_verified": true,
+  "reboot_success_requires_startup_delay": true,
+  "immediate_home_replacement_after_power_on_verified": false
 }
