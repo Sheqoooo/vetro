@@ -4,14 +4,18 @@
 Beide Übertragungen wurden zurückgelesen und geprüft; der TV bestätigt die
 Installation und listet Vetro. Der Hintergrunddienst antwortet im Modus
 `tv-integration`, der Root-Agent ist bei der Prüfung noch nicht verbunden.
-Kein ausdrücklicher App-Start, Neustart oder Launcher-Wechsel durch den Agenten.
+Nach weiterer Freigabe hat der TV auch den ausdrücklichen Start der Vetro-App
+bestätigt. Was auf dem Bildschirm sichtbar ist, muss der Besitzer noch bestätigen.
+Kein Neustart oder Launcher-Wechsel durch den Agenten.
 Installationsbeleg: [Ergebnis](DEPLOYMENT-RESULT.json).
+Erster Start: [Beleg und verbleibende Sichtprüfung](FIRST-LAUNCH.json).
 Aktueller Stand: [Signierung mit Vetro](SIGNING-WITH-VETRO.md).
 Hintergrund des ursprünglichen Fehlers: [Zertifikatsstatus](SIGNING-STATUS.md).
 
 **Verwendeter Installationsweg:** [Ablauf und Grenzen](INSTALL-NEXT.md).
-Nächster Schritt nach gesonderter Freigabe: erster sichtbarer Start und danach
-die vom Besitzer vorzunehmende Developer-Host-Konfiguration für den Root-Test.
+Nächster Schritt: sichtbare Vetro-Ansicht mit dem Besitzer abgleichen, danach
+die vom Besitzer vorzunehmende Developer-Host-Konfiguration für den Root-Test
+gesondert abstimmen.
 Der Launcher bleibt bis zu seinem eigenen An-/Aus-Test unangetastet.
 
 Die folgende Übersicht beschreibt die Offline-Vorbereitung vom 16. November.

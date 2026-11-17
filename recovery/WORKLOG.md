@@ -799,3 +799,29 @@ installiert/angelegt. Rücknahme nicht ausgeführt oder auf Hardware verifiziert
 Kein pauschales Entfernen von Stagingdateien und kein Full-Root-Restore behauptet.
 Exakte ursprüngliche Abwesenheit/Listen und private Journale liegen lokal vor.
 Keine globalen Codex-/macOS-Berechtigungen geändert.
+
+## 2026-11-17 — Erster App-Start nach ausdrücklicher Freigabe
+
+**Freigabe:** Auf konkrete Frage nach sichtbarem Öffnen und Verlassen der
+Wiedergabeansicht bestätigt der Besitzer "Ja, lets go". Keine zusätzliche
+Freigabe für Launcher-Umschaltung, Developer-Host-IP oder Neustart abgeleitet.
+
+**Durchführung:** Repo-Anweisungen gelesen. Über vorhandenen Vetro-SDB-Client
+einmalig shell:0 was_execute vetrotvapp.app mit 5 Sekunden Verbindungs- und
+15 Sekunden Befehlslimit ausgeführt. Prozesslokale OpenSSL-/Temporärpfade im
+Projekt, keine globalen Konfigurationsänderungen.
+
+**Beobachtung:** TV antwortet launch start und app_id[vetrotvapp.app] launched,
+Befehlslauf erfolgreich. Dies ist die Gerätebestätigung, noch keine vom Agenten
+beobachtete Bildschirmansicht. Besitzer wird um Abgleich der sichtbaren Ansicht
+gebeten. Danach lesendes GET auf TV_IP:8099/status mit 3/5 Sekunden Limits:
+erreichbar, mode=tv-integration, App-Version 0.3.5, agent.connected=false.
+Keine Fehlerbehebung durch blindes erneutes Starten, kein zusätzlicher Root-Befehl.
+
+**Stand/Rücknahme:** Launcher nicht durch Agenten aktiviert, kein Neustart oder
+Developer-Host-Wechsel. First-Launch-Beleg ohne private Gerätewerte gespeichert,
+einfache Anleitung aktualisiert. Der Vordergrund wurde bewusst auf die
+freigegebene App umgeschaltet; kein Schließ-/Umschaltbefehl ausgeführt.
+Hintergrundaktivität der installierten Integration ist von unseren expliziten
+Befehlen zu unterscheiden. Root-Verbindung zum Prüfzeitpunkt nicht bestätigt,
+vollständige Rücknahme weiterhin nicht hardwarevalidiert.
