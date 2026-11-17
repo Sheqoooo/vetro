@@ -474,3 +474,43 @@ separate Sicherung/Freigabe. Heute kein TV-Rollback nötig. Frühere manuelle
 Entwicklermodus-Einstellung bleibt bestehen; aktuelle Adressen erst zu Hause
 erneut prüfen. Samsung-Zertifikat, Signierung, Installation, Root und echter
 Launcher-Rückweg bleiben die nächsten einzeln zu bestätigenden Schritte.
+
+## 2026-11-17 — Original-Apps2Samsung erfolgreich mit dem TV verbunden
+
+**Status/Freigabe:** Besitzer meldet TV bereit. Wie angekündigt ausschließlich
+Verbindungs-/Informationsprüfung, keine Installations- oder Root-Freigabe abgeleitet.
+
+**Ablauf:** Repo-Anweisungen und vorhandenen Offline-Helfer gelesen. Zuerst
+GET auf TV_IP:8001/api/v2/ per curl über den verwalteten Proxy mit 3 Sekunden
+Verbindungs-/6 Sekunden Gesamtlimit: OS Tizen und developerMode "1".
+Anschließend TvCommand.cs am originalen Release v3.1.0 gelesen und den originalen
+Installer erneut gegen Archivhash/Archivinhalt geprüft. Aufruf:
+apps2samsung-cli tv TV_IP --local-ip HOST_IP --json, ohne scan, install oder launch.
+Prozesslokale Daten-/Temp-/Dotnet-Pfade wie am Vortag; vorhandene Proxyvariablen
+übernommen und NO_PROXY für diesen Prozess geleert. Der Offline-Helfer wurde
+nicht um Netzwerkaktionen erweitert; Aufruf erfolgte separat mit festem Ziel.
+Gesamtzeitlimit des Elternprozesses: 40 Sekunden.
+
+**Tatsächliches Ergebnis:** Exitcode 0, ok=true, developerMode=true,
+debugPortOpen=true, ready=true. Tizen-Version "6.0" und gültige DUID gelesen.
+Private Gerätewerte/Adressen wurden nicht ausgegeben, gespeichert oder veröffentlicht;
+nur Vorhandensein der DUID und die genannten nicht-identifizierenden Statuswerte.
+TizenDeviceInfoService.cs anschließend am festen Release gegengeprüft:
+DUID-/Capability-Leseaufrufe und HTTP-Geräteinformationen, kein Diagnose-,
+Installations-, Deinstallations- oder Root-Aufruf.
+
+**Korrektur bisher offener Einschränkung:** Eine echte SDB-Informationsabfrage
+mit dem unveränderten Originalprogramm funktioniert nun in der aktuellen Sitzung.
+Das beweist nicht die Freigabe aller später nötigen Ziele oder aller Installationspfade.
+Kein allgemeiner Netzwerkscan und kein anderes Heimnetzgerät angesprochen.
+Die lokale SDB-Verbindungsroutine kann laut früherer Quellprüfung konkurrierende
+sdb-Prozesse zu beenden versuchen; ob dabei ein vorhandener Prozess betroffen war,
+wurde nicht unabhängig beobachtet. SDB-Authentifizierung kann lokale Schlüssel
+im privaten Projekt-Datenverzeichnis erzeugen; das ist von TV-Einstellungen zu
+unterscheiden.
+
+**Rücknahme/offen:** Keine TV-App oder TV-Einstellung geändert; Debug-Verbindung
+mit Prozessende geschlossen. Keine Zertifikatserzeugung, keine Samsung-Anmeldung
+oder Installation durchgeführt. Nächster genehmigungspflichtiger Schritt ist die
+Vorbereitung eines eigenen Signierungszertifikats; Anmeldung durch Besitzer,
+keine Passwörter im Chat. Allgemeine Root-Rücknahme weiterhin nicht nachgewiesen.
