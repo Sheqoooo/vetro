@@ -1056,3 +1056,64 @@ Messwerten; STARTUP-ANALYSIS.md mit Quellen, Kommandos, Grenzen und Captureablau
 START-HIER aktualisiert. Kein blindes Kürzen von Retryzeiten, kein Deaktivieren
 von Samsung-Diensten, kein neuer Root-Bootdienst. Recorder beendet sich nach
 Frist beziehungsweise q und bewahrt Teilergebnisse; TV-Rücknahme heute nicht nötig.
+
+## 2026-11-17 — Passiver Neustart bestätigt; rücknehmbarer Frühstart-Versuch lokal vorbereitet
+
+**Capture/Freigabe:** Besitzer meldet neu gestartet, nachdem Recorder ARMED und
+Neustartaufforderung markiert war. Keine App manuell durch Agenten geöffnet.
+Aufzeichnung weiterbeobachtet, Ausfall erfasst, danach newBoot/newService/
+agentConnected erkannt. Nach weiterer Beobachtung von mindestens 20 Sekunden
+mit q beendet; Prozess Exitcode 0, New boot confirmed=True, Capture complete=True.
+Genau eine neue Boot-ID, passive Messung nicht durch einen neuen Widget-Report/
+Öffnungsmarker verunreinigt. 108 fehlgeschlagene Statussamples sind eine Anzahl,
+keine exakte Zeitmessung des Tastendrucks.
+
+**Ergebnisse:** Dienstprozess 103,092 Sekunden seit Kernelboot,
+Modulinitialisierung ungefähr 105,554 s (TV-Wanduhr/Telemetry-Schätzung),
+erste Dienstbeobachtung bei Uptime 106,13 s (Polling-Grenze),
+Root-Verbindung 1,995 s nach Modulinitialisierung,
+Launcherprozess 107,296 s seit Kernelboot. Launcher am Messende laufend,
+Samsung-Home-Prozess dort nicht gefunden. Beide Prozesssnapshot-Parser ohne
+Fehler. Ergebnis passt zum zuvor gemessenen späten Prozessstart, identifiziert
+aber noch keine einzelne interne Tizen-Ursache.
+
+**Zusätzliche reine Leseprüfungen:** System-UnitPath, Verzeichnis-/Mountmetadaten
+und ausgewählte WRT/AUL-Zeitpunkte gelesen. / ist vdfs ro; kein Remount/Schreibtest.
+Owner UID 5001/Gruppe users und systemd 244 bestätigt. user@5001.service not-found,
+trotzdem echten systemd --user-Prozess unter owner gefunden. Ausgewählte
+Pfad-Umgebungsvariablen zunächst mit falschem tr-Masking, später korrekt
+selektiv gelesen; keine der ausgewählten Werte ausgegeben. Nicht zur Sammlung
+anderer Umgebungsdaten ausgeweitet. Benutzer-Buszugriff nicht erreichbar,
+kein daemon-reload. Owner-.config existiert, darunter kein systemd-Pfad gefunden.
+app_launcher und sha256sum unter /usr/bin vorhanden.
+
+**Vorbereitete Alternative, NICHT am TV ausgeführt:** Frühstart als normale
+Benutzer-Unit in neuem owner-Konfigurationsunterbaum plus eigenem Helferordner.
+Sie fordert genau vetrotvapp.svc über app_launcher an; keine neue Root-Systemunit,
+keine Hersteller-Unitänderung, Paketflags unverändert. Offizielle v244-Manpages
+über systemd-GitHub gelesen, nachdem freedesktop-Webseiten nicht abrufbar waren:
+Benutzer-Unitpfad und Service-Start-/Laufzeitoptionen. Das beweist noch nicht,
+dass Samsungs angepasster Manager den Weg früh genug ausführt.
+Unit und Shellskript sowie early_start_trial.py für plan/apply/remove nur lokal
+vorbereitet. Auf dem TV bis hier ausschließlich gelesen.
+
+**Rücknahme-/Dateitests:** Apply verweigert bestehende oder symlink-basierte
+Konfiguration. Remove prüft Markierung, alle Datei-Hashes und Linkziele vor
+Löschung; keine rekursive Entfernung, fremde zwischenzeitliche Units bleiben.
+Sechs lokale synthetische Dateisystemtests bestanden, einschließlich komplettem
+Dateirundlauf, Überschreibverbot, veränderter Unit, fremder neuer Unit,
+Anfangssymlink und später ausgetauschtem Elternlink.
+Erste Tests zeigten zwei Fälle mit teilweiser Ordneranlage trotz Guardfehler:
+set -e allein bricht nicht jede AND-Liste ab. Vor Hardwareeinsatz durch explizite
+Abbrüche korrigiert, danach Tests bestanden. Ergänzter Elternlinkschutz geprüft.
+Unit anschließend Type=simple/RuntimeMaxSec=20/TimeoutStopSec=2 statt wartendem
+oneshot; Tests erneut bestanden, Shellsyntax erfolgreich geprüft.
+Kein globaler Testpfad und keine echten TV-Dateien für die Tests verwendet.
+
+**Dokumentation/Stand:** STARTUP-PASSIVE-RESULT.json mit anonymisierten Messwerten,
+EARLY-START-TRIAL.md mit exaktem Footprint, Quellen, Kommandos, Rücknahme und
+Risiken; Startanalyse/START-HIER aktualisiert. Private Capture-Rohdaten verbleiben
+lokal. Noch kein Apply/Remove am TV und kein zusätzlicher Neustart nach Messung.
+Für Einrichtung des neuen Benutzer-Startmechanismus wird separate ausdrückliche
+Freigabe eingeholt. Wirkung und Hardware-Rücknahme weiterhin ungeprüft; keine
+Samsung-freie Sofortstart-Zusage und kein vollständiger Root-Rollback behauptet.

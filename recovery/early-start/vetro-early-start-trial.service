@@ -1,0 +1,13 @@
+[Unit]
+Description=Reversible Vetro early-start trial (owner user)
+ConditionPathExists=/home/owner/share/vetro-early-start-trial/.trial-owned
+
+[Service]
+Type=simple
+ExecStart=/home/owner/share/vetro-early-start-trial/start.sh
+RuntimeMaxSec=20
+TimeoutStopSec=2
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

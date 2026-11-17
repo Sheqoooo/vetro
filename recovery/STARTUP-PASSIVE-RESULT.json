@@ -1,0 +1,20 @@
+{
+  "checked_on": "2026-11-17",
+  "new_kernel_boot_confirmed": true,
+  "distinct_new_boots": 1,
+  "passive_capture_complete": true,
+  "widget_open_contamination_detected": false,
+  "service_process_start_seconds_after_boot": 103.092,
+  "service_module_initialization_approx_seconds_after_boot": 105.554,
+  "first_service_observation_uptime_seconds": 106.13,
+  "root_connected_seconds_after_module_initialization": 1.995,
+  "launcher_process_start_seconds_after_boot": 107.296,
+  "launcher_running_at_end": true,
+  "samsung_home_process_detected_at_end": false,
+  "http_failure_sample_count": 108,
+  "process_snapshot_parse_error": null,
+  "launcher_snapshot_parse_error": null,
+  "recorder_exited_successfully": true,
+  "tv_settings_changed_by_recorder": false,
+  "earlier_start_trial_installed": false
+}

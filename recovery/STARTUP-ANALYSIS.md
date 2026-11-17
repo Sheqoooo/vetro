@@ -4,6 +4,13 @@ Stand 17. November 2026. Ausschließlich lesende Diagnose und lokale Vorbereitun
 keine TV-Einstellung oder Startreihenfolge geändert, kein weiterer Neustart
 durch ein Werkzeug ausgelöst.
 
+**Nachtrag:** Der Besitzer hat den passiven Test-Neustart durchgeführt. Capture
+beendet, neuer Kernelboot und vollständige passive Messung bestätigt:
+Dienstprozess 103,092 s, Launcher 107,296 s.
+[Datensparsamer Ergebnisbeleg](STARTUP-PASSIVE-RESULT.json).
+Ein reversibler Benutzer-Startversuch ist lokal vorbereitet, aber noch nicht
+auf dem TV eingerichtet: [Plan und Rücknahme](EARLY-START-TRIAL.md).
+
 ## Einfach erklärt
 
 Beim beobachteten Kernelstart entstand der größte Teil der Wartezeit, **bevor

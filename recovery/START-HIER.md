@@ -35,8 +35,12 @@ Eine private Post-Root-Baseline liegt vor, der kontrollierte An-/Aus-Test ist
 abgeschlossen. Home funktioniert auch nach dem verzögerten Wiederanlauf.
 Die Startverzögerung ist eingegrenzt: Im untersuchten Kernelboot startete Vetros
 Dienst erst bei 104,11 Sekunden, Root bei 107,08 und der Launcher bei 108,22.
-Eine passive Wiederholungsmessung ist vorbereitet; Ursache/Abhilfe noch nicht
-bewiesen. [Messwerte und Grenzen](STARTUP-ANALYSIS.md).
+Ursache und Abhilfe sind noch nicht bewiesen. Die passive Wiederholungsmessung
+ist abgeschlossen: Dienst 103,092 Sekunden,
+Launcher 107,296 Sekunden nach bestätigtem neuem Kernelboot.
+[Messwerte und Grenzen](STARTUP-ANALYSIS.md).
+Ein zusätzlicher früherer Benutzer-Start ist nur lokal vorbereitet und braucht
+vor Einrichtung eine neue Freigabe: [Test und Rücknahme](EARLY-START-TRIAL.md).
 Keine Einstellungen zur Behebung auf Verdacht ändern.
 Standby und echter Strom-Aus-/Ein-Test bleiben ungeprüft.
 
