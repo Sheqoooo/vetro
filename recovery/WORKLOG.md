@@ -755,3 +755,47 @@ gezielt entfernen; noch nicht hardwaregetestet. Kein pauschales 0 rmfile, das
 fremde Dateien löschen könnte. Keine automatische Bereinigung. Vollständige
 Root-Rücknahme weiterhin unbewiesen. Bisher keine Rücknahme nötig: nur private
 Baselines und Projektcode/Dokumentation angelegt; kein TV-Upload/Installation.
+
+## 2026-11-17 — Freigegebene Installation erfolgreich, Root noch nicht verbunden
+
+**Freigabe:** Besitzer bestätigt ausdrücklich TV-Verfügbarkeit und Installation
+nach Nennung der zwei übertragenen Dateien, möglicher Wiedergabeunterbrechung,
+Hintergrunddienst und Root-Komponenten. Kein zusätzlicher Start/Neustart freigegeben.
+
+**Durchführung:** Repo-Anweisungen gelesen. Mit bestehender Node-/OpenSSL-/Git-
+Umgebung deploy_signed.cjs --confirm-install TV_IP einmalig ausgeführt.
+Paket erneut erfolgreich geprüft (81 Dateien, RSA/Digests für 80/81 Referenzen),
+Gerätekennung gegen ausgestelltes Distributor-Zertifikat abgeglichen,
+Stagingpfad/App-Liste und Datei-Abwesenheit nochmals geprüft.
+Profil und signiertes WGT über SYNC geschrieben und beide zurückgelesen;
+Hashes stimmen jeweils. Keine vorhandene Stagingdatei überschrieben.
+Danach genau ein vd_appinstall für vetrotvapp.app und das vorbereitete Paket.
+Keine automatische Wiederholung, Deinstallation, Root-Shell-Injektion,
+App-Launch-Anforderung, Developer-IP-Änderung oder Neustart.
+
+**Ergebnis/Beleg:** Helfer Exitcode 0, installed=true, explicitlyLaunched=false,
+rollbackVerified=false. Privates Journal enthält checked-before-write,
+für beide Dateien upload-submitting/upload-readback-verified,
+install-submitting und installation-confirmed. TV-Antwort enthält install completed,
+keinen erkannten Installationsfehler; anschließende App-Liste enthält vetrotvapp.
+Private Vorher-/Nachherlisten und Rohantwort bleiben im privaten Projektordner.
+Öffentlich nur nicht-identifizierender DEPLOYMENT-RESULT.json, keine Profil-
+oder Zertifikatsbytes/Hashes und keine realen Adressen.
+
+**Nachprüfung:** Ausschließlich lesendes HTTP-GET auf TV_IP:8099/status,
+maximal 3 Sekunden Verbindung/5 Sekunden insgesamt über bestehenden Proxy.
+API erreichbar, mode=tv-integration, agent.connected=false.
+Der Hintergrunddienst ist also bereits aktiv, obwohl kein App-Start angefordert
+wurde. Keine Behauptung, dass überhaupt kein Hintergrundcode lief.
+Root-Verbindung zum Zeitpunkt der Prüfung nicht bestätigt; Launcher nicht aktiviert.
+
+**Dokumentation/Nächster Schritt:** START-HIER, Installationsplan und
+Signierungsdokumentation mit klar getrenntem Nachtrag aktualisiert.
+Erster sichtbarer App-Start und nachgelagerter Root-Test benötigen weiteren
+abgestimmten Schritt; Mac-/Developer-Host-IP bleibt unverändert.
+
+**Rücknahme/Risiken:** Vetro und zwei neue Stagingdateien wurden tatsächlich
+installiert/angelegt. Rücknahme nicht ausgeführt oder auf Hardware verifiziert.
+Kein pauschales Entfernen von Stagingdateien und kein Full-Root-Restore behauptet.
+Exakte ursprüngliche Abwesenheit/Listen und private Journale liegen lokal vor.
+Keine globalen Codex-/macOS-Berechtigungen geändert.

@@ -1,6 +1,14 @@
 # Nächster Schritt: Vetro installieren
 
-**Stand 17. November 2026: vorbereitet, noch nicht ausgeführt.**
+**Nachtrag 17. November 2026: nach ausdrücklicher Freigabe erfolgreich ausgeführt.**
+Beide Dateien übertragen und zurückgelesen, Installation vom TV bestätigt und
+Vetro danach in der App-Liste vorhanden. Hintergrunddienst erreichbar,
+Root-Agent bei Prüfung noch nicht verbunden. Kein expliziter App-Start oder
+Neustart. [Nicht-identifizierender Ergebnisbeleg](DEPLOYMENT-RESULT.json).
+
+Die folgenden Abschnitte halten den zuvor vorbereiteten Plan und seine Grenzen fest.
+
+**Ursprünglicher Planstand 17. November 2026: vorbereitet, noch nicht ausgeführt.**
 Der Fernseher wurde nur lesend geprüft; die laufende Wiedergabe wurde nicht
 gezielt verändert. Vor der Installation muss der Besitzer bestätigen, dass
 der TV frei ist und die Installation jetzt stattfinden darf.

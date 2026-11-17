@@ -1,5 +1,9 @@
 # Vetro-Paket signiert — 17. November 2026
 
+**Späterer Nachtrag:** Das unten beschriebene Paket wurde nach gesonderter
+Freigabe erfolgreich installiert. [Installationsbeleg](DEPLOYMENT-RESULT.json).
+Der folgende Text dokumentiert den vorausgegangenen Signierungsstand.
+
 ## Was jetzt fertig ist
 
 **Die Signierung hat mit Vetros eigenem Build funktioniert.** Die bereits von

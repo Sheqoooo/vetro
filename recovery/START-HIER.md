@@ -1,14 +1,18 @@
 # Hier anfangen
 
-**Update 17. November 2026:** TV-Verbindung und Samsung-Anmeldung haben
-funktioniert. **Das Vetro-Paket ist jetzt signiert und lokal geprüft.**
-Dafür wurde Vetros eigener Signierungsweg verwendet; der bekannte Ladefehler
-des Originalinstallers bleibt separat zu klären. **Noch keine TV-Installation.**
+**Update 17. November 2026: Vetro ist nach deiner Freigabe installiert.**
+Beide Übertragungen wurden zurückgelesen und geprüft; der TV bestätigt die
+Installation und listet Vetro. Der Hintergrunddienst antwortet im Modus
+`tv-integration`, der Root-Agent ist bei der Prüfung noch nicht verbunden.
+Kein ausdrücklicher App-Start, Neustart oder Launcher-Wechsel durch den Agenten.
+Installationsbeleg: [Ergebnis](DEPLOYMENT-RESULT.json).
 Aktueller Stand: [Signierung mit Vetro](SIGNING-WITH-VETRO.md).
 Hintergrund des ursprünglichen Fehlers: [Zertifikatsstatus](SIGNING-STATUS.md).
 
-**Installationsweg vorbereitet:** [Was der nächste TV-Schritt ändern würde](INSTALL-NEXT.md).
-Noch keine Übertragung oder Installation. Erst bestätigen, dass der TV frei ist.
+**Verwendeter Installationsweg:** [Ablauf und Grenzen](INSTALL-NEXT.md).
+Nächster Schritt nach gesonderter Freigabe: erster sichtbarer Start und danach
+die vom Besitzer vorzunehmende Developer-Host-Konfiguration für den Root-Test.
+Der Launcher bleibt bis zu seinem eigenen An-/Aus-Test unangetastet.
 
 Die folgende Übersicht beschreibt die Offline-Vorbereitung vom 16. November.
 

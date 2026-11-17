@@ -1,0 +1,19 @@
+{
+  "checked_on": "2026-11-17",
+  "app_id": "vetrotvapp.app",
+  "package_id": "vetrotvapp",
+  "package_sha256": "f4229886fd551c599689c5671242dd00fe2267d224a193a198801cb32a2ceedb",
+  "owner_approved_installation": true,
+  "uploaded_files_readback_verified": 2,
+  "tv_reported_install_completed": true,
+  "post_install_app_list_contains_vetro": true,
+  "installed": true,
+  "explicit_app_launch_requested": false,
+  "restart_requested": false,
+  "developer_host_ip_changed_by_agent": false,
+  "status_api_reachable": true,
+  "status_mode": "tv-integration",
+  "root_agent_connected_at_check": false,
+  "launcher_enabled_by_agent": false,
+  "rollback_verified_on_hardware": false
+}
