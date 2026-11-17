@@ -514,3 +514,37 @@ mit Prozessende geschlossen. Keine Zertifikatserzeugung, keine Samsung-Anmeldung
 oder Installation durchgeführt. Nächster genehmigungspflichtiger Schritt ist die
 Vorbereitung eines eigenen Signierungszertifikats; Anmeldung durch Besitzer,
 keine Passwörter im Chat. Allgemeine Root-Rücknahme weiterhin nicht nachgewiesen.
+
+## 2026-11-17 — Zertifikatserstellung vor Empfangsport angehalten
+
+**Freigabe:** Besitzer erlaubt Erstellung des eigenen Signierungszertifikats.
+Vor Ausführung Login-/Zertifikatspfad des Originalprogramms genauer gelesen.
+
+**Konkreter neuer Befund:** BrowserSamsungLogin.cs am festen v3.1.0 erstellt
+TcpListener(IPAddress.IPv6Any, CallbackPort) mit DualMode=true. SamsungOAuth.cs
+setzt CallbackPort=4794 und CallbackPath=/signin/callback. Der Listener ist damit
+programmseitig nicht auf Loopback begrenzt, obwohl die Redirect-URL localhost
+verwendet. Ob eine vorhandene Host-/Netzwerksperre externe Verbindungen abweist,
+wurde nicht getestet und nicht vorausgesetzt. Die Anmeldeantwort wird im Code
+gegen einen fest hinterlegten state-Wert geprüft; dieser ist keine zufällige
+pro-Sitzung erzeugte Freigabe.
+
+**Aktualitätsprüfung:** Aktuelles Originalrelease über GitHub-Metadaten gelesen:
+v3.3.0 vom 2026-11-11, Commit cc92eec46a756479c74adcbd9e297d7a8d82e6cd.
+Dort im gleichen Login-Quellpfad weiterhin IPv6Any/DualMode. Kein neues Release
+heruntergeladen oder ausgeführt; vorhandenes Werkzeug bleibt v3.1.0.
+Certificates.cs am festen v3.1.0 ebenfalls gelesen; Partnerauswahl wäre
+für unseren Integrationsweg explizit zu setzen.
+
+**Ergebnis/Rücknahme:** Noch kein cert --prepare gestartet, kein Empfangsport
+gebunden, keine Anmeldung geöffnet und kein Zertifikat erzeugt. Nichts am TV
+installiert oder geändert. Aufgrund der ursprünglichen Vorgabe zum Heimnetzzugriff
+wird vor einem solchen Listener die konkrete zusätzliche Freigabe eingeholt.
+Eine nur lokal erreichbare Alternative ist noch nicht implementiert oder geprüft.
+Keine Rücknahme nötig.
+
+**Quellen:** Apps2Samsung/Apps2Samsung, v3.1.0:
+Apps2Samsung.Cli/BrowserSamsungLogin.cs,
+Apps2Samsung.Cli/Commands/Certificates.cs,
+Apps2Samsung.Core/Samsung/SamsungOAuth.cs;
+Aktualitätsabgleich BrowserSamsungLogin.cs am v3.3.0-Tag.
