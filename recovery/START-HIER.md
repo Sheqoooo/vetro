@@ -1,6 +1,11 @@
 # Hier anfangen
 
-**Stand: 16. November 2026. Du musst gerade nichts machen.**
+**Update 17. November 2026:** TV-Verbindung und Samsung-Anmeldung haben
+funktioniert. Zertifikate sind ausgestellt. Das Originalprogramm scheitert beim
+lokalen Laden über den macOS-Schlüsselbund. **Noch keine TV-Installation.**
+Aktuelle Diagnose und nächster Weg: [Zertifikatsstatus](SIGNING-STATUS.md).
+
+Die folgende Übersicht beschreibt die Offline-Vorbereitung vom 16. November.
 
 Der Mac ist für den nächsten Versuch vorbereitet. Den Fernseher habe ich heute
 nicht angesprochen, weil du in einem anderen Netzwerk bist.
