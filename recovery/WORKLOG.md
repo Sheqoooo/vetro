@@ -1282,3 +1282,17 @@ vorbereiten; keine pauschale Samsung-freie Sofortstart-Zusage.
   Test ausstehend. Sichtbare Home-Tastenwirkung vom Besitzer noch zu bestätigen.
   Kein Nachweis einer von Sekunde null Samsung-freien Anzeige oder vollständigen
   Root-Rücknahme. Ein weiterer Boot könnte andere Ressourcen-/Zeitverhältnisse zeigen.
+
+
+## 2026-11-17 — Besitzer bestätigt Vetro auf Home nach nativem Frühstart
+
+- **Status / Prüfung:** Auf die konkrete Frage, ob Home die Vetro-Leiste zeigt,
+  antwortet der Besitzer „Ja“. Sichttest nach dem gemessenen neuen Kernelboot
+  damit bestätigt; kein zusätzlicher Werkzeugaufruf am TV erforderlich.
+- **Änderung:** Nur Dokumentation und anonymisierten Ergebnisbeleg ergänzt.
+  Native Frühstart-Konfiguration bleibt eingerichtet; keine TV-, Mac- oder
+  Netzwerkeinstellung verändert.
+- **Validierung / Grenzen:** Bestätigung des Besitzers ergänzt die bereits
+  gemessenen Prozesszeiten (Dienst 30,86 s, Leiste 49,464 s). Sie beweist keinen
+  sofort Samsung-freien Bildschirm. Zweiter Boot, echter Strom-Aus/Ein-Test und
+  Hardware-Rücknahme der nativen Variante bleiben ungeprüft.

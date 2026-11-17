@@ -30,8 +30,9 @@
   "nativeTimerLastTriggerBootSeconds": 30.621728,
   "nativeTimerNextElapse": "infinity",
   "nativeLaunchRestarts": 0,
-  "humanHomeKeyConfirmationPending": true,
+  "humanHomeKeyConfirmationPending": false,
   "comparisonBaselineLauncherBootSeconds": 107.296,
   "repeatBootPending": true,
-  "instantSamsungFreeStartupProven": false
+  "instantSamsungFreeStartupProven": false,
+  "humanHomeKeyShowsVetroConfirmed": true
 }

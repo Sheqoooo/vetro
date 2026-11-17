@@ -1,8 +1,9 @@
 **Aktueller Erfolg: Frühstart beim ersten Test-Neustart bestätigt.**
 Vetro-Dienst nach 30,86 s statt etwa 103 s, Leistenprozess nach 49,464 s statt
 etwa 107 s. Direkter Startauftrag erfolgreich; keine weitere Timer-Auslösung
-geplant. Konfiguration bleibt eingerichtet. Sichttest/Home und Wiederholung
-stehen aus; sofort Samsung-freier Bildschirm nicht bewiesen.
+geplant. Konfiguration bleibt eingerichtet. Besitzer bestätigt: Home zeigt nach diesem
+Neustart die Vetro-Leiste. Wiederholungsboot steht aus; sofort Samsung-freier
+Bildschirm nicht bewiesen.
 [Messbeleg](NATIVE-START-RESULT.json), [Einrichtung und Rücknahme](NATIVE-START-TRIAL.md).
 
 # Hier anfangen

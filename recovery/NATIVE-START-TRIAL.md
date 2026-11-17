@@ -1,3 +1,7 @@
+**Sichttest bestätigt:** Der Besitzer hat nach diesem Neustart Home gedrückt
+und die Vetro-Leiste bestätigt. Wiederholungsboot, echter Strom-Aus/Ein-Test
+und Hardware-Rücknahme dieser nativen Variante bleiben ausstehend.
+
 **Hardware-Ergebnis nach Besitzer-Neustart:** Neuer Kernelboot bestätigt,
 passive Messung vollständig. Native Startanfrage 30,624 s, erfolgreich beendet
 33,122 s; Vetro-Dienstprozess 30,86 s, erste HTTP-Beobachtung 36,63 s,
