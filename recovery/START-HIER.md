@@ -7,6 +7,9 @@ des Originalinstallers bleibt separat zu klären. **Noch keine TV-Installation.*
 Aktueller Stand: [Signierung mit Vetro](SIGNING-WITH-VETRO.md).
 Hintergrund des ursprünglichen Fehlers: [Zertifikatsstatus](SIGNING-STATUS.md).
 
+**Installationsweg vorbereitet:** [Was der nächste TV-Schritt ändern würde](INSTALL-NEXT.md).
+Noch keine Übertragung oder Installation. Erst bestätigen, dass der TV frei ist.
+
 Die folgende Übersicht beschreibt die Offline-Vorbereitung vom 16. November.
 
 Der Mac ist für den nächsten Versuch vorbereitet. Den Fernseher habe ich heute

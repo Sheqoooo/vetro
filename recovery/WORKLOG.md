@@ -688,3 +688,70 @@ erhalten. Keine persönlichen Schlüsselbundrechte angefordert oder erweitert.
 In dieser Phase kein TV-Kontakt, keine TV-Änderung, kein Root.
 Nächste Aufgabe vor Installationsfreigabe: einen Installationsweg vorbereiten,
 der nicht erneut an Apps2Samsungs lokaler Zertifikatsprüfung scheitert.
+
+## 2026-11-17 — Direkte Installation vorbereitet, nur lesend am laufenden TV geprüft
+
+**Freigabe/Unterbrechung:** Besitzer bittet um Fortsetzung und weist darauf hin,
+dass am TV gerade etwas läuft. Zusage: bis zu seiner gesonderten Bestätigung nur
+lesen/lokal vorbereiten, kein Upload, Installation, Neustart oder Root.
+
+**Quell-/Werkzeugprüfung:** Mitgelieferten Python-SDB-Wrapper und Vetro-SDB/ADB-
+Transport gelesen. Python-Wrapper benötigt externes SDB und enthält separate
+Shell-Injektionsfunktionen; nicht ausgeführt. Aktuelle Apps2Samsung-Quellen
+v3.3.0 weiterhin mit Profil-/Signierungsablauf, kein geeigneter Skip-Sign-Weg.
+Offizielle Samsung-CLI-Dokumentation gelesen. Suche nach TizenSdb führte zunächst
+nicht zu brauchbarer Primärquelle; Drittanbieter-Suchergebnisse nicht als
+Installationsgrundlage verwendet. NuGet-Webseite nicht abrufbar; offizielle
+NuGet-Nuspec per curl gelesen: TizenSdb.Core 1.1.8, Originalrepository
+PatrickSt1991/tizen-sdb, Commit 95f6492c3413f0c98e0e6696b369e3382d280e81.
+Dort TizenInstaller.cs, SdbTcpDevice.cs und CLI-Program.cs gelesen.
+Release-Metadaten gelesen, aber kein zusätzliches Binary heruntergeladen.
+Standalone-CLI sieht standardmäßig ~/.sdb/adbkey vor; diese Zusatzrechte nicht
+angefordert. Stattdessen vorhandenen Vetro-Transport verwenden.
+
+**Hardware-Leseprüfungen:** Vetro-SDB verbindet direkt; capability: antwortet,
+sdk_toolpath=/home/owner/share/tmp/sdk_tools und platform_version=6.0.
+read_tv_baseline.cjs angelegt und nur lesend ausgeführt: App-Liste 103183 Bytes,
+nichtleer, kein vetrotvapp erwähnt. Rohdaten ausschließlich in privatem
+tv-baselines-Unterordner (Ordner 0700/Dateien 0600), keine Gerätedaten veröffentlicht.
+RECV für device-profile.xml liefert SDB_SYNC_FAIL / No such file or directory.
+Erste Baseline klassifizierte jeden Fehler konservativ als unbekannt; nach
+Ergänzung der exakt abgegrenzten File-not-found-Klassifikation erneut gelesen:
+Datei ausdrücklich abwesend. Permission-/Timeoutfehler bleiben unbekannt.
+
+**Implementierung/Offline-Tests:** sdb-sync.cjs mit begrenzten SYNC-Frames nach
+gelesehener Originalengine vorbereitet; RECV hardwaregelesen, SEND/DATA/DONE nur
+mit Mocks geprüft. Verzeichnispfad/Größe begrenzt. deploy_signed.cjs default --plan
+lokal ausgeführt: zeigt konkrete zwei Stagingdateien und vd_appinstall für
+vetrotvapp.app, ohne TV-Verbindung. Schreibpfad nur hinter --confirm-install,
+nicht ausgeführt. Vor Schreiben werden Paket, Geräteidentität, App-Liste,
+Stagingpfad und ausdrückliche Datei-Abwesenheit geprüft; vorhandene/unklare
+Dateien stoppen den Vorgang. Uploads würden zurückgelesen und geprüft, danach
+ein Installationsversuch; kein Startbefehl, keine Developer-IP-Änderung,
+keine Wiederholung/Entfernung bei Fehler. Private Journaldateien vorgesehen.
+
+Prüfungen mit Mocks: Fragmentierung, DATA/DONE, fehlende/verweigerte Datei,
+Größen-/Pfadlimit; SEND/DATA/DATA/DONE für 70000 Bytes; Erfolg und Ablehnung;
+bestehende Null-Byte-Datei wird geschützt. Gerätezuordnung mit Fake-IDs für
+Übereinstimmung, Längenpräfix und abweichendes Ziel getestet.
+Anschließend echte reine getduid-Leseabfrage gegen SAN des ausgestellten
+Distributor-Zertifikats verglichen: passend, keine Kennung ausgegeben.
+Mocks/Identitätsprüfungen bestanden; kein Hardware-Schreibtest.
+
+**Prüferkorrektur:** Positiver Paketprüflauf scheiterte zunächst nach
+Dokumentationscommit an generierter service/build-info.js (HEAD-Revision).
+verify_signed.cjs korrigiert: Produktquellen gegen im Buildbeleg festgehaltenen
+Commit abgleichen, generierte Metadaten auf genau diese Revision und clean-Flag
+prüfen; übrige Nutzdaten weiterhin bytegenau prüfen. Kein Paket neu gebaut oder
+geändert. Danach positive RSA/Hash-Prüfung und beide Manipulationstests bestanden.
+git diff --check ohne Fehler.
+
+**Plan/Risiken/Rücknahme:** INSTALL-NEXT.md und einfache Anleitung aktualisiert.
+Integration enthält On-Boot/Auto-Restart-Service und Root-Komponenten; eine
+Installation kann Hintergrundcode starten, auch ohne expliziten App-Start.
+Vor Schreibzugriff muss der Besitzer TV-Verfügbarkeit und Installation freigeben.
+Vorgesehener Rückweg: nur Vetro deinstallieren und eigene neue Stagingdateien
+gezielt entfernen; noch nicht hardwaregetestet. Kein pauschales 0 rmfile, das
+fremde Dateien löschen könnte. Keine automatische Bereinigung. Vollständige
+Root-Rücknahme weiterhin unbewiesen. Bisher keine Rücknahme nötig: nur private
+Baselines und Projektcode/Dokumentation angelegt; kein TV-Upload/Installation.

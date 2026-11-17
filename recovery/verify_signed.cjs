@@ -23,6 +23,13 @@ function canonical(node, mode = '--exc-c14n') {
 async function verify(input = path.join(repo, 'dist/vetro-integration-SIGNED.wgt')) {
     const zip = await JSZip.loadAsync(fs.readFileSync(input), {checkCRC32: true});
     const names = Object.keys(zip.files).filter(n => !zip.files[n].dir);
+    const receipt = JSON.parse(fs.readFileSync(path.join(__dirname, 'SIGNED-BUILD.json'), 'utf8'));
+    if (!/^[a-f0-9]{40}$/.test(receipt.source_revision)) throw Error('Missing pinned build revision');
+    // Documentation-only commits change HEAD, but not the package sources. Check
+    // those sources against the pinned build commit instead of requiring HEAD.
+    child.execFileSync('/Library/Developer/CommandLineTools/usr/bin/git',
+        ['-C', repo, 'diff', '--quiet', receipt.source_revision, '--', 'app', 'rooting', 'dock'],
+        {env: Object.assign({}, process.env, {GIT_CONFIG_NOSYSTEM: '1', GIT_CONFIG_GLOBAL: '/dev/null'})});
     const original = require('../rooting/build.cjs').collectIntegration();
     const originalNames = original.map(f => decodeURIComponent(f.uri));
     const actualPayloadNames = names.filter(n => !['author-signature.xml', 'signature1.xml'].includes(n));
@@ -30,7 +37,18 @@ async function verify(input = path.join(repo, 'dist/vetro-integration-SIGNED.wgt
         throw Error('Signed package file set differs from the upstream collector');
     }
     for (const file of original) {
-        if (!(await zip.file(decodeURIComponent(file.uri)).async('nodebuffer')).equals(file.data)) {
+        const name = decodeURIComponent(file.uri);
+        const bytes = await zip.file(name).async('nodebuffer');
+        if (name === 'service/build-info.js') {
+            const parseMetadata = data => {
+                const match = /module\.exports = (\{[^\n]*\});\s*$/.exec(data.toString('utf8'));
+                if (!match) throw Error('Unexpected build metadata format');
+                return JSON.parse(match[1]);
+            };
+            const embedded = parseMetadata(bytes), current = parseMetadata(file.data);
+            const expected = Object.assign({}, current, {sourceRevision: receipt.source_revision, sourceDirty: false});
+            if (JSON.stringify(embedded) !== JSON.stringify(expected)) throw Error('Pinned build metadata differs');
+        } else if (!bytes.equals(file.data)) {
             throw Error('Payload bytes differ from upstream collector');
         }
     }
