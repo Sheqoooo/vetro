@@ -1,0 +1,22 @@
+{
+  "checked_on": "2026-11-17",
+  "owner_approved_on_off_test": true,
+  "private_post_root_baseline_saved": true,
+  "launcher_initially_enabled": false,
+  "launcher_initially_running_independently_checked": false,
+  "enable_verified": true,
+  "running_while_enabled": true,
+  "disable_verified": true,
+  "final_enabled": false,
+  "final_process_running_independently_checked": false,
+  "samsung_autorun_before": 0,
+  "samsung_autorun_enabled": 0,
+  "samsung_autorun_after": 0,
+  "samsung_autorun_matches_original": true,
+  "one_to_zero_to_one_restore_branch_hardware_tested": false,
+  "home_key_visually_tested": false,
+  "standby_with_launcher_tested": false,
+  "reboot_with_launcher_tested": false,
+  "app_state_files_restored_byte_for_byte": false,
+  "full_root_rollback_verified": false
+}

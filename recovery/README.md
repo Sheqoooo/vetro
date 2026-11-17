@@ -2,8 +2,9 @@
 
 Status 17. November 2026: Vetro signiert und nach ausdrücklicher Freigabe
 installiert. Nach manuellem Developer-Host-Wechsel und Neustart ist der Root-Agent
-verbunden und meldet UID 0. Launcher noch nicht durch Agenten aktiviert;
-kein echter Launcher-Restore, Standby oder vollständiger Root-Rollback getestet.
+verbunden und meldet UID 0. Launcher nach Freigabe erfolgreich ein-/ausgeschaltet,
+am Ende aus, Samsung-Autostart unverändert bei 0. Home-Taste, Standby, Neustart
+mit aktivem Launcher und vollständiger Root-Rollback noch nicht getestet.
 
 **Einfach anfangen: [Was fertig ist und was du später tun musst](START-HIER.md).**
 Technische Einzelheiten: [Offline-Vorbereitung](OFFLINE-PREPARATION.md).

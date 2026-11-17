@@ -3,8 +3,10 @@
 **Update 17. November 2026: Vetro ist installiert und der Root-Agent verbunden.**
 Nach deinem Host-IP-Wechsel auf TV-Loopback und dem gemeldeten Neustart antwortet
 der Agent mit **UID 0/GID 0**. [Root-Prüfung](ROOT-RESULT.json).
-Der Launcher wurde noch nicht durch den Agenten aktiviert. Standby, echter
-Strom-Aus-/Ein-Test und Launcher-Rücknahme sind noch nicht geprüft.
+Der Launcher wurde inzwischen freigegeben kurz ein- und wieder ausgeschaltet.
+Er ist jetzt **aus**, sein Prozess gestoppt und die Samsung-Startoption beim
+ursprünglichen Wert 0. [An-/Aus-Test und Grenzen](LAUNCHER-ON-OFF.md).
+Home-Taste, Standby und Neustart mit aktivem Launcher sind noch nicht geprüft.
 
 Beide Übertragungen wurden zurückgelesen und geprüft; der TV bestätigt die
 Installation und listet Vetro. Der Hintergrunddienst antwortet im Modus
@@ -22,9 +24,9 @@ Die sichtbare Vetro-Ansicht wurde vom Besitzer bestätigt. Der Besitzer hat den
 Developer-Host auf TV-Loopback geändert und neu gestartet; dazu wurde kein
 zusätzlicher Mac-Zugriff freigegeben. Für spätere Installationen muss der Host
 wieder auf die dann aktuelle Mac-IP umgestellt werden.
-Nächster Schritt: Zustand vor Launcher-Änderungen lokal sichern und einen
-kontrollierten Launcher-An-/Aus-Test gesondert freigeben. Launcher bis dahin
-unangetastet lassen.
+Eine private Post-Root-Baseline liegt vor, der kontrollierte An-/Aus-Test ist
+abgeschlossen. Nächster Schritt wäre, den Launcher nach Freigabe eingeschaltet
+zu lassen und Home-Taste/Navigation sichtbar mit dem Besitzer zu prüfen.
 
 Die folgende Übersicht beschreibt die Offline-Vorbereitung vom 16. November.
 

@@ -863,3 +863,59 @@ bleiben als datierte Belege erhalten. Der normale PC-SDB-Zugang ist durch den
 Besitzer-Hostwechsel vorerst nicht verfügbar; für spätere Installation Host wieder
 auf die aktuelle Mac-Adresse setzen und TV neu starten. Dieser Rückwechsel wurde
 nicht ausgeführt. Sonstige Root-Rücknahme weiterhin nicht hardwarevalidiert.
+
+## 2026-11-17 — Freigegebener Launcher-An-/Aus-Test erfolgreich, Endzustand aus
+
+**Freigabe:** Besitzer erlaubt ausdrücklich private Ausgangssicherung und
+kontrolliertes Ein-/Ausschalten mit Prüfung des Samsung-Startwerts. Auf seine
+Zwischenfrage bestätigt: noch in Sicherung, kein Toggle bis zu vollständiger Baseline.
+
+**Vorbereitung/Fehler:** Repo-Anweisungen und Dock-/Exec-Routen gelesen.
+launcher_smoke.py bereitgestellt. Erster Versuch vor jedem Toggle abgebrochen:
+übermaskierter printf-Zeilenumbruch in der reinen Dateizustandssicherung;
+auf echo-Markierung korrigiert. Zweiter Versuch ebenfalls vor Toggle angehalten:
+enabled=false, running=null, probeError enthält dock= ohne PID/home/log.
+Ursache im gelesenen Dock-Code: fehlende native Logdatei kann dem letzten
+tail-Aufruf Exit 1 geben und eine sonst brauchbare Statusausgabe als Fehler
+behandeln. Keine Logdatei als Scheinlösung angelegt und Produktcode unverändert.
+Zusätzliche unabhängige rein lesende PID-/Commandline-Abfrage mit numerisch
+begrenzter PID ergänzt. Vor Einschalten damit Prozess als nicht laufend bestätigt.
+
+**Private Baseline:** Status/Rootverbindung und TV-Geräteantwort, ursprünglicher
+vconftool-Autostartwert, exakter Bestand/Inhalt (Base64) von vetro-dock.json und
+vetro-dock-apps.tsv vor GET /dock gespeichert. Dann Dock-Status gelesen; dessen
+preview kann den Vetro-Katalog schreiben. Vollständige Post-Root-Baseline liegt
+mit Modus 0700/0600 im ignorierten launcher-tests-Unterordner.
+Frühere abgebrochene Baselines ebenfalls aufbewahrt; kein Vor-Root-Backup behauptet.
+
+**Hardwaretest:** Anschließend genau ein erfolgreicher An-/Aus-Zyklus:
+POST /dock action=enable, Antwort enabled=true/running=true ohne Fehler,
+Autostartwert gelesen; danach im finally-Block POST /dock action=disable.
+Antwort enabled=false, kein gemeldeter Restorefehler oder offener Autorun-Restore.
+Unabhängig Prozess als gestoppt bestätigt. Ursprünglicher Samsung-Wert **0**,
+während enabled **0**, danach **0**. Wertvergleich erfolgreich.
+Es wurde nicht künstlich auf 1 umgestellt: Restorezweig 1->0->1 nur aus Offline-
+Tests bekannt, heute nicht am Gerät getestet. Helper Exitcode 0, Ergebnis privat
+gespeichert. Später Berichtsfeld präzisiert: matchesOriginal/changedDuringTest
+statt pauschalem Restore-Eindruck; kein weiterer Hardwarezyklus dafür.
+
+**Lokale Fehlerpfadtests:** Drei reine Mocktests (Originalwert 0, Originalwert 1,
+Timeout nach angenommener Enable-Änderung) angelegt. Erste Mockfassung nahm URL
+als letztes curl-Argument an und scheiterte im Fake, bevor Toggle möglich war;
+URL-Suche im Mock korrigiert. Danach alle drei Tests bestanden. Timeoutfall
+bestätigt genau einen Disable-Aufruf und ursprünglichen Wert im simulierten
+Endzustand. Kein zusätzlicher TV-Kontakt aus diesen Tests.
+
+**Ergebnis/Grenzen:** Launcher am Ende aus, nativer Prozess gestoppt,
+Samsung-Autostart entspricht Original 0. Kein sichtbarer Home-Tasten-/HDMI-Test,
+Standby oder Neustart mit aktivem Launcher. Katalog und Vetro-Zustandsdateien
+einschließlich historischer Startzeit bleiben nach dem Ausschalten bestehen;
+keine bytegenaue Wiederherstellung dieser Dateien und kein vollständiger
+Installations-/Root-Rollback behauptet. Originalinhalte privat aufbewahrt.
+Keine Systempakete entfernt, keine Tastenbelegung/DNS-/Privacy-/Debloat-Funktion
+aktiviert und keine zusätzlichen Mac-Rechte freigegeben.
+
+**Dokumentation:** LAUNCHER-ON-OFF.md mit Ablauf/Fehlern/Grenzen,
+LAUNCHER-TEST-RESULT.json ohne Geräteidentifikatoren; START-HIER/README aktualisiert.
+Nächster möglicher freizugebender Schritt: Launcher eingeschaltet lassen und
+Home/Navigation mit Besitzer sichtbar prüfen. Bis dahin bleibt er ausgeschaltet.
