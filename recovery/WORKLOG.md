@@ -548,3 +548,24 @@ Apps2Samsung.Cli/BrowserSamsungLogin.cs,
 Apps2Samsung.Cli/Commands/Certificates.cs,
 Apps2Samsung.Core/Samsung/SamsungOAuth.cs;
 Aktualitätsabgleich BrowserSamsungLogin.cs am v3.3.0-Tag.
+
+## 2026-11-17 — Partner-Zertifikatsanmeldung wartet auf Besitzer
+
+**Freigabe:** Besitzer erlaubt ausdrücklich die vorübergehende Erreichbarkeit
+im Heimnetz für die zuvor erklärte Anmeldung. Das hebt keine Dateisperren auf
+und autorisiert keine Zugriffe auf andere Heimnetzgeräte.
+
+**Durchführung:** Unveränderte CLI v3.1.0 gestartet:
+cert --tv TV_IP --partner --prepare --no-browser --login-timeout 600 --json.
+Daten-/Temp-/Dotnet-Verzeichnisse wie vorbereitet projektintern gesetzt;
+NO_PROXY/no_proxy für localhost, 127.0.0.1 und ::1 prozesslokal gesetzt.
+Keine globale Einstellung verändert. DUID gelesen, Partnerprofil fehlt,
+Login-URL ausgegeben und Callback-Empfänger gestartet. Besitzer öffnet die
+offizielle Samsung-Anmeldeseite selbst auf demselben Mac. Keine Passwörter,
+Anmeldecodes oder Tokens im Protokoll.
+
+**Status:** Anmeldung wartet auf Besitzer, maximal zehn Minuten ab Prozessstart.
+Noch kein Erfolg bei Zertifikatserzeugung bestätigt. Keine TV-App installiert,
+kein Root. Bei Abbruch oder Ablauf wird der CLI-Prozess/Empfangsport beendet;
+erzeugte private Daten verbleiben bis zur gezielten Prüfung im Projektordner.
+Abschlusszustand wird nach der Anmeldung nachgetragen.
