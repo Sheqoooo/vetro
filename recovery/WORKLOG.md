@@ -628,3 +628,63 @@ Signierung erneut ausführt. Keine Schlüsselbundrechte erweitert.
 aktuellen Stand ergänzt. Private Zertifikate unverändert aufbewahrt; nur Rechte
 enger gesetzt. Diagnosespuren privat ignoriert. Keine Zertifikate neu erzeugt,
 kein erneuter Login, keine TV-Änderung, keine Deinstallation oder Root-Ausführung.
+
+## 2026-11-17 — Vetro-Alternative erfolgreich signiert und geprüft
+
+**Freigabe:** Nach Erklärung des zusätzlichen projektinternen Bibliothekswegs
+sagt der Besitzer ausdrücklich, mit Vetro fortzufahren. Das deckt Bereitstellung
+der festgelegten Signierungsbibliotheken und lokale Signierung, keine TV-Installation.
+
+**Quellprüfung/Bereitstellung:** Repo-Anweisungen, Upstream-Build und vorhandenes
+Lockfile erneut gelesen. tizen.js index.js und packageSigner.js am festen Commit
+45b00106149d0c8eff74ead4a979c909dd80efd6 gelesen. Git-Baum dieses Commits über den
+Connector festgehalten: 15 reguläre Dateien, nicht abgeschnitten. Kontrollierter
+Helfer install_locked_signer.py bereitgestellt und ausgeführt:
+41 Lockfile-Pakete nur projektintern installiert. npm-Archive mit Integritätshashes,
+tizen.js-Archiv über HTTPS mit vollständigem Dateisatz/Git-Blob-Hashabgleich.
+Keine npm-/Lifecycle-Skripte und keine heruntergeladenen CLI-Dateien ausgeführt.
+Keine globale Installation oder SSH-Zugriffe. Cache/Receipt unter
+tools/downloads/signing-deps, Ziel rooting/on-boot-probe/node_modules.
+Erster rg-Leseversuch im bereits verschobenen Stagingpfad fehlgeschlagen;
+danach korrekte installierte Quellpfade gelesen. Zertifikatserzeuger werden nicht
+aufgerufen, nur die benötigte Signierung.
+
+**Signierung:** sign_package.py liest bestehende private Author-/Distributor-P12
+und lokale Passwortdatei, übergibt Geheimnisse nur in der Umgebung des kurzlebigen
+Node-Prozesses. Unverändertes rooting/build.cjs verwendet. Ausgabe explizit ins
+ignorierte dist-Verzeichnis, Dateimodus 0600, keine Überschreibung einer vorhandenen
+signierten Ausgabe. Kein neuer Login und keine Zertifikatsänderung.
+Build-Quellcommit 11f752b50437fb10c4421d73474e0f5813a5aa8e.
+Ergebnis vetro-integration-SIGNED.wgt, 459007 Bytes,
+SHA-256 f4229886fd551c599689c5671242dd00fe2267d224a193a198801cb32a2ceedb.
+
+**Prüfung/Korrektur:** Separater Prüfer verify_signed.cjs liest ZIP und Nutzdaten
+erneut, prüft CRC, Dateisatz/Bytes gegen den Upstream-Kollektor, eingebettete
+Zertifikate gegen die ausgestellten öffentlichen Dateien und RSA-SHA512.
+Erste Prüferfassung verwendete für #prop irrtümlich Exclusive C14N und meldete
+Digest mismatch. Der deklarierte C14N-1.1-Transform wurde geprüft; mit vorhandenem
+xmllint unabhängig kanonisiert und Prüfer korrigiert. Das Paket blieb unverändert.
+xmllint --help meldete unbekannte Option mit eingeblendeter Optionsliste;
+der tatsächliche --c14n11-Aufruf war erfolgreich. xmllint beim Prüfen mit
+--nocatalogs/--nonet und passenden C14N-Modi, kein DTD-/Netzwerkzugriff.
+
+**Validierung:** Paket 81 Dateien. Author-Signatur 80 Referenzen,
+Distributor-Signatur 81 Referenzen: RSA und sämtliche Dateihashes einschließlich
+Properties bestätigt. Zertifikatsdaten aktuell gültig. Fünf synthetische
+Archivtests bestanden (normal, Traversal, absoluter Pfad, Symlink, Gerätedatei).
+Zwei Manipulationsfälle bestanden: Payload-Änderung und Signaturänderung jeweils
+verworfen. Synthetische Testdateien danach entfernt, Originalpaket unangetastet.
+Positiven Prüflauf nach Export der Testfunktion erneut bestanden.
+Öffentliche, nicht-identifizierende Ergebnisse in SIGNED-BUILD.json.
+Keine unabhängige vollständige Truststore-Kettenprüfung, keine Hardwareakzeptanz.
+
+**Dokumentation/Rücknahme:** SIGNING-WITH-VETRO.md mit exakten Aufrufen,
+Quellen, Fehlern, Ergebnissen und Grenzen; START-HIER.md und SIGNING-STATUS.md
+aktualisiert. Original-Bibliothekslizenzen in node_modules erhalten, insbesondere
+GPL von tizen.js; keine Binär-/Zertifikatsdateien veröffentlicht.
+Die neuen projektlokalen Abhängigkeiten, Cache und signierte Ausgabe lassen sich
+gezielt entfernen; keine solche Rücknahme durchgeführt. Private Zertifikate bleiben
+erhalten. Keine persönlichen Schlüsselbundrechte angefordert oder erweitert.
+In dieser Phase kein TV-Kontakt, keine TV-Änderung, kein Root.
+Nächste Aufgabe vor Installationsfreigabe: einen Installationsweg vorbereiten,
+der nicht erneut an Apps2Samsungs lokaler Zertifikatsprüfung scheitert.

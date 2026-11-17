@@ -1,9 +1,11 @@
 # Hier anfangen
 
 **Update 17. November 2026:** TV-Verbindung und Samsung-Anmeldung haben
-funktioniert. Zertifikate sind ausgestellt. Das Originalprogramm scheitert beim
-lokalen Laden über den macOS-Schlüsselbund. **Noch keine TV-Installation.**
-Aktuelle Diagnose und nächster Weg: [Zertifikatsstatus](SIGNING-STATUS.md).
+funktioniert. **Das Vetro-Paket ist jetzt signiert und lokal geprüft.**
+Dafür wurde Vetros eigener Signierungsweg verwendet; der bekannte Ladefehler
+des Originalinstallers bleibt separat zu klären. **Noch keine TV-Installation.**
+Aktueller Stand: [Signierung mit Vetro](SIGNING-WITH-VETRO.md).
+Hintergrund des ursprünglichen Fehlers: [Zertifikatsstatus](SIGNING-STATUS.md).
 
 Die folgende Übersicht beschreibt die Offline-Vorbereitung vom 16. November.
 

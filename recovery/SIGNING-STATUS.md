@@ -1,5 +1,10 @@
 # Zertifikate: aktueller Stand am 17. November 2026
 
+**Nachtrag:** Der unten vorbereitete Vetro-Weg wurde inzwischen genehmigt und
+erfolgreich ausgeführt. Das Paket ist signiert und lokal geprüft; noch nicht am
+TV installiert. Details: [Signierung mit Vetro](SIGNING-WITH-VETRO.md).
+Die folgenden Abschnitte dokumentieren die vorausgegangene Diagnose.
+
 ## Einfach erklärt
 
 **Die Samsung-Anmeldung und die Ausstellung haben funktioniert.** Es gibt jetzt

@@ -1,0 +1,134 @@
+{
+  "sha": "45b00106149d0c8eff74ead4a979c909dd80efd6",
+  "url": "https://api.github.com/repos/reisxd/tizen.js/git/trees/45b00106149d0c8eff74ead4a979c909dd80efd6",
+  "tree": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dfe0770424b2a19faf507a501ebfc23be8f54e7b",
+      "size": 66,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/dfe0770424b2a19faf507a501ebfc23be8f54e7b"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e5d61fbf952a3a14b900d750e6be2c2d27d443b",
+      "size": 26,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/7e5d61fbf952a3a14b900d750e6be2c2d27d443b"
+    },
+    {
+      "path": ".npmignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8258e1bf430d502436e9e15f2e21db846a9b1d3a",
+      "size": 37,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/8258e1bf430d502436e9e15f2e21db846a9b1d3a"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e62ec04cdeece724caeeeeaeb6ae1f6af1bb6b9a",
+      "size": 35129,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/e62ec04cdeece724caeeeeaeb6ae1f6af1bb6b9a"
+    },
+    {
+      "path": "LICENSE_APACHE2",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "423564792975e244301d7d53224c8f1d56ba7b99",
+      "size": 11328,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/423564792975e244301d7d53224c8f1d56ba7b99"
+    },
+    {
+      "path": "NOTICE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15d613e4d015467c3f148f1d780c3b8731579893",
+      "size": 352,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/15d613e4d015467c3f148f1d780c3b8731579893"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c95b42905c6693f922a3eaa7930051d16eed96c0",
+      "size": 2658,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/c95b42905c6693f922a3eaa7930051d16eed96c0"
+    },
+    {
+      "path": "cli.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a842287858b57396271a520b35458d2ecb5ec3c",
+      "size": 9589,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/9a842287858b57396271a520b35458d2ecb5ec3c"
+    },
+    {
+      "path": "index.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7a78d77db1d4ab8a569649d1b7627bfb49b7042",
+      "size": 307,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/e7a78d77db1d4ab8a569649d1b7627bfb49b7042"
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f96a74dd32fd427222dd75feee234e1cebd4655",
+      "size": 15100,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/8f96a74dd32fd427222dd75feee234e1cebd4655"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "365245fa0de163269f74cde790aee0f8191ff384",
+      "size": 581,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/365245fa0de163269f74cde790aee0f8191ff384"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7d855ae41c71f9b8c68a8fd0a40cbda524adb37c",
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/trees/7d855ae41c71f9b8c68a8fd0a40cbda524adb37c"
+    },
+    {
+      "path": "src/packageSigner.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c8399d22d6d973a423a3f048b7a347703fb93ea",
+      "size": 5952,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/3c8399d22d6d973a423a3f048b7a347703fb93ea"
+    },
+    {
+      "path": "src/samsungCertificateCreator.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9aec8cc8e9ea0152dfbf8b353cba6835cf08d8b",
+      "size": 10972,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/b9aec8cc8e9ea0152dfbf8b353cba6835cf08d8b"
+    },
+    {
+      "path": "src/tizenCertificateCreator.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd4db74131de288e58e5276762bce951b306d086",
+      "size": 5717,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/dd4db74131de288e58e5276762bce951b306d086"
+    },
+    {
+      "path": "src/xml-c14n.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b143dc920c103ea5262436efe81fbc3f4249ac23",
+      "size": 7244,
+      "url": "https://api.github.com/repos/reisxd/tizen.js/git/blobs/b143dc920c103ea5262436efe81fbc3f4249ac23"
+    }
+  ],
+  "truncated": false
+}
