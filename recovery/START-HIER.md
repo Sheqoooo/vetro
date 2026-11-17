@@ -45,7 +45,8 @@ Kein Helferprotokoll; Testdateien anschließend entfernt und Abwesenheit geprüf
 Vetro läuft wieder über den bisherigen Weg.
 Neue Diagnose: Der alte Helfer startete schon nach acht Sekunden, scheiterte
 aber mit Exit 1. Direkte native Startanfrage erfolgreich im laufenden TV geprüft.
-[Nachfolgeversuch ohne Shellhelfer, noch nicht installiert](NATIVE-START-TRIAL.md).
+[Nachfolgeversuch ohne Shellhelfer](NATIVE-START-TRIAL.md) ist jetzt eingerichtet
+und zurückgelesen; frühe Bootwirkung noch nicht gemessen.
 [Test und Rücknahme](EARLY-START-TRIAL.md), [Einrichtungsbeleg](EARLY-START-RESULT.json).
 Keine Einstellungen zur Behebung auf Verdacht ändern.
 Standby und echter Strom-Aus-/Ein-Test bleiben ungeprüft.

@@ -1230,3 +1230,23 @@ Samsung-freie Sofortstart-Zusage und kein vollständiger Root-Rollback behauptet
   und Bootmessung braucht konkrete Freigabe; keine Beschleunigung behauptet.
 - **Dokumentation:** NATIVE-START-TRIAL.md mit Umfang, Kommandos, Quellen,
   Rücknahme und Grenzen. Private Rohdaten verbleiben ausschließlich lokal.
+
+
+### Fortsetzung — nativen Versuch im freigegebenen Rahmen eingerichtet
+
+Die Aufforderung, eine Lösung zu finden, setzt den zuvor konkret freigegebenen
+rücknehmbaren Frühstartversuch fort. Die Korrektur bleibt in denselben neuen
+Benutzer-Konfigurationsunterbäumen, ohne zusätzliche Mac-Rechte, Hersteller-
+Dateiänderungen oder neuen Root-Daemon. Statt erneut lediglich einen Plan zu
+liefern, die geprüfte native Variante eingerichtet.
+
+Befehl im Repository:
+`python3 -B recovery/native_start_trial.py apply --tv TV_IP --owner-approved`.
+Rückgabe completed=true. Kein Live-Start, kein daemon-reload, kein Reboot.
+Gesonderte Leseprüfung bestätigt drei statische SHA-256-Werte, exaktes Linkziel,
+drei neue Verzeichnisse 0700 und drei Dateien 0600, jeweils numerisch 5001:100.
+NATIVE-START-RESULT.json enthält ausschließlich diese anonymisierten Ergebnisse.
+Neue Definitionen greifen erst beim nächsten Boot; Beschleunigung unbewiesen.
+Lokale Rücknahmetests bestehen, Hardware-Rücknahme des Nachfolgers ungeprüft.
+Original-Vetro-Autostart unverändert. Passive Messung für Besitzer-Neustart
+vorbereiten; keine pauschale Samsung-freie Sofortstart-Zusage.

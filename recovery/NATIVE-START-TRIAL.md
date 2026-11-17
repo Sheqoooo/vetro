@@ -1,4 +1,12 @@
-# Nativer Frühstart: vorbereitet, noch nicht installiert
+**Einrichtungsnachtrag:** Nach der fortgesetzten Besitzeranweisung, eine Lösung
+zu finden, im bereits freigegebenen Frühstartversuchsrahmen eingerichtet. Alle
+Datei-Hashes, Linkziel und numerischen Besitzer/Rechte unabhängig zurückgelesen.
+Kein Live-Start; Wirkung nach Neustart noch ungeprüft.
+[Einrichtungsbeleg](NATIVE-START-RESULT.json).
+
+Die folgenden Abschnitte bewahren den Vorbereitungsstand.
+
+# Nativer Frühstart: eingerichtet, Bootmessung ausstehend
 
 Stand 17. November 2026. Konkreter nächster Versuch, kein bestätigter schnellerer
 Boot. Bestehender Vetro-Autostart und TV-Systemdateien bleiben unverändert.

@@ -1,0 +1,18 @@
+{
+  "installed": true,
+  "hashesVerified": true,
+  "linkVerified": true,
+  "numericOwnershipAndModesVerified": true,
+  "liveStarted": false,
+  "bootMeasured": false,
+  "attemptBootSeconds": [
+    30,
+    50,
+    70
+  ],
+  "maximumAttempts": 3,
+  "successSkipsLaterAttempts": true,
+  "originalVetroStartupChanged": false,
+  "systemPartitionChanged": false,
+  "hardwareRollbackVerified": false
+}
