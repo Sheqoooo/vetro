@@ -569,3 +569,62 @@ Noch kein Erfolg bei Zertifikatserzeugung bestätigt. Keine TV-App installiert,
 kein Root. Bei Abbruch oder Ablauf wird der CLI-Prozess/Empfangsport beendet;
 erzeugte private Daten verbleiben bis zur gezielten Prüfung im Projektordner.
 Abschlusszustand wird nach der Anmeldung nachgetragen.
+
+## 2026-11-17 — Zertifikate ausgestellt, lokaler Schlüsselbundfehler eingegrenzt
+
+**Status/Freigabe:** Besitzer hat Samsung-Anmeldung abgeschlossen und bittet um
+Fortsetzung. Genehmigt sind Zertifikatserstellung/Diagnose; keine TV-Installation.
+
+**Abschluss der Anmeldung:** Ursprünglicher cert-Prozess mit Exitcode 0 beendet.
+Fortschrittsausgabe meldet Samsung-Author-/Distributor-Antworten und PFX-Export.
+JSON meldet ok=true/Partnerprofil vorhanden, gleichzeitig usable=false und leere
+erkannte DUID-Abdeckung. Daher keine pauschale Aussage "signierbereit".
+Raw-Ausgabe/DUID werden nicht veröffentlicht.
+
+**Prüfungen:** Vorhandene Zertifikatsdateien nur im privaten Projektordner auf
+Größe/Rechte geprüft und anschließend Ordner auf 0700, Dateien auf 0600 gesetzt.
+Mit bereits vorhandenem OpenSSL PKCS#12 beider Dateien unter Verwendung von
+-passin file:PRIVATE_PASSWORD_FILE und -noout geprüft; jeweils Exitcode 0.
+Separat x509 -noout -dates für ausgestellte Author-/Distributor-Dateien gelesen:
+17. November 2026 bis 17. November 2027. Kein Passwort/Schlüssel ausgegeben.
+Keine Garantie für Geräteabdeckung, Signaturkette oder Hardwareakzeptanz abgeleitet.
+
+**Empfangsport:** CLI-Prozess beendet. Ein lsof-Versuch meldete eine unzugängliche
+eingehängte Dateisystemquelle und unvollständige Ergebnisse; kein verlässlicher
+Nachweis daraus abgeleitet und keine Mount-/Gerätekennung veröffentlicht.
+Danach connect_ex auf ausschließlich 127.0.0.1:4794 und [::1]:4794:
+jeweils 61/ECONNREFUSED. Zusammen mit Prozessende kein eigener Listener mehr aktiv.
+
+**Lokale Fehlerdiagnose:** cert-status ohne TV wiederholt: weiterhin unusable.
+Profilprüfungs-, Zertifikatshelper- und Plattformquellen am festen v3.1.0 gelesen.
+Ein zunächst vermuteter PlatformService-Pfad unter Services lieferte 404; über
+den Release-Git-Baum den tatsächlichen Pfad Core/PlatformService.cs gefunden.
+Die Implementierung lädt PKCS#12 über X509Certificate2/Exportable und verschluckt
+Ladeausnahmen in der Profilanzeige.
+
+Mit bereits eingebautem .NET-EventPipe einen weiteren rein lokalen cert --json
+Prozess beobachtet: DOTNET_EnableEventPipe=1,
+DOTNET_EventPipeConfig=Microsoft-Windows-DotNETRuntime:8000:5,
+DOTNET_EventPipeCircularMB=4, Ausgabepfad im privaten Projektordner.
+Nur gefilterte Fehlermeldungen betrachtet; private nettrace-Datei auf 0600.
+Befund: AppleCommonCryptoCryptographicException, CreateTemporaryKeychain und
+"The specified keychain could not be found." Kein neues Diagnosetool installiert.
+Microsofts aktuelle offizielle Dokumentation bestätigt das benötigte
+macOS-Keychainobjekt für das Laden privater PKCS#12-Schlüssel.
+Dass gerade die verwalteten Einschränkungen den Fehler verursachen, ist weiterhin
+eine plausible Erklärung, kein vollständig bewiesener Einzelpfad.
+
+**Nächster Weg vorbereitet:** Upstream-Vetro rooting/build.cjs und vorhandenes
+package-lock.json gelesen. Alternative Signierung über node-forge/jszip/tizen.js;
+Git-Abhängigkeit auf 45b00106149d0c8eff74ead4a979c909dd80efd6 festgelegt,
+npm-Abhängigkeiten mit Integritätshashes, laut Lockfile keine Installationsskripte.
+Paketmetadaten und Git-Baum dieser tizen.js-Revision gelesen (GPL-3.0-only).
+Noch keine Build-Bibliotheken heruntergeladen oder ausgeführt. Vor diesem
+zusätzlichen Werkzeugweg Freigabe einholen. Installation bleibt separat offen,
+weil die originale CLI bei install die nicht funktionierende Profilprüfung und
+Signierung erneut ausführt. Keine Schlüsselbundrechte erweitert.
+
+**Dokumentation/Rücknahme:** SIGNING-STATUS.md angelegt, START-HIER.md um den
+aktuellen Stand ergänzt. Private Zertifikate unverändert aufbewahrt; nur Rechte
+enger gesetzt. Diagnosespuren privat ignoriert. Keine Zertifikate neu erzeugt,
+kein erneuter Login, keine TV-Änderung, keine Deinstallation oder Root-Ausführung.
