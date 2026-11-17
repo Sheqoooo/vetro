@@ -1,3 +1,12 @@
+**Aktueller Neustart gemessen:** Vetro-Dienst 12,592 s, Leiste 44,732 s.
+Gegenüber vorher 49,464 s etwa 4,7 s gewonnen. Alle 15 optionalen Komponenten
+bleiben deaktiviert und fehlen in laufender App-Liste; Multi-View-Vorladen
+unterdrückt. Gewünschte Komponenten enabled, praktischer Funktionstest und
+Home-Sichttest nach diesem Boot noch offen.
+[Messbeleg und Grenzen](PERFORMANCE-RESULT.json).
+
+Die folgenden älteren Statusabschnitte bewahren die Änderungsgeschichte.
+
 **Neuer Versuch eingerichtet, Messung ausstehend:** erste Vetro-Startchance
 ab 12 s statt 30 s; 15 optionale Erkennungs-/Assistenten-Komponenten deaktiviert
 und automatisches Multi-View-Vorladen unterdrückt. Gewünschte TV-/TV-Plus-/

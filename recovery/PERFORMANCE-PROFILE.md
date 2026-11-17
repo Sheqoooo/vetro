@@ -1,3 +1,21 @@
+**Boot-Ergebnis:** Neuer Kernelboot bestätigt, passive Messung vollständig.
+Erste native Anfrage 12,567 s, Erfolg/Exit 0 bei 14,630 s. Vetro-Dienstprozess
+12,592 s; erster HTTP-Sichtpunkt 18,27 s; Launcherprozess 44,732 s, laufend.
+Vorheriges 30-s-Profil: Launcher 49,464 s. Zusätzlicher Gewinn nur etwa 4,7 s;
+kein Beleg für eine fertige UI bei 12 s. Zwischen Modulinitialisierung und
+Root-Agent lagen 19,53 s. Da Timing und optionale Komponenten gemeinsam
+verändert wurden, ist der isolierte Debloat-Beitrag nicht bestimmt.
+
+Alle 15 Disable-Flags bleiben nach Boot gesetzt; keiner der Zieleinträge in der
+laufenden App-Liste. MultiScreen-Unit inactive/dead mit ConditionResult=no;
+auch nicht in laufender App-Liste. Zu erhaltende Komponenten bleiben enabled.
+Das sind Prozess-/Registrierungsprüfungen, noch kein praktischer Test von TV Plus,
+AirPlay, Spiegelung oder Einstellungen. Home-Sichttest nach diesem Boot offen.
+Timer nächste Auslösung infinity, keine weiteren Anfragen geplant.
+[Messbeleg](PERFORMANCE-RESULT.json). Konfiguration bleibt eingerichtet.
+
+Die nachfolgenden Abschnitte dokumentieren den vorherigen Einrichtungsstand.
+
 # Schnellstart und begrenzte Samsung-Reduktion
 
 Stand 17. November 2026: **eingerichtet und zurückgelesen, noch kein Neustarttest.**

@@ -1352,3 +1352,38 @@ vorbereiten; keine pauschale Samsung-freie Sofortstart-Zusage.
   Prozess- oder kompletter Root-Rollback. Funktions- und Startzeitgewinn für
   dieses Profil noch ungeprüft; 12 s ist ein Auftragstermin, keine fertige UI.
   Benutzer kann gewünschte TV-Funktionen erst nach Neustart praktisch bestätigen.
+
+
+## 2026-11-17 — 12-Sekunden-Profil nach Neustart geprüft
+
+- **Status / Freigabe:** Besitzer meldet vorbereiteten Neustart. Neuer Kernelboot
+  bestätigt; passive Messung captureComplete=true ohne Widget-Kontamination.
+  Keine weitere TV-Schreibaktion, kein App-Stop/Start und kein zusätzlicher Reboot
+  bei dieser Auswertung.
+- **Zeitmessung:** Native Anfrage 12,567 s, Ende 14,630 s mit Erfolg/Exit 0;
+  Dienstprozess 12,592 s, erster HTTP-Sichtpunkt 18,27 s, Launcher 44,732 s.
+  Vergleich zum bestätigten 30-s-Profil 49,464 s: zusätzlicher Gewinn 4,732 s,
+  kein Versprechen eines riesigen Sprungs und keine 12-s-fertige-Oberfläche.
+  Root-Agent war 19,53 s nach Modulinitialisierung verbunden. Restliche
+  Plattform-/Rootbereitschaft muss gesondert untersucht werden; kein einzelner
+  Timer als erwiesene Ursache bezeichnet. Gemeinsame Timing-/Komponentenänderung
+  erlaubt keine kausale Zerlegung des Leistungsgewinns.
+- **Unabhängige Leseprüfung:** Native Einmal-Unit active/exited, success,
+  NRestarts=0, Timer NextElapse=infinity. Launcher-PID existiert, Startzeit aus
+  proc/stat/CLK_TCK; Samsung-Home-Prozess zum Snapshotzeitpunkt nicht vorhanden.
+  MultiScreen-Unit inactive/dead, ConditionResult=no, kein Eintrag in laufender
+  App-Liste. Kein Timer-/Unit-Reload erforderlich.
+- **Reduktionsprüfung:** Gesamtes Inventar und app_launcher -S nach Boot gelesen.
+  Alle 15 beabsichtigten effektiven disabled-Flags gesetzt, kein Zieleintrag
+  läuft in dieser App-Liste. Alle ursprünglichen onboot/autorestart-Felder der
+  Profilziele erhalten. TV-Viewer/TV-Plus/AirPlay/ScreenMirroring/Menü/Home und
+  gemeinsame Voice-Komponenten weiterhin enabled. Diese Zustandstests sind
+  keine Funktionsgarantie für Streaming-DRM, AirPlay oder Senderwiedergabe.
+- **Dokumentation:** Recorder mit q vollständig beendet. Rohmessung und private
+  Validierungsdaten lokal gespeichert; anonymisierten PERFORMANCE-RESULT-Beleg,
+  Profil und START-HIER aktualisiert. Konfiguration bleibt eingerichtet.
+- **Rücknahme / offene Punkte:** Originalflag-Journal und 30-s-Dateien unverändert
+  vorhanden; Profil-Rücknahme am Gerät weiterhin ungeprüft. Sichttest Home und
+  praktische Prüfung gewünschter Funktionen durch Besitzer ausstehend,
+  Wiederholungsboot/Strom-Aus-Ein ebenfalls. Kein Nachweis einer komplett
+  Samsung-freien Anzeige ab Einschalten. Keine weitere aggressivere Abschaltung.
