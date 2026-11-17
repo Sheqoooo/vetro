@@ -1,6 +1,12 @@
-# Früherer Start: vorbereiteter Versuch, noch nicht eingerichtet
+# Früherer Start: eingerichtet, Neustarttest ausstehend
 
-Stand 17. November 2026. [Passive Vergleichsmessung](STARTUP-PASSIVE-RESULT.json):
+Stand 17. November 2026. Nach ausdrücklicher Besitzerfreigabe eingerichtet.
+Datei-Hashes, Linkziel, Besitzer und Rechte am TV zurückgelesen und bestätigt.
+Noch nicht gestartet; Wirkung und Rücknahme am TV bleiben ungeprüft.
+[Einrichtungsbeleg](EARLY-START-RESULT.json).
+
+Die folgenden Vorbereitungsabschnitte beschreiben den ursprünglichen Plan.
+ [Passive Vergleichsmessung](STARTUP-PASSIVE-RESULT.json):
 Neuer Kernelboot bestätigt, Vetro-Dienst **103,092 s**, Launcher **107,296 s**.
 Die erste Prozessmessung lag bei 104,11 beziehungsweise 108,22 Sekunden.
 Das späte Erzeugen des Dienstprozesses ist wiederholt beobachtet; ein bestimmter

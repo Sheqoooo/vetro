@@ -1117,3 +1117,34 @@ lokal. Noch kein Apply/Remove am TV und kein zusätzlicher Neustart nach Messung
 Für Einrichtung des neuen Benutzer-Startmechanismus wird separate ausdrückliche
 Freigabe eingeholt. Wirkung und Hardware-Rücknahme weiterhin ungeprüft; keine
 Samsung-freie Sofortstart-Zusage und kein vollständiger Root-Rollback behauptet.
+
+
+## 2026-11-17 — Freigegebenen Benutzer-Starthelfer am TV eingerichtet
+
+- **Status / Freigabe:** Besitzer hat auf die konkrete Einrichtungsfrage mit
+  „Ja, bitte, mach!“ zugestimmt. Einrichtung durchgeführt, Wirkung noch ungeprüft.
+  Ausgangscommit 1783991d9bbdcacd9457028a5789bac4aba76e3d.
+- **Ziel / Vorher:** Den vorhandenen Vetro-Dienst beim nächsten Boot früher
+  anfordern. Passive Vergleichsmessung: Dienst 103,092 s, Launcher 107,296 s.
+  Apply prüft vor jeder Anlage, dass die beiden neuen Unterbäume fehlen und
+  vorhandene Elternverzeichnisse keine Symlinks sind.
+- **Durchführung:** Im Repository
+  `python3 -B recovery/early_start_trial.py apply --tv TV_IP --owner-approved`.
+  Bestehenden Vetro-Endpunkt POST /exec mit dem geprüften festen Skript genutzt.
+  Nur die in EARLY-START-TRIAL.md genannten neuen Benutzerdateien angelegt;
+  keine Systempartition, Hersteller-Unit oder bestehende Vetro-Paketflags geändert.
+  Kein Live-Start, daemon-reload oder Neustart durch den Agenten.
+- **Ergebnis / Validierung:** Apply meldet completed=true. Danach gesonderter
+  Leseaufruf: alle drei SHA-256-Werte gegen die lokalen Vorlagen verglichen,
+  Linkziel bestätigt, fünf Einträge 0700 owner:users und zwei 0600 owner:users
+  bestätigt. attempt.log fehlt wie erwartet: Helfer noch nicht ausgeführt.
+  EARLY-START-RESULT.json enthält ausschließlich anonymisierten Prüfstatus.
+  Privates übermitteltes Skript und Antwort bleiben im ignorierten Projektbereich.
+- **Kleine lokale Fehlbedienung:** record --help ohne --out wurde vom
+  Observer-Wrapper vor Netzaufruf mit „Capture needs an explicit private output
+  directory“ abgewiesen; keine TV-Änderung.
+- **Rücknahme / Grenzen:** Hash-/Link-geprüftes remove ist vorbereitet und lokal
+  getestet, am TV noch nicht ausgeführt. Erfordert weiterhin Erreichbarkeit des
+  bestehenden Root-Agenten. Kein vollständiger Root-Rollback. Noch keine Aussage,
+  ob Samsungs Benutzer-Manager den Helfer lädt oder der Start früher erfolgt.
+  Nächster Schritt: passiv messen und Besitzer neu starten lassen.

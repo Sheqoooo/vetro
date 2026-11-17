@@ -1,0 +1,10 @@
+{
+  "installed": true,
+  "hashesVerified": true,
+  "ownershipAndModesVerified": true,
+  "symlinkTargetVerified": true,
+  "started": false,
+  "rebootTested": false,
+  "systemPartitionChanged": false,
+  "existingVetroStartupChanged": false
+}
