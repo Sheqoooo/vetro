@@ -1296,3 +1296,59 @@ vorbereiten; keine pauschale Samsung-freie Sofortstart-Zusage.
   gemessenen Prozesszeiten (Dienst 30,86 s, Leiste 49,464 s). Sie beweist keinen
   sofort Samsung-freien Bildschirm. Zweiter Boot, echter Strom-Aus/Ein-Test und
   Hardware-Rücknahme der nativen Variante bleiben ungeprüft.
+
+
+## 2026-11-17 — 12-Sekunden-Versuch und begrenzte Samsung-Reduktion
+
+- **Freigabe / Ziel:** Besitzer will deutlich früheren Start und möglichst wenig
+  Samsung-Zusatzlast. Auf Rückfrage zu behalten: normales Fernsehen, TV Plus,
+  AirPlay und Bildschirmspiegelung. Streaming/HDMI/Bild/Ton/Einstellungen/Input
+  als Erhaltungsumfang benannt. Keine zusätzlichen Mac-Rechte erforderlich.
+- **Lesende Bestandsaufnahme:** Lokalen Dock-/Quick-Settings-/Quick-Wins-/
+  Klassifikations-/Schutzcode geprüft. Vetro /apps, /screen, /wins und gezielte
+  Hersteller-Units/Bootzeiten gelesen. Große Kandidatenausgabe war abgeschnitten;
+  Rohinventar privat gespeichert, danach nur konkrete Kandidaten gefiltert.
+  Zwei anfängliche Quellsuchen verwendeten nicht existierende Namen bzw. einen
+  zsh-Glob ohne Treffer; anschließend tatsächliche Dateien gelesen. Keine TV-
+  Wirkung dieser lokalen Suchfehler.
+- **Befunde:** Usermanager startet ~7 s, bestehender Timer wartet bis 30 s.
+  Bixby/Google haben Bootflags, MultiScreen ist vorgeladen. Auf diesem TV schützt
+  Hersteller-Unit die disable_preloading-Datei als ausdrückliche Startbedingung.
+  Voice-Client/-App und Home/Adagent besitzen Querreferenzen aus zu erhaltenden
+  Funktionen; keine pauschale voice-all-/tracking-all-Abschaltung. Ambient-
+  Relaunchrisiko aus vorhandenem Vetro-Code berücksichtigt, nicht deaktiviert.
+  HbbTV/Konto/SmartThings-/TV-Plus-Werbewiedergabe in dieser Stufe erhalten.
+- **Quellen:** Aktuelle offizielle Samsung-Hilfeseite für Autorun, Samsung/Tizen
+  Paketverwaltungsdokumentation und systemd-v244-Timer-Manpage gelesen. Daraus
+  keine offizielle Freigabe für Consumer-Firmware-Debloat abgeleitet.
+- **Vorbereitung / Tests:** Exakte bisherige 30-s-Service-/Timerbytes separat
+  erhalten; neue Vorlagen mit zusätzlichem Termin 12 s und Burst=4. Eigenes
+  performance_trial.py mit festem Allowlist-Profil, Intent-vor-Request-Journal,
+  Originalflags, Default-plan ohne Netz und gezielter Rücknahme erstellt.
+  Vier Mocktests bestanden: Original-Disable bleibt, verlorene Antwort nach
+  Mutation rücknehmbar, unbekannte Originalwerte verhindern jede Änderung,
+  fremde Rücknahme-ID verweigert. Beide Timing-Shellskripte syntaxgeprüft.
+  Kein Hardware-Rundlauf oder atomare Zwei-Dateien-Transaktion behauptet.
+- **Durchführung:** Im Repository
+  `python3 -B recovery/performance_trial.py apply --tv TV_IP --owner-approved`.
+  Fünf Vetro-verifizierte ACR-Komponenten plus zehn installierte eigenständige
+  Assistenten-Komponenten einzeln per /debloat mit jeweiliger Rückleseprüfung
+  deaktiviert. Nicht vorhandenen Alexa Jump Starter übersprungen. Keine Live-
+  Prozessstopps, Uninstalls oder Bootflag-SQL-Änderungen. Leere MultiScreen-
+  Preloadbremse erzeugt, owner 5001/system_share, 0664. Nur eigene zwei User-
+  Unitdateien nach Prüfung beider Originalhashes ersetzt; keine Herstellerunit,
+  kein daemon-reload, kein App-Start/Restart oder automatischer TV-Neustart.
+- **Unabhängige Validierung:** Gesamtes Inventar erneut abgefragt: genau die
+  15 vorgesehenen effektiven disabled-Flags geändert; andere beobachtete
+  disabled-Flags und alle onboot/autorestart-Werte unverändert. TV-Viewer,
+  TV-Plus, Menü/Home, AirPlay, ScreenMirroring, gemeinsame Voice-Komponenten
+  weiterhin enabled. Beide neuen statischen Dateihashes zurückgelesen;
+  Preload-Datei regulär/nicht-Link/leer, 0664. completed=true.
+- **Rücknahme / Grenzen:** Privates Journal mit ursprünglichen effektiven
+  Flags und Änderungsabsichten vorhanden. Restore zurück zum bestätigten
+  30-s-Profil vorbereitet; dessen Hardware-Rücknahme ungeprüft, Teilfehler
+  können gezielte manuelle Reparatur erfordern. Erst dieses Profil entfernen,
+  dann gegebenenfalls ursprünglichen nativen Frühstart. Kein bytegenauer DB-,
+  Prozess- oder kompletter Root-Rollback. Funktions- und Startzeitgewinn für
+  dieses Profil noch ungeprüft; 12 s ist ein Auftragstermin, keine fertige UI.
+  Benutzer kann gewünschte TV-Funktionen erst nach Neustart praktisch bestätigen.

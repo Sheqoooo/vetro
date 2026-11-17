@@ -1,3 +1,10 @@
+**Neuer Versuch eingerichtet, Messung ausstehend:** erste Vetro-Startchance
+ab 12 s statt 30 s; 15 optionale Erkennungs-/Assistenten-Komponenten deaktiviert
+und automatisches Multi-View-Vorladen unterdrückt. Gewünschte TV-/TV-Plus-/
+AirPlay-/Spiegelungs-Komponenten weiterhin aktiviert, Funktionsprüfung ausstehend.
+[Änderungen und Rücknahme](PERFORMANCE-PROFILE.md), [Beleg](PERFORMANCE-RESULT.json).
+Die folgenden 49-Sekunden-Ergebnisse gelten für das vorherige 30-Sekunden-Profil.
+
 **Aktueller Erfolg: Frühstart beim ersten Test-Neustart bestätigt.**
 Vetro-Dienst nach 30,86 s statt etwa 103 s, Leistenprozess nach 49,464 s statt
 etwa 107 s. Direkter Startauftrag erfolgreich; keine weitere Timer-Auslösung

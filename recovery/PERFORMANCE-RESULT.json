@@ -1,0 +1,48 @@
+{
+  "applied": true,
+  "disabledComponents": [
+    "com.samsung.tv.acr",
+    "com.samsung.tv.alexa-client",
+    "com.samsung.tv.alexa-fullscreen-app",
+    "com.samsung.tv.bixby-context-client",
+    "com.samsung.tv.bixby-prov",
+    "com.samsung.tv.bixbycapsuleviewer",
+    "com.samsung.tv.canalysis-service",
+    "com.samsung.tv.contents-recognition-dbmgr",
+    "com.samsung.tv.google-assistant",
+    "com.samsung.tv.google-fullscreen-app",
+    "com.samsung.tv.mybixby",
+    "com.samsung.tv.nvision-analysis-dbmgr",
+    "com.samsung.tv.vision-data-recognition-service",
+    "com.samsung.tv.wakeup-engine-alexa",
+    "com.samsung.tv.wakeup-engine-bixby"
+  ],
+  "disabledCount": 15,
+  "registryBootRestartFlagsUnchanged": true,
+  "allOtherObservedDisabledFlagsUnchanged": true,
+  "protectedFunctionComponentsRemainEnabled": true,
+  "multiviewAutomaticPreloadSuppressed": true,
+  "multiviewFlagReadbackVerified": true,
+  "nativeTimingHashesVerified": true,
+  "firstAttemptBootSeconds": 12,
+  "fallbackBootSeconds": [
+    30,
+    50,
+    70
+  ],
+  "runningAppsExplicitlyStopped": false,
+  "packageUninstalled": false,
+  "systemPartitionChanged": false,
+  "hostSettingsChanged": false,
+  "newBootMeasured": false,
+  "functionalTestsPending": [
+    "live TV",
+    "Samsung TV Plus",
+    "AirPlay",
+    "screen mirroring",
+    "Home",
+    "settings"
+  ],
+  "rollback": "Original per-component effective flags saved privately; timing baseline retained locally. Restore this profile before removing original native start trial.",
+  "hardwareRollbackVerified": false
+}
