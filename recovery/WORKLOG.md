@@ -946,3 +946,40 @@ weiterer Root-/Installationsbefehl ausgeführt.
 START-HIER mit aktuellem eingeschaltetem Zustand aktualisiert. Der zuvor
 hardwaregeprüfte Ausschalter bleibt vorgesehener Rückweg; in diesem Schritt
 nicht erneut ausgeführt. Historischer An-/Aus-Testbeleg bleibt unverändert.
+
+## 2026-11-17 — Home bestätigt, nach Neustart zunächst Samsung; späterer Autostart beobachtet
+
+**Besitzerrückmeldung/Freigabe:** Vor Neustart bestätigt der Besitzer, dass Home
+die neue Vetro-Leiste zeigt. Danach freigegebenen Neustart per Fernbedienung
+angeleitet, mit Wartehinweis bis zu 90 Sekunden. Besitzer meldet anschließend
+Samsung-Leiste. Tatsächlich vergangene Zeit seit Neustart ist unbekannt.
+
+**Erste Diagnose, nur lesend:** Repo-Anweisungen gelesen. GET auf
+TV_IP:8099/status und /dock zunächst beide curl Exit 7/nicht erreichbar.
+TV selbst über Port 8001 erreichbar, Tizen, Developer Mode an, Host weiterhin
+127.0.0.1. Daher kein Nachweis für verlorene Launcher-Einstellung aus dem ersten
+nicht erreichbaren Dienst; keinen Statuswert als false interpretiert.
+Kein App-Start, keine Umschaltung, kein erneuter Neustart und keine TV-Schreib-API.
+
+**Quellprüfung/Beobachtung:** Selbststartflags-/Inventory-Code gelesen
+(component-actions.js, app-registry.js und main.js). Vorhandener Timer kann
+Vetros eigene Dienstflags setzen; kein neuer solcher Schreibbefehl ausgeführt.
+Weitere reine Statusbeobachtung vorgesehen mit bis zu drei Abfragen/10-Sekunden-
+Intervall. Bereits die erste Abfrage dieser Serie fand den Dienst wieder:
+agent.connected=true, ohne manuellen Start. Danach Dock-Beobachtung vorgesehen
+bis zu fünf Abfragen/5-Sekunden-Intervall; bereits erste Abfrage bestätigt
+enabled=true/running=true/busy=false/error=null/failures=0,
+autorunSwitchedOff=false und samsungHome=false.
+
+**Aussage/Grenze:** Gespeicherte Aktivierung blieb erhalten und Backend/Root/
+Launcher kamen selbstständig wieder. Ein verzögerter Start passt zu den
+Beobachtungen; exakte Bootdauer und Ursache noch nicht bestimmt. Keine Behauptung
+eines sofort sauberen Starts ohne Samsung-Zwischenanzeige. Frühere 90-Sekunden-
+Anleitung ist keine am Gerät gemessene Garantie. Besitzer wird jetzt um
+erneute Home-Sichtprüfung gebeten, nachdem der Launcher tatsächlich läuft.
+
+**Dokumentation/Rücknahme:** HOME-TEST auf bestätigte Sichtprüfung vor Neustart
+aktualisiert; REBOOT-OBSERVATION.json mit getrennten Phasen angelegt,
+START-HIER entsprechend angepasst. Kein TV-Zustand in dieser Diagnose
+geändert, keine Rücknahme erforderlich. Launcher bleibt wie vor Neustart
+gespeichert eingeschaltet. Standby/physischer Stromzyklus nicht geprüft.

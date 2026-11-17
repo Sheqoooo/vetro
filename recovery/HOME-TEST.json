@@ -5,7 +5,8 @@
   "launcher_running": true,
   "launcher_error": null,
   "launcher_left_enabled_for_visual_test": true,
-  "home_key_visual_confirmation_pending": true,
-  "reboot_test_started": false,
+  "home_key_visual_confirmation_pending": false,
+  "owner_confirmed_vetro_bar_before_reboot": true,
+  "reboot_test_started": true,
   "reboot_with_launcher_verified": false
 }

@@ -1,0 +1,21 @@
+{
+  "checked_on": "2026-11-17",
+  "owner_confirmed_vetro_home_before_restart": true,
+  "owner_reported_restart": true,
+  "owner_first_home_after_restart": "Samsung bar",
+  "initial_service_http_status_reachable": false,
+  "tv_rest_api_reachable_during_initial_check": true,
+  "developer_host_remained_tv_loopback": true,
+  "service_returned_without_manual_launch": true,
+  "root_agent_connected_after_delay": true,
+  "launcher_enabled_after_restart": true,
+  "launcher_running_after_delay": true,
+  "launcher_busy_at_later_check": false,
+  "launcher_error_at_later_check": null,
+  "launcher_failures_at_later_check": 0,
+  "samsung_home_process_reported_at_later_check": false,
+  "exact_time_since_restart_known": false,
+  "home_key_visual_confirmation_after_later_check_pending": true,
+  "settings_changed_during_diagnosis": false,
+  "manual_launch_or_restart_during_diagnosis": false
+}
