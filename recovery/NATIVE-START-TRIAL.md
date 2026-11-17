@@ -1,3 +1,19 @@
+**Hardware-Ergebnis nach Besitzer-Neustart:** Neuer Kernelboot bestätigt,
+passive Messung vollständig. Native Startanfrage 30,624 s, erfolgreich beendet
+33,122 s; Vetro-Dienstprozess 30,86 s, erste HTTP-Beobachtung 36,63 s,
+Launcherprozess 49,464 s. Vergleich ohne Helfer: Dienst 103,092 s,
+Launcher 107,296 s. Die Leiste startete damit etwa 58 Sekunden früher.
+
+Native Einmal-Unit active/exited, Exit 0, NRestarts=0; Timer letzter Trigger
+30,622 s, nächste Auslösung infinity. Kein weiterer Startauftrag aus diesem Timer
+geplant. Launcher läuft, Samsung-Home-Prozess zum Snapshotzeitpunkt abwesend.
+Das beweist keine Samsung-freie Anzeige ab Einschalten. Sichttest per Home,
+zweiter Boot, Strom-Aus/Ein und Rücknahme des nativen Versuchs stehen aus.
+Konfiguration bleibt für den freigegebenen Versuch eingerichtet.
+[Anonymisierter Messbeleg](NATIVE-START-RESULT.json).
+
+Die nachfolgenden Abschnitte dokumentieren frühere Vorbereitungsstände.
+
 **Einrichtungsnachtrag:** Nach der fortgesetzten Besitzeranweisung, eine Lösung
 zu finden, im bereits freigegebenen Frühstartversuchsrahmen eingerichtet. Alle
 Datei-Hashes, Linkziel und numerischen Besitzer/Rechte unabhängig zurückgelesen.
@@ -6,7 +22,7 @@ Kein Live-Start; Wirkung nach Neustart noch ungeprüft.
 
 Die folgenden Abschnitte bewahren den Vorbereitungsstand.
 
-# Nativer Frühstart: eingerichtet, Bootmessung ausstehend
+# Nativer Frühstart: erster Boot erfolgreich gemessen
 
 Stand 17. November 2026. Konkreter nächster Versuch, kein bestätigter schnellerer
 Boot. Bestehender Vetro-Autostart und TV-Systemdateien bleiben unverändert.

@@ -1,3 +1,8 @@
+**Aktueller Messstand:** Der nachfolgende native Frühstartversuch war beim
+ersten Besitzer-Neustart erfolgreich: Dienst 30,86 s, Launcher 49,464 s.
+Vorheriger Vergleich 103,092 / 107,296 s. Die folgenden älteren Abschnitte
+bewahren die Diagnosegeschichte. [Ergebnis und Grenzen](NATIVE-START-RESULT.json).
+
 **Aktueller Nachtrag:** Der alte Benutzer-Helfer wurde beim Boot nachweislich
 bei 8,029 s ausgeführt und endete mit Exit 1; frühere Vermutung aus fehlendem
 Log korrigiert. Seine Dateien wurden entfernt. Direkter nativer Startweg

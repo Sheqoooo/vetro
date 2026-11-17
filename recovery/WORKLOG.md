@@ -1250,3 +1250,35 @@ Neue Definitionen greifen erst beim nächsten Boot; Beschleunigung unbewiesen.
 Lokale Rücknahmetests bestehen, Hardware-Rücknahme des Nachfolgers ungeprüft.
 Original-Vetro-Autostart unverändert. Passive Messung für Besitzer-Neustart
 vorbereiten; keine pauschale Samsung-freie Sofortstart-Zusage.
+
+
+## 2026-11-17 — Nativer Frühstart beim ersten Neustart erfolgreich
+
+- **Status / Freigabe:** Besitzer meldet „neu gestartet“ für die vorbereitete
+  passive Messung. Neue Kernel-Boot-ID bestätigt, Capture vollständig und ohne
+  manuellen Widgetstart. Native Konfiguration aus dem freigegebenen Versuch
+  bleibt eingerichtet; keine weitere TV-Schreibaktion in diesem Auswerteschritt.
+- **Messung:** Vetro-Dienstprozess 30,86 s seit Kernelboot; erste HTTP-Beobachtung
+  36,63 s (Pollinggrenze); Launcherprozess 49,464 s, laufend. Vergleich ohne
+  Helfer 103,092 / 107,296 s, also Launcher etwa 58 s früher. Die Dienstzeit
+  stammt aus proc/stat und CLK_TCK; keine Power-Tasten-Reaktionszeit behauptet.
+- **Gesonderte Validierung:** Über bekannte Kernel-Busadresse nur gezielt native
+  Service-/Timer-Eigenschaften gelesen. Startauftrag bei 30,624 s, Ende 33,122 s,
+  Result=success, Exitstatus 0, active/exited, NRestarts=0. Timer letzter Trigger
+  30,622 s, NextElapse=infinity: keine weitere Auslösung geplant, erfolgreiche
+  Einmal-Unit bleibt aktiv. Kein App-Restart oder weiterer Live-Start durchgeführt.
+  Read-only dock_snapshot: Launcher 49,464 s, running=true, Samsung-Home-Prozess
+  zum Snapshotzeitpunkt nicht vorhanden, kein Parserfehler.
+- **Durchführung:** Laufenden Observer weiterlaufen lassen, bis neuer Boot,
+  Agent und Prozesssnapshot vorhanden; danach q zum vollständigen Speichern.
+  Private Rohdaten verbleiben im lokalen startup-analysis-Bereich.
+  NATIVE-START-RESULT.json und aktuelle Dokumente mit anonymisierten Messwerten
+  aktualisiert. Kein neuer Download/Build/Softwareinstallation und keine Mac-
+  Rechte- oder Hersteller-Systemdateiänderung.
+- **Rücknahme / Grenzen:** Zielgerichtetes Stoppen des eigenen Timers und
+  Entfernen der geprüften neuen Dateien vorbereitet und lokal getestet,
+  Hardware-Rücknahme dieser nativen Variante noch nicht ausgeführt.
+  Erster Boot ist erfolgreich, Wiederholungsboot und echter Strom-Aus/Ein-
+  Test ausstehend. Sichtbare Home-Tastenwirkung vom Besitzer noch zu bestätigen.
+  Kein Nachweis einer von Sekunde null Samsung-freien Anzeige oder vollständigen
+  Root-Rücknahme. Ein weiterer Boot könnte andere Ressourcen-/Zeitverhältnisse zeigen.
