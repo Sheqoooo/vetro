@@ -1148,3 +1148,36 @@ Samsung-freie Sofortstart-Zusage und kein vollständiger Root-Rollback behauptet
   bestehenden Root-Agenten. Kein vollständiger Root-Rollback. Noch keine Aussage,
   ob Samsungs Benutzer-Manager den Helfer lädt oder der Start früher erfolgt.
   Nächster Schritt: passiv messen und Besitzer neu starten lassen.
+
+
+## 2026-11-17 — Neustartversuch ohne Beschleunigung; Testdateien entfernt
+
+- **Status / Umfang:** Besitzer meldet „neustart“. Laufende passive Messung
+  ausgewertet; keine App manuell geöffnet oder gestartete TV-Einstellung verändert.
+  Ausgangscommit 5ef47379db354cba008e6e20bdca4ee8ff347212.
+- **Messung:** Ein neuer Kernelboot bestätigt, captureComplete=true. Dienstprozess
+  104,12 s seit Boot, erste HTTP-Beobachtung 106,63 s, Launcherprozess 108,032 s.
+  Vergleich ohne Testhelfer: 103,092 / 107,296 s. Keine Beschleunigung belegt;
+  einzelne Bootstreuung ist keine Aussage über kausale Verschlechterung.
+  107 fehlgeschlagene HTTP-Stichproben sind keine exakte Zeitmessung.
+- **Validierung:** Feste Leseabfrage über POST /exec: Testdatei-Hashes und Linkziel
+  erhalten, attempt.log fehlt. Daher keine Helferausführung beobachtet; nicht
+  behauptet, dass ein bestimmter Unit-Suchpfad oder Samsung-Timer bewiesen ist.
+  Zusätzlicher read-only dock_snapshot bestätigt Launcher läuft, Samsung-Home-
+  Prozess zum Snapshotzeitpunkt nicht gefunden. Ein erster zusätzlicher
+  Prozesscheck nutzte einen unpassenden Dock-Pfadfilter und fand keinen Treffer;
+  daraufhin den vorhandenen PID-Datei-basierten Recorder verwendet. Keine
+  TV-Schreibwirkung durch diese reine Leseprüfung.
+- **Rücknahme:** Im Umfang des freigegebenen rücknehmbaren Versuchs die eigenen
+  erfolglosen Testdateien über
+  `python3 -B recovery/early_start_trial.py remove --tv TV_IP --owner-approved`
+  entfernt. Alle Hash-/Link-Prüfungen vor Entfernung bestanden, completed=true.
+  Danach unabhängiger Lesecheck: beide neu angelegten Unterbäume abwesend,
+  laufender Launcherprozess weiterhin vorhanden. Kein App-Stop, kein Reboot,
+  keine Hersteller-/Systempartitionänderung. Keine neue Betriebsart hinterlassen.
+- **Dokumentation / Grenzen:** Anonymisiertes EARLY-START-RESULT.json ergänzt,
+  START-HIER und Versuchsplan aktualisiert. Private Rohmessung und Rücklesedaten
+  bleiben lokal. Die Entfernung dieser Testdateien ist hardwaregeprüft; ein
+  weiterer Boot nach Entfernung und vollständige Root-Rücknahme sind ungeprüft.
+  Samsung-freier Sofortstart bleibt offen. Weitere Bootänderungen sind nicht
+  freigegeben oder durchgeführt.

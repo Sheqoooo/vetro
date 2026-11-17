@@ -39,8 +39,10 @@ Ursache und Abhilfe sind noch nicht bewiesen. Die passive Wiederholungsmessung
 ist abgeschlossen: Dienst 103,092 Sekunden,
 Launcher 107,296 Sekunden nach bestätigtem neuem Kernelboot.
 [Messwerte und Grenzen](STARTUP-ANALYSIS.md).
-Ein zusätzlicher früherer Benutzer-Start wurde nach ausdrücklicher Freigabe
-eingerichtet und zurückgelesen. Noch kein Neustart-/Wirkungstest.
+Der zusätzliche Benutzer-Start wurde eingerichtet und bei einem neuen Kernelboot
+getestet: keine Beschleunigung (Dienst 104,12 s, Launcher 108,032 s).
+Kein Helferprotokoll; Testdateien anschließend entfernt und Abwesenheit geprüft.
+Vetro läuft wieder über den bisherigen Weg.
 [Test und Rücknahme](EARLY-START-TRIAL.md), [Einrichtungsbeleg](EARLY-START-RESULT.json).
 Keine Einstellungen zur Behebung auf Verdacht ändern.
 Standby und echter Strom-Aus-/Ein-Test bleiben ungeprüft.

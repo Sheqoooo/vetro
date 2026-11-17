@@ -1,10 +1,22 @@
 {
-  "installed": true,
+  "installed": false,
   "hashesVerified": true,
   "ownershipAndModesVerified": true,
   "symlinkTargetVerified": true,
   "started": false,
-  "rebootTested": false,
+  "rebootTested": true,
   "systemPartitionChanged": false,
-  "existingVetroStartupChanged": false
+  "existingVetroStartupChanged": false,
+  "newBootConfirmed": true,
+  "captureComplete": true,
+  "serviceStartBootSeconds": 104.12,
+  "launcherStartBootSeconds": 108.032,
+  "launcherRunningAfterTest": true,
+  "helperAttemptLogPresent": false,
+  "earlierStartupDemonstrated": false,
+  "trialRemoved": true,
+  "trialPathsAbsentVerified": true,
+  "rollbackHardwareValidated": true,
+  "rollbackScope": "Only this trial's new files; no full root rollback",
+  "interpretation": "No helper execution observed; exact Samsung user-manager reason unproven. Original Vetro startup still works."
 }

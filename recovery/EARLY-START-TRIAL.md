@@ -1,6 +1,13 @@
-# Früherer Start: eingerichtet, Neustarttest ausstehend
+# Früherer Start: ohne Verbesserung getestet und entfernt
 
-Stand 17. November 2026. Nach ausdrücklicher Besitzerfreigabe eingerichtet.
+Stand 17. November 2026. **Abgeschlossen:** Nach Besitzer-Neustart keine
+Beschleunigung: Dienst 104,12 s, Launcher 108,032 s. Kein attempt.log gefunden,
+also keine Ausführung des Helfers beobachtet. Die genaue Ursache ist unbewiesen.
+Die eigenen Testdateien wurden gezielt entfernt; beide neu angelegten Unterbäume
+sind nach unabhängiger Leseprüfung abwesend. Launcher läuft weiterhin.
+Rücknahme dieser Testdateien am Gerät bestätigt, kein vollständiger Root-Rollback.
+
+Historischer Einrichtungsstand: Nach ausdrücklicher Besitzerfreigabe eingerichtet.
 Datei-Hashes, Linkziel, Besitzer und Rechte am TV zurückgelesen und bestätigt.
 Noch nicht gestartet; Wirkung und Rücknahme am TV bleiben ungeprüft.
 [Einrichtungsbeleg](EARLY-START-RESULT.json).
