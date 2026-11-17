@@ -33,8 +33,11 @@ zusätzlicher Mac-Zugriff freigegeben. Für spätere Installationen muss der Hos
 wieder auf die dann aktuelle Mac-IP umgestellt werden.
 Eine private Post-Root-Baseline liegt vor, der kontrollierte An-/Aus-Test ist
 abgeschlossen. Home funktioniert auch nach dem verzögerten Wiederanlauf.
-Offen bleibt die Startverzögerung: Samsung erscheint anfangs noch, die genaue
-Dauer ist nicht gemessen. Keine Einstellungen zur Behebung auf Verdacht ändern.
+Die Startverzögerung ist eingegrenzt: Im untersuchten Kernelboot startete Vetros
+Dienst erst bei 104,11 Sekunden, Root bei 107,08 und der Launcher bei 108,22.
+Eine passive Wiederholungsmessung ist vorbereitet; Ursache/Abhilfe noch nicht
+bewiesen. [Messwerte und Grenzen](STARTUP-ANALYSIS.md).
+Keine Einstellungen zur Behebung auf Verdacht ändern.
 Standby und echter Strom-Aus-/Ein-Test bleiben ungeprüft.
 
 Die folgende Übersicht beschreibt die Offline-Vorbereitung vom 16. November.

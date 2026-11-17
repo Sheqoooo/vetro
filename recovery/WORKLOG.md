@@ -1002,3 +1002,57 @@ Besitzerbestätigung ergänzt, START-HIER auf aktuellen Stand gebracht.
 Launcher bleibt wie freigegeben eingeschaltet. Offene Anforderung: Verzögerung
 und Samsung-Zwischenanzeige. Keine neue Systemeinstellung, keine Rücknahme
 oder zusätzliche Berechtigung angefordert.
+
+## 2026-11-17 — Startverzögerung lokalisiert, passive Wiederholungsmessung vorbereitet
+
+**Freigabe/Umfang:** Besitzer bittet um Fortsetzung. Angekündigt ausschließlich
+Startzeiten, Flags und Protokolle lesen; keine TV-Änderung und kein weiterer
+Neustart durch den Agenten. Launcher bleibt wie freigegeben eingeschaltet.
+
+**Messung:** Vetro-Start-/Retry-/Dock-Code gelesen. Status privat gespeichert,
+Service-/Agent-PIDs numerisch validiert. Per bestehendem /exec ausschließlich
+/proc/uptime, getconf CLK_TCK und stat-Zeilen von Dienst, Agent, Dock gelesen.
+Erster Parser konnte DOCK-Markierung wegen fehlendem PID-Datei-Zeilenumbruch
+nicht finden; korrigierte rein lesende Abfrage ohne diese Verkettung erfolgreich.
+Gemessen seit aktuellem Kernelboot:
+Dienstprozess 104,11 s; Root-Agent 107,08 s; Launcher 108,22 s.
+Agent-Verbindung 1,65 s nach Modulinitialisierung, erster Root-SDB-Versuch
+erfolgreich, keine Root-Retry-Kette. Private Zusammenfassung aufbewahrt.
+
+**Flags/Startpfad:** Nur Vetro-Paketzeilen aus Paketdatenbank gelesen:
+svc onboot=true/autorestart=true, UI jeweils false. Kein Flag geändert.
+Service-cgroup und ausgewählte Boot-Unitdefinitionen/Startzeitpunkte gelesen.
+Vetro-gefiltertes Journal leer, keine Behauptung vollständiger Journalabdeckung.
+Predelayed/Delayed/Idle/Preload begannen etwa 29,52/34,59/46,64/56,58 s.
+System-default-target-done scheiterte beim runtime touch-Marker um 45,3 s;
+kein Beweis einer Kausalität zum Vetro-Start bei 104 s und keine Reparatur.
+Hersteller-Rohdateien/Prozesswerte nur privat, keine RPAC-/Unit-Rohdaten publiziert.
+
+**Recherche:** Offizielle Samsung-/Tizen-Unterlagen und aktuelle Vetro-Boot-
+Dokumentation gelesen. GitHub-Connector-Suche nach Boot-Delay-Issues abgewiesen;
+keine Aussage aus nicht gelesenen Issues abgeleitet. Samsung dokumentiert alten
+Prelaunch-Mechanismus als seit Modelljahr 2019 nicht mehr unterstützt; nicht
+als Lösung für unseren neueren TV eingesetzt. Keine manifest-/Firmwareänderung.
+Später Dienstprozess ist belegt, konkrete interne Tizen-Startfunktion noch nicht.
+
+**Vorbereitung:** Bestehenden app/scripts/boot-test.py einschließlich Request- und
+read-only Prozesssnapshot-Pfaden gelesen. Der Recorder deaktiviert Proxies;
+lokalen boot_observer.py-Adapter mit bewährtem curl-Proxyweg erstellt,
+unveränderte Auswertelogik, keine neue Binärdatei und keine Produktcodeänderung.
+Private Output-Grenze/umask 077. Preflight auf status/telemetry/probe erfolgreich,
+READY. Sechs vorhandene lokale Recorder-Tests bestanden; Tests enthalten
+simulierten lokalen HTTP-Server, keinen echten TV-Neustart. Rawdiagnoseordner/
+Dateien explizit auf 0700/0600 beschränkt.
+
+**Capture-Status:** Passive Aufzeichnung über Adapter mit 600 Sekunden Maximum
+und eigenem privaten Outputverzeichnis gestartet; ARMED bestätigt. Kein TV-
+Neustart oder App-Start durch das Werkzeug. Der Besitzer wird erst nach ARMED
+zum nächsten passiven Neustart aufgefordert; noch keine neue Boot-ID/erfolgreicher
+Folgelauf in diesem Eintrag behauptet. Die Aufforderungsmarke ist keine exakte
+Messung des menschlichen Tastendrucks. Abschluss und Ergebnisse später nachtragen.
+
+**Dokumentation/Rücknahme:** STARTUP-TIMING.json mit nicht-identifizierenden
+Messwerten; STARTUP-ANALYSIS.md mit Quellen, Kommandos, Grenzen und Captureablauf;
+START-HIER aktualisiert. Kein blindes Kürzen von Retryzeiten, kein Deaktivieren
+von Samsung-Diensten, kein neuer Root-Bootdienst. Recorder beendet sich nach
+Frist beziehungsweise q und bewahrt Teilergebnisse; TV-Rücknahme heute nicht nötig.

@@ -1,0 +1,19 @@
+{
+  "checked_on": "2026-11-17",
+  "method": "read-only proc stat plus device CLK_TCK, current kernel boot",
+  "service_process_start_seconds_after_kernel_boot": 104.11,
+  "root_agent_process_start_seconds_after_kernel_boot": 107.08,
+  "launcher_process_start_seconds_after_kernel_boot": 108.22,
+  "root_connected_seconds_after_service_module_load": 1.65,
+  "root_launch_attempts_observed": 1,
+  "first_root_launch_sdb_connect_succeeded": true,
+  "service_onboot_flag": true,
+  "service_autorestart_flag": true,
+  "ui_app_onboot_flag": false,
+  "ui_app_autorestart_flag": false,
+  "reboot_button_to_ready_duration_measured": false,
+  "late_service_start_root_cause_proven": false,
+  "settings_changed_during_investigation": false,
+  "new_reboot_requested_by_tool": false,
+  "independent_passive_capture_preflight_passed": true
+}
