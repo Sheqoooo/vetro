@@ -1,3 +1,8 @@
+**Aktueller Nachtrag:** Der alte Benutzer-Helfer wurde beim Boot nachweislich
+bei 8,029 s ausgeführt und endete mit Exit 1; frühere Vermutung aus fehlendem
+Log korrigiert. Seine Dateien wurden entfernt. Direkter nativer Startweg
+vorbereitet, noch nicht installiert: [Befund und Rücknahme](NATIVE-START-TRIAL.md).
+
 # Früherer Start: ohne Verbesserung getestet und entfernt
 
 Stand 17. November 2026. **Abgeschlossen:** Nach Besitzer-Neustart keine

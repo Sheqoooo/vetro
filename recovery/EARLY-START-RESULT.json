@@ -3,7 +3,7 @@
   "hashesVerified": true,
   "ownershipAndModesVerified": true,
   "symlinkTargetVerified": true,
-  "started": false,
+  "started": true,
   "rebootTested": true,
   "systemPartitionChanged": false,
   "existingVetroStartupChanged": false,
@@ -18,5 +18,9 @@
   "trialPathsAbsentVerified": true,
   "rollbackHardwareValidated": true,
   "rollbackScope": "Only this trial's new files; no full root rollback",
-  "interpretation": "No helper execution observed; exact Samsung user-manager reason unproven. Original Vetro startup still works."
+  "interpretation": "Correction: cached manager state proves helper executed and failed; missing log did not prove no execution. Files removed; native successor prepared only.",
+  "helperExecutionObserved": true,
+  "helperStartBootSeconds": 8.02907,
+  "helperExitBootSeconds": 8.228425,
+  "helperExitCode": 1
 }

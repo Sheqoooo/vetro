@@ -1,0 +1,13 @@
+[Unit]
+Description=Three bounded opportunities to start Vetro earlier
+
+[Timer]
+OnBootSec=30
+OnBootSec=50
+OnBootSec=70
+AccuracySec=1
+RandomizedDelaySec=0
+Unit=vetro-native-start-trial.service
+
+[Install]
+WantedBy=default.target

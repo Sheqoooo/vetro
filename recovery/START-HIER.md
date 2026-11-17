@@ -43,6 +43,9 @@ Der zusätzliche Benutzer-Start wurde eingerichtet und bei einem neuen Kernelboo
 getestet: keine Beschleunigung (Dienst 104,12 s, Launcher 108,032 s).
 Kein Helferprotokoll; Testdateien anschließend entfernt und Abwesenheit geprüft.
 Vetro läuft wieder über den bisherigen Weg.
+Neue Diagnose: Der alte Helfer startete schon nach acht Sekunden, scheiterte
+aber mit Exit 1. Direkte native Startanfrage erfolgreich im laufenden TV geprüft.
+[Nachfolgeversuch ohne Shellhelfer, noch nicht installiert](NATIVE-START-TRIAL.md).
 [Test und Rücknahme](EARLY-START-TRIAL.md), [Einrichtungsbeleg](EARLY-START-RESULT.json).
 Keine Einstellungen zur Behebung auf Verdacht ändern.
 Standby und echter Strom-Aus-/Ein-Test bleiben ungeprüft.

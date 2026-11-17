@@ -1181,3 +1181,52 @@ Samsung-freie Sofortstart-Zusage und kein vollständiger Root-Rollback behauptet
   weiterer Boot nach Entfernung und vollständige Root-Rücknahme sind ungeprüft.
   Samsung-freier Sofortstart bleibt offen. Weitere Bootänderungen sind nicht
   freigegeben oder durchgeführt.
+
+
+## 2026-11-17 — Frühen Benutzer-Start belegt; nativen Nachfolgeversuch vorbereitet
+
+- **Freigabe / Ausgangslage:** Besitzer fordert „Finde eine Lösung“. Diagnose,
+  gezielte vorübergehende Prüfungen und lokale Vorbereitung durchgeführt.
+  Keine neue persistente Startkonfiguration auf dem TV eingerichtet.
+- **Schritte:** Lokalen Vetro-On-Boot-Code/Manifest/Timers gelesen. Aktuelle
+  Primärquellen geprüft: Samsung/Tizen Boot-Dokumentation, systemd-v244-Original-
+  Manpages, Vetro-Issue 179. Suchtreffer/Laborartikel nur als Hinweise verwendet,
+  nicht als Kompatibilitätsbeweis oder ausführbare Anleitung übernommen.
+  Auf dem TV ausgewählte Unitnamen, Units systemd-user-sessions/app-boot-manager,
+  Unitpfade, gezielte Prozessmetadaten und numerische owner-Identität gelesen.
+  Erste große Antwort erreichte die Ausgabelänge; danach kleine selektive
+  Abfragen statt Annahmen über fehlende Daten.
+- **Wichtige Korrektur:** Mit der in der Hersteller-Unit genannten Kernel-Bus-
+  Adresse funktionieren systemctl --user show/status. Alte Unix-Bus-Vermutung
+  war ungeeignet. Gecachter alter Helfer: loaded, condition=yes, Beginn 8,029 s,
+  Ende 8,228 s, Exitstatus 1. Er WURDE ausgeführt, scheiterte aber. Fehlendes
+  attempt.log erlaubte zuvor nur „keine Ausführung beobachtet“, keinen Beweis
+  gegen den Unitpfad. Ergebnisbeleg/Pläne entsprechend ausdrücklich korrigiert.
+  Dateien bleiben entfernt; gecachter Fehlerzustand ist keine Dateipersistenz.
+  Filterjournal/dlog liefern keine Fehlerursache. Kein unbelegter UEP-/Smack-
+  Bypass vorgeschlagen; exakte Ursache im alten Skript weiterhin offen.
+- **Weitere Belege:** owner und Manager numerisch 5001:100, Elternverzeichnisse
+  gleich; Namensalias auf root ausgeschlossen. basic.target ~8,014 s, default
+  ~11,224 s. UnitPath enthält den erwarteten owner-Benutzerpfad.
+- **Begrenzte Liveprüfungen:** Zwei systemd-run --user --collect --wait --pipe
+  Laufzeit-Units ohne Bootinstallation. Zuerst nur originales app_launcher -r
+  für Vetro, running/Exit 0. Dann originales app_launcher -s für denselben
+  bereits laufenden Dienst, Exit 0, bestätigt gleiche vorhandene PID, 179 ms.
+  Kein App-Stop/Restart, Home-Wechsel oder Reboot. Runtime-Units werden
+  automatisch eingesammelt. Privater Befund gespeichert, keine Rohdaten publiziert.
+- **Vorbereitung:** native_start_trial.py plus Service/Timer nur lokal:
+  direkt signiertes Samsung-Programm statt eigenem Shellskript, maximal drei
+  Bootgelegenheiten 30/50/70 s, je Timeout 8 s, Erfolg verhindert weitere
+  Anfragen. Kein Dauerretry oder neuer Root-Daemon. Bestehender Autostart bleibt.
+  Apply verweigert vorhandene Konfiguration, startet nichts live.
+  Remove prüft Hashes/Links vor Änderung, stoppt nur eigenen User-Timer,
+  entfernt bekannte Dateien, lädt Benutzerdefinitionen neu. Herstellerdateien
+  unverändert; fremde Dateien bleiben. Rücknahme braucht erreichbaren Agenten.
+- **Validierung:** python3 -B recovery/test_native_start_trial.py: sechs Tests
+  bestanden (Rundlauf, Konflikt, veränderter Inhalt, fremde Datei, Anfangslink,
+  ausgetauschter Elternlink). Planmodus erfolgreich ohne Netz. Lokale Tests
+  umgehen TV-eigene Stop/Reload-Aufrufe; keine Hardwarevalidierung dafür.
+  Direkte Anfrage im laufenden TV ist kein Frühboot-Erfolg. Neue Einrichtungs-
+  und Bootmessung braucht konkrete Freigabe; keine Beschleunigung behauptet.
+- **Dokumentation:** NATIVE-START-TRIAL.md mit Umfang, Kommandos, Quellen,
+  Rücknahme und Grenzen. Private Rohdaten verbleiben ausschließlich lokal.
