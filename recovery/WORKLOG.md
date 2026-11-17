@@ -919,3 +919,30 @@ aktiviert und keine zusätzlichen Mac-Rechte freigegeben.
 LAUNCHER-TEST-RESULT.json ohne Geräteidentifikatoren; START-HIER/README aktualisiert.
 Nächster möglicher freizugebender Schritt: Launcher eingeschaltet lassen und
 Home/Navigation mit Besitzer sichtbar prüfen. Bis dahin bleibt er ausgeschaltet.
+
+## 2026-11-17 — Launcher für freigegebenen Home-/Neustart-Test eingeschaltet
+
+**Freigabe:** Besitzer sagt "Okay go" zum anschließenden Home-Tasten-/Neustart-
+Test. Vorgehen angekündigt: erst einschalten und sichtbare Home-Rückmeldung,
+danach Neustart. Kein automatischer Neustart während wartender Sichtprüfung.
+
+**Durchführung:** Repo-Anweisungen gelesen. Neue private home-test-Baseline
+angelegt, GET /dock gelesen; enabled=false und nicht busy als Ausgangslage
+geprüft. Dann einmal POST /dock action=enable mit 100 Sekunden Gesamtlimit.
+Vorher-/Nachherantworten in privatem Ordner 0700/Dateien 0600 gespeichert.
+Antwort enabled=true/running=true/error=null/autorunSwitchedOff=false.
+Die unmittelbare Antwort meldete noch busy=true, da der Controller seinen Status
+vor finally zurückgibt; nachfolgender GET bestätigt busy=false, weiterhin
+enabled/running=true ohne Fehler. Samsung-Autostart war schon 0 und wird von
+diesem Enable deshalb nicht umgestellt. Keine andere Einstellung geändert.
+
+**Stand:** Launcher bleibt für Sichtprüfung eingeschaltet, kein erneutes
+automatisches Ausschalten. Besitzer gebeten, Home einmal zu drücken und neue
+Leiste oder Samsung Home zu melden. Agent kann den TV-Bildschirm nicht selbst
+beobachten; visuelle Bestätigung fehlt noch. Kein Neustart, Standbytest oder
+weiterer Root-/Installationsbefehl ausgeführt.
+
+**Dokumentation/Rücknahme:** HOME-TEST.json ohne private Gerätewerte angelegt,
+START-HIER mit aktuellem eingeschaltetem Zustand aktualisiert. Der zuvor
+hardwaregeprüfte Ausschalter bleibt vorgesehener Rückweg; in diesem Schritt
+nicht erneut ausgeführt. Historischer An-/Aus-Testbeleg bleibt unverändert.
