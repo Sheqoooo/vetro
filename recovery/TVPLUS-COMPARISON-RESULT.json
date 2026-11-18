@@ -1,6 +1,5 @@
 {
-  "status": "waiting_for_owner_reboot_A1",
-  "tvPlusDisabled": false,
+  "status": "waiting_for_native_off_B2",
   "baselineFlagsSavedPrivately": true,
   "plannedSequence": [
     "A1 enabled",
@@ -8,7 +7,7 @@
     "B1 disabled",
     "B2 disabled"
   ],
-  "completedValidBoots": 0,
+  "completedValidBoots": 3,
   "performanceConclusion": null,
   "onlyTargets": [
     "com.samsung.tv.tvplus",
@@ -18,7 +17,51 @@
   "otherProfilesChanged": false,
   "rollbackPrepared": true,
   "hardwareRollbackTested": false,
-  "localTestsPassed": 6,
+  "localTestsPassed": 9,
   "rebootsOperatedByOwner": true,
-  "remoteRebootAttemptProducedNoNewBoot": true
+  "remoteRebootAttemptProducedNoNewBoot": true,
+  "measurements": [
+    {
+      "phase": "A",
+      "run": 1,
+      "newKernelBootConfirmed": true,
+      "serviceStartBootSeconds": 13.036,
+      "launcherStartBootSeconds": 36.216,
+      "firstServiceObservationUptimeSeconds": null,
+      "observationMode": "late proc/stat snapshot after owner reboot; original preboot UUID differs",
+      "bootTimelineCaptureComplete": false
+    },
+    {
+      "phase": "A",
+      "run": 2,
+      "newKernelBootConfirmed": true,
+      "serviceStartBootSeconds": 12.556,
+      "launcherStartBootSeconds": 42.024,
+      "firstServiceObservationUptimeSeconds": 23.91
+    },
+    {
+      "phase": "B",
+      "run": 1,
+      "nativeDeactivation": true,
+      "tvPlusOffVerified": true,
+      "ownerConfirmedNoAutomaticProgramme": true,
+      "newKernelBootConfirmed": true,
+      "serviceStartBootSeconds": 12.312,
+      "launcherStartBootSeconds": 56.464,
+      "bootTimelineCaptureComplete": true
+    }
+  ],
+  "lateBaselineObservationDisclosed": true,
+  "componentOnlyOffExperimentInvalid": true,
+  "componentOnlyProgrammeStillPlayed": true,
+  "originalComponentFlagsRestoredHardwareVerified": true,
+  "tvPlusAppRegistryDisabled": false,
+  "nativeDeactivationOwnerConfirmed": true,
+  "nativeNoAutomaticProgrammeAfterRebootOwnerConfirmed": true,
+  "invalidComponentOnlyOffMeasurement": {
+    "serviceStartBootSeconds": 13.056,
+    "launcherStartBootSeconds": 41.424,
+    "validForOffComparison": false
+  },
+  "nativeUiReenableHardwareTested": false
 }

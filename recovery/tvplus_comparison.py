@@ -3,6 +3,7 @@
 import argparse
 import concurrent.futures
 import json
+import math
 import os
 from pathlib import Path
 import statistics
@@ -15,6 +16,7 @@ from privacy_profile import Profile as Api
 PRIVATE = Path(__file__).resolve().parents[2] / "recovery/private/startup-analysis"
 IDS = ("com.samsung.tv.tvplus", "com.samsung.tv.tvPlusDeeplinker")
 FIELDS = ("disabled", "onboot", "autorestart")
+SEQUENCE = (("A", 1), ("A", 2), ("B", 1), ("B", 2))
 
 
 def command(key, disabled):
@@ -24,6 +26,8 @@ def command(key, disabled):
 
 
 def decision(runs):
+    if any(r.get("phase") == "B" and r.get("tvPlusOffVerified") is not True for r in runs):
+        raise ValueError("TV Plus programme shutdown must be independently verified; app flags are insufficient")
     a = [x["launcherStartBootSeconds"] for x in runs if x["phase"] == "A"]
     b = [x["launcherStartBootSeconds"] for x in runs if x["phase"] == "B"]
     if len(a) != 2 or len(b) != 2:
@@ -52,6 +56,23 @@ class Trial:
     def check_cancel(self):
         if (self.folder / "CANCEL").exists():
             raise RuntimeError("Comparison cancelled")
+
+    def validate_resume(self):
+        if self.state.get("format") != 1 or self.state.get("complete"):
+            raise ValueError("Unrecognized or completed comparison")
+        if set(self.state.get("original", {})) != set(IDS):
+            raise ValueError("Unexpected original identities")
+        if any(type(self.state["original"][k].get(f)) is not bool for k in IDS for f in FIELDS):
+            raise ValueError("Unknown original flags")
+        runs = self.state.get("runs")
+        if not isinstance(runs, list) or len(runs) > len(SEQUENCE):
+            raise ValueError("Unexpected run count")
+        for run, expected in zip(runs, SEQUENCE):
+            if (run.get("phase"), run.get("run")) != expected or run.get("newKernelBootConfirmed") is not True:
+                raise ValueError("Unexpected run order or missing boot evidence")
+            value = run.get("launcherStartBootSeconds")
+            if type(value) not in (int, float) or not math.isfinite(value) or value <= 0:
+                raise ValueError("Invalid process timing")
 
     def rows(self):
         return self.api.rows()
@@ -90,6 +111,42 @@ class Trial:
         dns = self.api.request("/dns")
         if any(dns[k] != self.state["dnsBefore"][k] for k in ("enabled", "domains")) or (dns["enabled"] and not dns["applied"]):
             raise RuntimeError("Filter configuration or application differs")
+
+    def recover_pending_boot(self):
+        """Use only after the collector has ended: late proc timings remain valid."""
+        self.validate_resume()
+        if len(self.state["runs"]) >= len(SEQUENCE):
+            raise ValueError("No pending sample")
+        phase, number = SEQUENCE[len(self.state["runs"])]
+        pending = self.state.get("pendingReboot") or {}
+        if (pending.get("phase"), pending.get("number")) != (phase, number):
+            raise ValueError("No matching pending owner-operated reboot")
+        out = self.folder / (phase + str(number))
+        baseline = json.loads((out / "baseline.json").read_text())
+        rec = observer.recorder
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+            row = rec.sample(self.base, pool, False, 3)
+        old_boot = rec.data_at(baseline, "/telemetry").get("boot_id")
+        new_boot = rec.data_at(row, "/telemetry").get("boot_id")
+        status = rec.data_at(row, "/status")
+        if not old_boot or not new_boot or old_boot == new_boot or not status.get("agent", {}).get("connected"):
+            raise RuntimeError("A new ready kernel boot is not confirmed")
+        self.verify_controls(phase == "B")
+        service = rec.process_snapshot(self.base, status.get("pid"))
+        dock = rec.dock_snapshot(self.base)
+        if "processStartBootSeconds" not in service or service.get("parseError") or not dock.get("dockRunning") or dock.get("parseError"):
+            raise RuntimeError("Late process timing is not ready")
+        (out / "late-recovery.json").write_text(json.dumps({"row": row, "service": service, "dock": dock}, indent=2))
+        result = {"phase": phase, "run": number, "newKernelBootConfirmed": True,
+                  "serviceStartBootSeconds": service["processStartBootSeconds"],
+                  "launcherStartBootSeconds": dock["dockStartBootSeconds"],
+                  "firstServiceObservationUptimeSeconds": None,
+                  "observationMode": "late proc/stat snapshot after owner reboot; original preboot UUID differs",
+                  "bootTimelineCaptureComplete": False}
+        self.state["runs"].append(result)
+        self.state["pendingReboot"] = None
+        self.save()
+        print(json.dumps(result), flush=True)
 
     def restore(self):
         original = self.state.get("original")
@@ -173,14 +230,24 @@ class Trial:
             time.sleep(part)
             wait -= part
 
-    def run(self):
-        self.initialize()
+    def run(self, resume=False):
+        if resume:
+            self.validate_resume()
+        else:
+            self.initialize()
         try:
-            self.boot("A", 1)
-            self.boot("A", 2)
-            self.set_disabled(True)
-            self.boot("B", 1)
-            self.boot("B", 2)
+            for phase, number in SEQUENCE[len(self.state["runs"]):]:
+                self.check_cancel()
+                rows = self.rows()
+                flags = [rows[k]["disabled"] for k in IDS]
+                if flags not in ([False, False], [True, True]):
+                    raise RuntimeError("Partial TV Plus state; inspect before resuming")
+                if phase == "A" and any(flags):
+                    raise RuntimeError("TV Plus must be on for the baseline")
+                if phase == "B" and not any(flags):
+                    self.set_disabled(True)
+                self.verify_controls(phase == "B")
+                self.boot(phase, number)
             result = decision(self.state["runs"])
             self.state["decision"] = result
             if not result["clearPracticalGain"]:
@@ -203,7 +270,7 @@ class Trial:
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("action", choices=("plan", "run", "restore"), nargs="?", default="plan")
+    p.add_argument("action", choices=("plan", "run", "resume", "recover", "restore"), nargs="?", default="plan")
     p.add_argument("--tv")
     p.add_argument("--journal")
     p.add_argument("--owner-approved", action="store_true")
@@ -212,8 +279,12 @@ def main():
         print(json.dumps({"components": IDS, "sequence": ["A1 on", "A2 on", "B1 off", "B2 off"],
                           "rebootsOperatedByOwner": True, "hostReboot": False,
                           "sharedAdFrameworkChanged": False,
-                          "fallback": "Restore TV Plus if no clear practical gain or on failure"}, indent=2))
+                          "experimentBlocked": True,
+                          "reason": "Owner observed TV Plus programme still playing with these app flags disabled; native deactivation required",
+                          "fallback": "Restore original app flags; do not infer an off-state speed gain"}, indent=2))
         return
+    if a.action in ("run", "resume"):
+        p.error("This component-only experiment is invalid: TV Plus programme continued. Use native deactivation before a new experiment.")
     import ipaddress
     if not a.owner_approved or not a.tv or ipaddress.ip_address(a.tv).version != 4:
         p.error("Explicit approval and the one approved TV IPv4 are required")
@@ -231,7 +302,12 @@ def main():
             p.error("Journal must be inside the private comparison folder")
         t = Trial(a.tv, path.parent)
         t.state = json.loads(path.read_text())
-        t.restore()
+        if a.action == "resume":
+            t.run(resume=True)
+        elif a.action == "recover":
+            t.recover_pending_boot()
+        else:
+            t.restore()
 
 
 if __name__ == "__main__":

@@ -1591,3 +1591,86 @@ WAIT_FOR_OWNER_REBOOT A1. TV Plus bleibt zur Baseline eingeschaltet.
 TVPLUS-COMPARISON-RESULT.json kennzeichnet null gültige Boots/kein Leistungsurteil.
 Der ungültige Fern-Bootversuch und der verworfene manuelle Warteordner fließen
 nicht in Messwerte ein. Exakten aktuellen Journalpfad nur lokal hinterlegt.
+
+
+## 2026-11-18 — TV-Plus-Baseline A1 spät gesichert, A2 regulär gemessen
+
+- **Besitzerschritt:** Neustart für A1 bestätigt. Der 900-s-Collector war vor
+  dem gemeldeten Neustart bereits abgelaufen, ohne Flagänderung. Kein zusätzlicher
+  Fern-Neustart und kein Wiederholen des Besitzerschritts verlangt.
+- **A1-Nachlese:** Aktuelle Boot-ID gegen ursprüngliche private Vorboot-Baseline
+  verglichen: neu; TV-Uptime bei Nachlese 71,23 s, Root verbunden. Vollständige
+  Flag-/Filterkontrolle bestätigt A-Zustand unverändert. Dienst- und Leisten-
+  Prozessstart aus proc/stat unabhängig nachgelesen: 13,036 / 36,216 s.
+  Späte Momentaufnahme, kein vollständiger Bootverlauf/kein erster HTTP-
+  Bereitschaftszeitpunkt. Primärmetrik Prozessstart bleibt messbar; Capture-
+  Lücke ausdrücklich mit observationMode/bootTimelineCaptureComplete=false
+  im privaten Ergebnis markiert.
+- **Werkzeugkorrektur:** resume mit geprüfter A/A/B/B-Reihenfolge, genau zwei
+  Original-IDs, booleschen Flags und endlichen positiven Zeitwerten ergänzt.
+  recover-Pfad für bereits beendete Collector-Läufe ergänzt: ursprüngliche
+  Vorboot-ID, aktueller anderer Kernelboot und laufende Prozesse notwendig;
+  danach keine erfundenen ersten Sichtzeitpunkte. Nicht parallel zum aktiven
+  Collector anwenden. Acht lokale Tests bestanden, darunter Zurückweisen
+  vertauschter Phasen und Fortsetzen eines gültigen späten A1 ohne Wiederholung.
+- **A2:** Vom Besitzer erneut Power-Neustart ausgeführt; neuer Kernelboot,
+  Prozessstart Dienst 12,556 / Leiste 42,024 s, erster Service-Sichtpunkt
+  23,91 s. Collector regulär vollständig genug für diese Prozessmetrik.
+  On-Baseline schwankt damit um 5,808 s; noch kein Leistungsurteil.
+  Gleiche Registry-/Filterkontrolle, anschließend gleiche Mindest-Uptime vor
+  dem nächsten Schritt. Keine anderen TV-Einstellungen geändert.
+- **Stand:** Danach nur freigegebene TV-Plus-/Deeplinker-Disable-Flags für B
+  umstellen, zwei Besitzer-Neustarts beobachten. Noch keine B-Messung oder
+  Rücknahme als erfolgt behauptet.
+
+
+### Wichtiger Gegenbefund — App-Disable stoppt TV-Plus-Programm nicht
+
+- **B1 des App-Flag-Versuchs:** Neuer Kernelboot, Dienst 13,056 s, Leistenprozess
+  41,424 s. Registry-Kontrollen bestanden. Besitzer meldet jedoch ausdrücklich
+  laufenden TV-Plus-Sender mit Programm nach diesem angeblichen Off-Boot.
+  Daher keine wirksame TV-Plus-Abschaltung; B1 für jeden TV-Plus-Off-Vergleich
+  ungültig. Kein Mittelwert oder Geschwindigkeitsurteil daraus abgeleitet.
+- **Abbruch / Rücknahme:** Vergleich vor B2 per privatem CANCEL beendet.
+  Skript führt Originalflag-Rücknahme aus; danach unabhängig vollständige
+  Registry-/Filterkontrolle gegen ursprünglichen A-Zustand: wieder beide
+  TV-Plus-Flags enabled und alle übrigen beobachteten Felder unverändert.
+  Diese effektive Hardware-Rücknahme ist nun tatsächlich geprüft.
+- **Korrektur des Werkzeugs:** run/resume des Komponenten-only-Skripts
+  ausdrücklich gesperrt; decision verweigert jede B-Auswertung ohne gesonderten
+  tvPlusOffVerified-Nachweis. Neunter lokaler Test prüft, dass auch ein scheinbar
+  riesiger Geschwindigkeitsgewinn bei unbestätigtem Off-Zustand verworfen wird.
+  Alle neun lokalen Tests bestanden. Wiederherstellung/lesende Nachlese bleiben
+  verfügbar. Nicht die Paketflags als Nachweis einer gestoppten Senderwiedergabe
+  verwenden.
+- **Richtiger Abschaltweg:** Original-Samsung-Home per normalem Appstart
+  angefordert. Besitzer führt den dokumentierten Samsung-Weg für 2020/2021
+  aus: TV-Plus-Kachel > Unten > Entfernen > Deaktivieren. Besitzer bestätigt
+  native Deaktivierung. Hinweis, dass dabei TV-Plus-Sender aus dem Guide
+  genommen werden, war Teil der Anleitung. Keine direkte Senderdatenbank
+  verändert oder andere Kanäle durch Agenten gelöscht.
+- **Nachlese:** Frisches vollständiges App-Inventar zeigt sogar keinerlei
+  Flag-Unterschied zur A-Baseline; native TV-Plus-Deaktivierung ist also hier
+  etwas anderes als die zuvor erfolglosen App-Disable-Einträge. Original-
+  Ad-Webframework und übrige System-/Datenschutz-/Startkonfiguration erhalten.
+- **Native B1:** Neuen vorhandenen Read-only-Observer vor Besitzer-Neustart
+  gestartet. Besitzer bestätigt danach ausdrücklich kein automatisch laufendes
+  TV-Plus-Programm. Neue Boot-ID, Dienst/Root erkannt; Messung noch bis zur
+  stabil laufenden Leiste beobachten. Alte ungültige B1 nicht umetikettieren.
+  Für native Rücknahme regulären Samsung-Weg nutzen; ursprüngliche Paket-
+  Restore-Routine stellt diese native Guide-/Serviceauswahl nicht zurück.
+
+
+### Erste native Off-Messung abgeschlossen, zweite vorbereitet
+
+Read-only-Capture native B1 beendet: neue Boot-ID, vollständige passive
+Aufzeichnung, Dienstprozess 12,312 s, Leistenprozess 56,464 s, Launcher läuft,
+keine Parserfehler. Besitzer bestätigt zuvor nach Boot kein automatisch laufendes
+TV-Plus-Programm. Diese wirksame native B1 bleibt strikt vom ungültigen Flag-B1
+(41,424 s bei laufendem Programm) getrennt. A-Werte 36,216 / 42,024 s; noch kein
+abschließender Vergleich. Nach nativer B1 neuer passiver B2-Observer mit frischer
+Baseline, r-Markierung und 900-s-Fenster gestartet. Besitzer meldet zunächst
+Neustart, korrigiert sofort „noch nicht neugestartet“; ohne tatsächlichen Wechsel
+der Kernel-Boot-ID kein B2 gezählt. Keine weiteren Flag-/Systemänderungen.
+Native Hersteller-Rücknahme beschrieben, weiterhin ungeprüft; Paketflag-Rollback
+bereits erfolgreich hardwaregeprüft. Ergebnis/aktuelles Protokoll korrigiert.

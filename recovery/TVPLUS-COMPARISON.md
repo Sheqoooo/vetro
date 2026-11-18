@@ -1,99 +1,124 @@
-# TV Plus: freigegebener Vergleich, noch kein Leistungsurteil
+# TV Plus: nativer Vergleich läuft, zweiter Off-Boot noch offen
 
-Stand 18. November 2026. Besitzer hat dem rücknehmbaren Deaktivierungsversuch
-mit mehreren Neustarts ausdrücklich zugestimmt. Zwei frische Läufe mit TV Plus
-(A1/A2), danach zwei ohne (B1/B2). Erste manuelle Messung vorbereitet.
-**Noch keine TV-Plus-Komponente deaktiviert und kein Geschwindigkeitseffekt
-dieses Versuchs gemessen.** Frühere ~45 s stammen aus einem älteren Profilstand.
+Stand 18. November 2026. Besitzer hat rücknehmbaren TV-Plus-Test mit mehreren
+Neustarts freigegeben. Aktuell über Samsungs normale Funktion deaktiviert;
+Besitzer bestätigt nach echtem Boot kein automatisch laufendes TV-Plus-Programm.
+Kein Leistungsurteil, bis der zweite echte Off-Lauf vorliegt.
+[Anonymisierter Stand](TVPLUS-COMPARISON-RESULT.json).
 
-## Exakter Umfang
+| Zustand | Lauf | Dienstprozess ab Boot | Leistenprozess ab Boot | Einschränkung |
+| --- | --- | ---: | ---: | --- |
+| Vor nativer Deaktivierung | A1 | 13,036 s | 36,216 s | Späte proc/stat-Nachlese nach bestätigtem Boot-ID-Wechsel |
+| Vor nativer Deaktivierung | A2 | 12,556 s | 42,024 s | Regulär beobachtet |
+| Nativ deaktiviert, Programm aus bestätigt | B1 | 12,312 s | 56,464 s | Regulär beobachtet |
+| Nativ deaktiviert | B2 | offen | offen | Besitzer-Neustart steht aus |
 
-Nur zwei aktuelle, einzeln verifizierte App-IDs:
-- com.samsung.tv.tvplus
-- com.samsung.tv.tvPlusDeeplinker
+Primärmetrik ist Prozessstart der Leiste, **keine visuell bestätigte vollständige
+Bedienbereitschaft**. Alte ~45-s-Werte stammen aus einem anderen Profilstand.
+Kleine Stichprobe/feste Reihenfolge, andere Beobachtungszeitpunkte, wechselnde
+Boot-/Netz-/CPU-Last und ein verworfener Zwischenboot schränken Kausalität ein.
+Kein statistischer Beweis. B1 liegt bereits über der On-Spannweite; derzeit
+kein Hinweis auf einen verlässlichen Geschwindigkeitsgewinn.
 
-Beide bei Vorbereitung enabled, onboot=false, autorestart=false.
-Frisches komplettes Flag-Inventar und Filterkonfiguration privat gesichert.
-Keine Änderung an Ad-Webframework, CoBA-Adagent, TV-Viewer, AirPlay, Webruntime,
-Starttimern, Einwilligungen oder vorherigen Datenschutz-/Performanceprofilen.
-Keine App-Deinstallation, kein Löschen von Sendern/Konten oder globaler
-Mac-/Router-Einstellung. Kein Zugriff auf andere Heimnetzgeräte.
+## Der zunächst falsche Abschaltweg
 
-## Messprotokoll
+Zwei vorhandene App-IDs zunächst einzeln mit festem Allowlist-Skript per
+pkgcmd --global deaktiviert: TV Plus und TVPlusDeeplinker. Frisches vollständiges
+Flag-Inventar/Filterkonfiguration privat gesichert; Registry-Kontrollen erfolgreich.
 
-1. Pro Lauf frischen Telemetrie-/Service-Ausgangsstand speichern.
-2. Nach WAIT_FOR_OWNER_REBOOT führt Besitzer mit Power einen echten Neustart
-   aus. Neue Kernel-Boot-ID muss den Boot bestätigen; HTTP-Ausfall genügt nicht.
-3. Dienst/Root beobachten; 20 s nach Root-Verbindung Prozessstartzeiten von
-   Dienst und Dock aus proc/stat/CLK_TCK lesen, Launcher-PID muss laufen.
-4. Nach jedem Lauf vollständige Registry-Flag-Kontrolle gegen Ausgangsstand:
-   nur TV-Plus-disabled darf im B-Zustand abweichen. DNS-Liste identisch, Filter
-   weiterhin angewandt. Bei anderem Zustand Versuch stoppen.
-5. Nach jedem Lauf bis mindestens 100 s Uptime warten. Dann zweiter Lauf
-   desselben Zustands, anschließend einzeln die zwei TV-Plus-disabled-Flags ändern.
-6. Pro Zustand zwei Werte. Hauptmetrik: **Start des Leistenprozesses**, nicht
-   visuell bestätigte Bedienbereitschaft oder Power-Taste-bis-Bild.
+Trotzdem bestätigte der Besitzer nach diesem vermeintlichen Off-Boot laufendes
+TV-Plus-Programm. Die Senderwiedergabe läuft hier nicht ausschließlich über
+diese App-Einträge. Dieser Zwischenboot (Dienst 13,056 s, Leiste 41,424 s) ist
+**ungültig für einen TV-Plus-Off-Vergleich** und wird nicht in Mittelwerte übernommen.
 
-Keine Vetro-UI oder TV-Plus-Wiedergabe für die Messung manuell öffnen.
-Aufeinanderfolgende Software-/Power-Neustarts sind keine AC-Kaltstarts.
-Vier Läufe sind eine kleine Stichprobe; Netz-/CPU-/Cache-/Temperaturverlauf und
-die feste A/A/B/B-Reihenfolge bleiben mögliche Einflussfaktoren. Keine
-statistische Signifikanz oder allgemeine Performancegarantie behaupten.
+Versuch per privatem CANCEL gestoppt; Originalflags zurückgestellt und gegen
+gesamtes Ausgangsinventar/Filterzustand unabhängig geprüft. Effektive Hardware-
+Rücknahme dieses App-Flag-Versuchs damit bestätigt. Keine Deinstallation,
+gemeinsame Bibliothek oder Senderdatenbank durch den Agenten verändert.
 
-Vorab festgelegte praktische Auswertung: mittlerer Zeitgewinn muss größer sein
-als sowohl zwei Sekunden als auch die Spannweite jeder der beiden Zweiergruppen.
-Das ist eine konservative praktische Regel, kein statistischer Test.
-Ohne solchen Gewinn werden die ursprünglichen TV-Plus-Flags zurückgestellt.
-Bei Fehler ebenfalls Rücknahme versuchen; wenn nicht erreichbar, unbestätigten
-Zustand ausdrücklich protokollieren und keine blinden Wiederholungen.
+Das Komponenten-only-Skript tvplus_comparison.py ist für run/resume nun ausdrücklich
+gesperrt. Plan erklärt den Gegenbefund. Die Auswertung verweigert B-Messungen ohne
+zusätzlichen tvPlusOffVerified-Nachweis, auch bei scheinbar sehr großem Gewinn.
+restore/lesende Nachlese bleiben verfügbar. Neun lokale Tests bestanden.
 
-## Ein fehlgeschlagener Fern-Neustart vor dem Vergleich
+## Wirksame native Deaktivierung
 
-Eine erste Version hatte genau einen normalen systemctl-reboot-Aufruf an den TV
-gesendet. Antwort unklar; laufender Beobachter sah innerhalb 180 s keine neue
-Kernel-Boot-ID. Lauf deshalb ungültig/abgebrochen, keine Wiederholung des
-Rebootbefehls und noch keine Flagänderung. Keine Aussage über die genaue
-Ablehnungsursache. Kein erzwungener Reboot, Zusatzprivileg oder MAC-/Systemdienst-
-Eingriff als Ausweichweg.
+Samsung-Home normal aufgerufen, Besitzer führte für 2020/2021-Geräte aus:
 
-Ein Versuch, den eigenen lokalen Vergleichsprozess über pgrep zu finden,
-scheiterte an nicht verfügbarer Prozessliste (sysmond). Keine Rechte erweitert.
-Die erste Version endete über ihre bereits eingebaute feste Wartefrist.
-Anschließend Code auf ausschließlich vom Besitzer ausgelöste Neustarts geändert,
-neuer privater Lauf mit neuem Baselineverzeichnis gestartet. Unvollständigen
-ersten Lauf nicht in Mittelwerte aufnehmen.
+1. TV-Plus-Kachel markieren, am Ring nach unten.
+2. Entfernen, danach ausdrücklich Deaktivieren.
 
-## Bedienung und Rücknahme
+Besitzer bestätigt Ausführung und nach neuem Power-Neustart kein automatisch
+laufendes TV-Plus-Programm. Diese normale Samsung-Funktion nimmt TV-Plus-Sender
+aus dem Guide. Keine fremden Sender oder Kanaldatenbanken direkt bearbeitet.
 
-Aus dem Repository, TV_IP bezeichnet nur den freigegebenen TV:
+Frisches Inventar nach nativer Deaktivierung zeigt **keinerlei App-Flag-Unterschied
+zur ursprünglichen A-Baseline**: Beide TV-Plus-App-IDs sind wieder enabled und
+deren onboot/autorestart weiterhin false. Native Service-/Guide-Deaktivierung
+und App-Disable sind auf diesem Gerät unterschiedliche Zustände.
+Deshalb weder Paketflags allein noch ein bloßer API-Erfolg als Off-Beweis werten.
+
+Native B-Messungen laufen mit dem vorhandenen read-only boot_observer.py.
+Es verändert keine TV-Einstellungen, fordert keinen Fern-Reboot an und startet
+keine App. Rohdaten/Boot-IDs bleiben privat. TV Plus muss nach jedem B-Boot auch
+laut Besitzer ausbleiben; bei erneutem Programm keine gültige Off-Probe.
+
+## Neustart- und Capture-Geschichte
+
+Eine frühe Version sandte genau einen normalen systemctl-reboot-Aufruf an den
+TV; Antwort unklar, innerhalb 180 s keine neue Boot-ID. Kein erzwungener Reboot,
+Zusatzrecht oder Wiederholen. Keine Flagänderung in diesem ungültigen Lauf.
+Host-pgrep für den eigenen Vergleichsprozess scheiterte an nicht verfügbarer
+sysmond-Prozessliste; keine Berechtigung erweitert. Feste Wartefrist beendete
+die erste Fassung. Anschließend nur Besitzer-Power-Neustarts verwendet.
+
+Ein wartender manueller 180-s-Lauf vor Boot/Änderung per CANCEL beendet und
+durch 900-s-Wartefenster ersetzt. A1 kam dennoch nach Ende dieses Collectors.
+Neue Kernel-Boot-ID gegen erhaltene Vorboot-Baseline bestätigt; Prozesszeiten
+nachträglich aus proc/stat/CLK_TCK nachgelesen. Kein vollständiger A1-Verlauf,
+keine erste HTTP-Bereitschaftszeit erfunden. resume-Reihenfolge/Originalflags
+geprüft; A2 danach regulär beobachtet.
+
+A1/A2 und verworfener Flag-B1 hatten vor dem nächsten Lauf mindestens 100 s
+Uptime. Nativer B1 wurde deutlich länger beobachtet; neuer B2-Observer erst
+danach vorbereitet. B2 zunächst versehentlich vom Besitzer als neugestartet
+gemeldet, direkt korrigiert; ohne neue Boot-ID nicht als Messlauf gezählt.
+
+## Vergleich und Rücknahme
+
+Vorab praktische Regel für zwei gültige On-/Off-Werte: mittlerer Gewinn muss
+größer sein als zwei Sekunden sowie die Spannweite jeder Zweiergruppe.
+Das ist kein statistischer Test. Keine Schlussfolgerung aus dem ungültigen
+App-Flag-Boot. Bei fehlendem Gewinn ist das vorher gewünschte TV Plus wieder
+herzustellen; die native Rücknahme benötigt jetzt die reguläre Samsung-UI.
+
+Für 2020/2021 dokumentiert Samsung:
+**Quelle → Samsung TV Plus markieren → nach oben → Zur Startseite hinzufügen.**
+Das soll den nativen Dienst wieder aktivieren. Dieser native UI-Rückweg ist
+noch nicht am Gerät geprüft; nicht mit bereits geprüfter Paketflag-Rücknahme
+verwechseln. Sender-/Favoriten-/Cachebytes sind dadurch nicht garantiert exakt
+wie vorher. Agent ändert keine Kanal-SQL-Daten direkt.
+
+Die vorbereitete Paket-Restore-Routine betrifft nur den inzwischen bereits
+zurückgenommenen falschen Abschaltweg und kann nativen Guide-/Servicezustand
+nicht ersetzen. Alle früheren Datenschutz-/Startprofile, Einwilligungen,
+Ad-Webframework, CoBA-Adagent, TV-Viewer, AirPlay und Webruntime bleiben erhalten.
+
+## Lokale Werkzeuge
+
+Aus Repository, mit ausschließlich der freigegebenen TV-Adresse:
 
     python3 -B recovery/tvplus_comparison.py plan
-    python3 -B -u recovery/tvplus_comparison.py run --tv TV_IP --owner-approved
-    # Originalwerte aus genau dem privaten Vergleichsjournal wiederherstellen:
+    # run/resume des Komponenten-only-Versuchs sind absichtlich gesperrt.
+    # Bereits erledigte Paketflag-Rücknahme, bei Bedarf nur mit Originaljournal:
     python3 -B recovery/tvplus_comparison.py restore --tv TV_IP --owner-approved --journal PRIVATE_COMPARISON_JSON
 
-Kein automatischer Neustart im aktuellen Skript. Pro manuellem Boot maximal
-900 s beobachten, keine blind wiederholten Bootanforderungen. Neue Laufordner
-werden exklusiv privat angelegt, Rohdaten/Boot-IDs nicht veröffentlichen.
-CANCEL-Datei im laufenden privaten Vergleichsordner beendet die nächste
-Beobachtungsschleife; nach bereits erfolgter Flagänderung wird Rücknahme versucht.
+    python3 -B recovery/boot_observer.py record --mode passive --base http://TV_IP:8099 --out PRIVATE_NATIVE_CAPTURE --duration 900
 
-Restore akzeptiert nur exakt die beiden festen TV-Plus-IDs und boolesche
-Originalfelder; stellt ursprüngliche effektive disabled-Flags wieder her und
-prüft auch ursprüngliches onboot/autorestart. Neue persönliche Daten oder
-gemeinsame Systembibliotheken werden nicht angefasst. App-Prozess-/Datenbank-
-Bytes und Cacheeffekte sind damit nicht zurückgesetzt. Benötigt weiter
-erreichbaren Root-Agenten. Hardware-Rücknahme noch ungeprüft.
+CANCEL im privaten alten Vergleichsordner beendet diesen Vergleich.
+Read-only-Observer mit q beenden. Kein automatischer Fern-Neustart im aktuellen
+Protokoll. Hardware-Startzeitgewinn und native Rücknahme nicht vorwegnehmen.
 
-Sechs lokale Tests bestanden: kleine/noisige Gewinne nicht überschätzen,
-großen konsistenten Gewinn erkennen, unvollständige Stichprobe verweigern,
-fremde/schutzbedürftige IDs verweigern, gefälschtes Restore-Journal vor API
-stoppen, ursprüngliche effektive TV-Plus-Flags wiederherstellen.
-Das ist keine bereits absolvierte Hardwaremessung.
-
-**Nachtrag zur manuellen Wartezeit:** Einen ersten noch wartenden manuellen
-Lauf gezielt per CANCEL beendet, bevor ein Boot oder Flagänderung erfolgte.
-Danach Beobachtungsfenster auf 900 s verlängert und neuen privaten Lauf
-exklusiv angelegt. Aktueller Stand WAIT_FOR_OWNER_REBOOT A1.
-Abbruchprüfung auch vor jedem Flagwechsel und während Beruhigungsphasen;
-alle sechs Tests anschließend erneut bestanden.
+Quelle: [Samsung: Disable / Re-enable TV Plus, einschließlich 2020/2021](https://www.samsung.com/au/support/tv-audio-video/disable-samsung-tv-plus/).
+Menüs sind modell-/regionsabhängig; wirksame Deaktivierung wurde hier zusätzlich
+durch den Besitzer nach dem Boot bestätigt.
