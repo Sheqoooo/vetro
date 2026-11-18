@@ -1688,3 +1688,16 @@ Zeitgewinn. Kleine Stichprobe und feste Reihenfolge beweisen keinen kausalen
 Nachteil. Der frühere unwirksame Paketflag-Lauf bleibt ausgeschlossen.
 Besitzer um Wiederaktivierung über Samsungs Quellenmenü gebeten. Bis zur
 Bestätigung gilt die native Rücknahme als offen.
+
+## 2026-11-18 — Verbleibende Vetro-Startzeit eingegrenzt
+
+Auf Wunsch nach einem deutlich schnelleren Start vorhandene private Boot- und
+Leistenmessungen aus dem Performance-Profil und dem TV-Plus-Vergleich sowie
+app/service/dock.js und dock/src/Program.cs ausgewertet. In drei Aufzeichnungen
+lagen rund 16–21 s zwischen Dienstinitialisierung und Agentenverbindung. Die
+nachlaufende Darstellungs-Vorbereitung ab elm_run dauerte in diesen Logs rund
+0,5 s. Das ist kein Gesamtwert für die UI-Initialisierung. Standby wurde auf
+hoher Ebene als eigener Prüfpfad identifiziert. Bei Kaltstart ist Samsungs altes
+App-Prelaunch für diese Modellgeneration nicht verfügbar. Siehe
+FAST-START-DIAGNOSIS.md. Keine TV-Änderung, kein Neustart und keine neue Messung
+am Gerät. Rücknahme besteht in dieser Stufe nur aus Dokumentationsänderungen.
