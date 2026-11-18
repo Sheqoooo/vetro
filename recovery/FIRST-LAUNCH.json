@@ -1,0 +1,15 @@
+{
+  "checked_on": "2026-11-17",
+  "app_id": "vetrotvapp.app",
+  "owner_approved_visible_launch": true,
+  "command": "shell:0 was_execute vetrotvapp.app",
+  "tv_reply_reports_launched": true,
+  "screen_visually_confirmed": false,
+  "status_api_reachable": true,
+  "status_mode": "tv-integration",
+  "app_version": "0.3.5",
+  "root_agent_connected_at_check": false,
+  "launcher_enabled_by_agent": false,
+  "developer_host_ip_changed_by_agent": false,
+  "restart_requested": false
+}

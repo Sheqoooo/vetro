@@ -1,0 +1,20 @@
+{
+  "checked_on": "2026-11-17",
+  "owner_reported_developer_host_change_and_restart": true,
+  "developer_mode_enabled": true,
+  "developer_host_is_tv_loopback": true,
+  "service_reachable_after_restart": true,
+  "mode": "tv-integration",
+  "version": "0.3.5",
+  "root_agent_connected": true,
+  "agent_reported_uid": 0,
+  "agent_reported_gid": 0,
+  "prepared": true,
+  "running": true,
+  "unsupported": false,
+  "launcher_enabled_by_agent": false,
+  "standby_tested": false,
+  "physical_power_cycle_tested": false,
+  "launcher_restore_tested_on_hardware": false,
+  "full_root_rollback_verified": false
+}

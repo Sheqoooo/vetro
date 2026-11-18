@@ -1,0 +1,10 @@
+[Unit]
+Description=Bounded Vetro native startup trial
+StartLimitIntervalSec=120
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/app_launcher -s vetrotvapp.svc
+TimeoutStartSec=8
+RemainAfterExit=yes

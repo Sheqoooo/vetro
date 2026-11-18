@@ -1,0 +1,27 @@
+{
+  "file": "vetro-integration-SIGNED.wgt",
+  "files": 81,
+  "payloadMatchesCollector": true,
+  "signatureChecks": [
+    {
+      "signature": "author-signature.xml",
+      "rsa": "verified against issued certificate",
+      "references": 80,
+      "digests": "verified"
+    },
+    {
+      "signature": "signature1.xml",
+      "rsa": "verified against issued certificate",
+      "references": 81,
+      "digests": "verified"
+    }
+  ],
+  "tvAcceptanceTested": false,
+  "certificateChainTrustIndependentlyVerified": false,
+  "bytes": 459007,
+  "sha256": "f4229886fd551c599689c5671242dd00fe2267d224a193a198801cb32a2ceedb",
+  "source_revision": "11f752b50437fb10c4421d73474e0f5813a5aa8e",
+  "signed": true,
+  "installed": false,
+  "checked_on": "2026-11-17"
+}

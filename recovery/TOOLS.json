@@ -1,0 +1,27 @@
+{
+  "checked_on": "2026-11-16",
+  "product": "Apps2Samsung CLI",
+  "version": "3.1.0",
+  "release": "https://github.com/Apps2Samsung/Apps2Samsung/releases/tag/v3.1.0",
+  "source_commit": "dea1eb391d559b3176f40f612550bdae0cebc493",
+  "archive": "Apps2Samsung-cli-v3.1.0-osx-arm64.tar.gz",
+  "archive_size": 32739187,
+  "archive_sha256": "a4a6557427b6dfd6b00399f24f04f3651e30f955eb21dc90e1826d0f604a914a",
+  "binary_sha256": "cd8d1b7820408de914ce33948a26118b7047f632aec25d0e998d01ee20fbe4cc",
+  "original_binary_modified": false,
+  "codesign_check": "valid, ad-hoc, no TeamIdentifier; identity/notarization not established",
+  "offline_checks": [
+    "version",
+    "help",
+    "cert-status",
+    "install-help"
+  ],
+  "tv_contacted": false,
+  "installed_on_tv": false,
+  "certificates_created": false,
+  "limitations": [
+    "SDB transport/proxy not tested with original installer",
+    "full install write paths not verified",
+    "no complete root rollback verified"
+  ]
+}
