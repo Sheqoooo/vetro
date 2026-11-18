@@ -1,3 +1,6 @@
+**Weitere Bestätigung vom 18. November 2026:** AirPlay funktioniert laut Besitzer.
+Bildschirmspiegelung und Einstellungen bleiben gesondert ungeprüft.
+
 **Bestätigung vom 18. November 2026:** Der Besitzer bestätigt auf die Frage
 nach Home, normalem Fernsehen und Samsung TV Plus: funktioniert weiterhin.
 AirPlay, Bildschirmspiegelung und Einstellungen wurden damit nicht gesondert

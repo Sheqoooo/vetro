@@ -1400,3 +1400,15 @@ vorbereiten; keine pauschale Samsung-freie Sofortstart-Zusage.
   44,732 s, keine neue Zeitmessung. AirPlay, Bildschirmspiegelung und Einstellungen
   nicht gesondert bestätigt; Wiederholungsboot/Strom-Aus-Ein und Hardware-Rücknahme
   des Profils bleiben ungeprüft. Rücknahmejournal unverändert privat vorhanden.
+
+
+## 2026-11-18 — AirPlay vom Besitzer bestätigt
+
+- **Status / Ergebnis:** Besitzer meldet „AirPlay geht“. AirPlay damit als
+  praktisch funktionierend nach dem Profil bestätigt; Home, Fernsehen und TV Plus
+  waren bereits bestätigt.
+- **Durchführung:** Nur anonymisierten Ergebnisbeleg und Dokumentation ergänzt;
+  keine TV-Verbindung, Einstellung oder Software verändert.
+- **Grenzen / Rücknahme:** Bildschirmspiegelung und Einstellungen nicht separat
+  getestet. Keine neue Zeitmessung oder Hardware-Rücknahme. Bestehende private
+  Rücknahmedaten unverändert erhalten.
