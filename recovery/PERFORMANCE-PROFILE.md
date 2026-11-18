@@ -1,3 +1,7 @@
+**Besitzerpräferenz, 18. November 2026:** Bildschirmspiegelung ist nicht wichtig;
+der entsprechende Funktionstest entfällt. Keine weitere Abschaltung daraus
+abgeleitet. AirPlay bleibt bestätigt und soll erhalten bleiben.
+
 **Weitere Bestätigung vom 18. November 2026:** AirPlay funktioniert laut Besitzer.
 Bildschirmspiegelung und Einstellungen bleiben gesondert ungeprüft.
 

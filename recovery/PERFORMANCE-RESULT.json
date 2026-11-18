@@ -36,7 +36,6 @@
   "hostSettingsChanged": false,
   "newBootMeasured": true,
   "functionalTestsPending": [
-    "screen mirroring",
     "settings"
   ],
   "rollback": "Original per-component effective flags saved privately; timing baseline retained locally. Restore this profile before removing original native start trial.",
@@ -74,5 +73,9 @@
     "Samsung TV Plus",
     "AirPlay"
   ],
-  "ownerConfirmationDate": "2026-11-18"
+  "ownerConfirmationDate": "2026-11-18",
+  "ownerWaivedFunctionalTests": [
+    "screen mirroring"
+  ],
+  "screenMirroringChangedAfterWaiver": false
 }

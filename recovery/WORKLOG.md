@@ -1412,3 +1412,14 @@ vorbereiten; keine pauschale Samsung-freie Sofortstart-Zusage.
 - **Grenzen / Rücknahme:** Bildschirmspiegelung und Einstellungen nicht separat
   getestet. Keine neue Zeitmessung oder Hardware-Rücknahme. Bestehende private
   Rücknahmedaten unverändert erhalten.
+
+
+## 2026-11-18 — Spiegelungstest auf Besitzerwunsch entfällt
+
+- **Präferenz:** „Bildschirmspiegelung ist egal.“ Den noch offenen Spiegelungstest
+  daher als vom Besitzer nicht benötigt vermerkt, nicht als bestanden.
+- **Umfang:** Keine zusätzliche Abschaltung daraus abgeleitet. AirPlay weiterhin
+  als benötigt/funktionierend behandelt. Nur Dokumentation/Ergebnisbeleg geändert,
+  keine TV-Verbindung oder TV-/Mac-Einstellung verändert.
+- **Grenzen:** Einstellungen bleiben separat ungeprüft; Wiederholungsboot,
+  Strom-Aus/Ein und Hardware-Rücknahme weiterhin offen. Rücknahmedaten erhalten.
