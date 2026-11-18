@@ -1774,3 +1774,27 @@ Quellrevision 0dcc3a1c54f6cf0829a95965107e8467ec04eaf2 und einen verbundenen
 Agenten. Die Leiste läuft. Ihr Katalog enthält „Apps installieren“ mit Ziel
 sys:com.samsung.tv.store. Die Abfrage benötigte keinen Neustart oder manuellen
 App-Start durch den Agenten. Den Klick auf der Fernbedienung prüft der Besitzer.
+
+## 2026-11-18 — Store-Kachel und Samsung-Home-Rückweg korrigiert
+
+TV-Foto zeigt die Buchstaben AI statt eines Icons und drei übereinanderliegende
+Systemelemente. Die Store-Kachel ist jetzt quadratisch mit eigenem Vetro-Raster-
+Icon und Pluszeichen. Mehrere TV-Logs zeigen akzeptierte Store-Aufrufe trotz
+fehlendem Vordergrund. Auswahl verwendet nun den vorhandenen gezielten Neustart
+für die Store-App selbst. Die tatsächliche Wiederholbarkeit ist am TV zu prüfen.
+
+Samsung Home öffnet sich beim direkten Aufruf laut Besitzer. Der Launcher
+hatte nach Home mehrere verzögerte Schließbefehle ohne Abbruchmöglichkeit
+geplant. Sie laufen jetzt über abbrechbare Timer. Bei bewusster Auswahl von
+Samsung Home werden die Timer aufgehoben und ein bereits gestarteter
+Schließaufruf kurz abgewartet. Das behebt einen nachgewiesenen Konflikt im Code;
+die Wirkung auf dem TV ist noch offen.
+
+Microsoft-SDK 8.0.428 projektlokal nach SHA-512-Prüfung entpackt. Direkter
+NuGet-Restore gescheitert. Referenzpakete aus dem offiziellen NuGet-Feed
+lokal geladen und damit das bestehende TV-Ziel .NET Core 3.1 gebaut. Testprojekt
+fordert .NET 10, daher unveränderte Testquellen in privater .NET-8-Kopie
+kompiliert und ausgeführt: 5.022 Prüfungen bestanden. Relevante JS-Katalog-,
+Dock-, UI-, Design- und Paketgrenzentests bestanden. Keine TV-Installation zu
+diesem Zeitpunkt. Das bisherige signierte Paket bleibt für Rücknahme verfügbar,
+ein Downgrade auf dem Gerät ist noch ungeprüft.

@@ -224,7 +224,9 @@ function fixture(options) {
     assert.ok(tsv.includes('tizentube\tTizenTube\txvvl3S1TT1.TizenTubeStandalone\t\t/opt/share/webappservice/apps_icon/all/yt/224x224.png\tcom.samsung.tv.cobalt-yt'), 'YouTube icon and kill-first in the list');
     assert.deepEqual(s.entries.map(e => e.slug), ['tizentube', 'netflix', 'apps-installieren', 'settings', 'samsunghome']);
     assert.equal(s.entries[0].killFirst, 'com.samsung.tv.cobalt-yt');
-    assert.ok(s.entries.slice(2).every(e => e.system));
+    assert.equal(s.entries[2].system, false);
+    assert.equal(s.entries[2].killFirst, s.entries[2].appId);
+    assert.ok(s.entries.slice(3).every(e => e.system));
     assert.equal(s.entries[1].system, false);
     s = await f.dock.setFixTizenTube(false);
     assert.equal(s.fixTizenTube, false);

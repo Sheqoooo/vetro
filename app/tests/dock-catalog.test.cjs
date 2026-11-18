@@ -43,7 +43,7 @@ const lines = text.trim().split('\n');
 assert.ok(lines[0].startsWith('#'));
 assert.equal(lines[1], 'tvplus\tSamsung TV Plus\torg.tizen.tv-viewer\t\t/opt/usr/apps/com.samsung.tv.tvplus/shared/res/tvplus.png');
 assert.equal(lines[2], 'livetv\tLive TV\torg.tizen.tv-viewer', 'no icon: no trailing tabs');
-assert.deepEqual(lines.slice(-3), ['apps-installieren\tApps installieren\tsys:com.samsung.tv.store', 'settings\tSettings\tkey:XF86SysMenu\torg.tizen.menu', 'samsunghome\tSamsung Home\tsys:com.samsung.tv.csfs'], 'the install tile opens Samsung Apps directly');
+assert.deepEqual(lines.slice(-3), ['apps-installieren\tApps installieren\tcom.samsung.tv.store\t\t\tcom.samsung.tv.store', 'settings\tSettings\tkey:XF86SysMenu\torg.tizen.menu', 'samsunghome\tSamsung Home\tsys:com.samsung.tv.csfs'], 'the square install tile relaunches only Samsung Apps');
 lines.slice(1).forEach(l => assert.ok(l.split('\t').length >= 3, 'every line has slug, label and app id: ' + l));
 
 // Names that would break the file or the dock

@@ -52,7 +52,14 @@ namespace Launcher
         // Off by default; the app id is checked as plain id characters because it goes on a command line.
         // One process: a single shell runs every sleep and every kill (at 0.15, 0.45, 0.9, 1.6 and 2.8 s after the
         // press, as before), so the dock itself spawns once per Home press instead of five times from the loop.
-        private static string _guardApp, _guardCmd;
+        private static string _guardApp;
+        private static readonly Efl.TaskCb GuardCb = OnGuard;
+        private static IntPtr _guardTimer;
+        private static int _guardGap;
+        private static Process _guardProcess;
+        private static readonly Efl.TaskCb SamsungHomeCb = OnSamsungHome;
+        private static IntPtr _samsungHomeTimer;
+        private static double _samsungHomeDeadline;
         private const double GuardFirst = 0.15;
         private static readonly double[] GuardGaps = { 0.3, 0.45, 0.7, 1.2 };   // sleeps between the five kills
         private static int _homeCode = -1;
@@ -594,18 +601,61 @@ namespace Launcher
 
         private static void ArmGuard()
         {
-            if (_guardCmd == null) return;
-            try { Libc.system(_guardCmd); }   // returns at once: the shell puts the whole chain in the background
-            catch (Exception ex) { Log("guard: " + ex.Message); }
+            CancelGuard();
+            if (_samsungHomeTimer != IntPtr.Zero)
+            {
+                Efl.ecore_timer_del(_samsungHomeTimer);
+                _samsungHomeTimer = IntPtr.Zero;
+            }
+            if (_guardApp == null) return;
+            _guardGap = 0;
+            _guardTimer = Efl.ecore_timer_add(GuardFirst, GuardCb, IntPtr.Zero);
         }
 
-        /// <summary>The app id is plain id characters (checked at start), so it is safe on a command line.</summary>
-        private static string GuardCommand(string appId)
+        private static void CancelGuard()
         {
-            string kill = "/usr/bin/app_launcher -k " + appId;
-            var sb = new System.Text.StringBuilder("( sleep " + GuardFirst.ToString("0.0##", System.Globalization.CultureInfo.InvariantCulture) + "; " + kill);
-            foreach (double gap in GuardGaps) sb.Append("; sleep ").Append(gap.ToString("0.0##", System.Globalization.CultureInfo.InvariantCulture)).Append("; ").Append(kill);
-            return sb.Append(" ) >/dev/null 2>&1 &").ToString();
+            if (_guardTimer == IntPtr.Zero) return;
+            Efl.ecore_timer_del(_guardTimer);
+            _guardTimer = IntPtr.Zero;
+        }
+
+        private static byte OnGuard(IntPtr data)
+        {
+            _guardTimer = IntPtr.Zero;
+            try
+            {
+                // The ID is validated at startup. Keep at most one close request in flight.
+                if (GuardFinished())
+                    _guardProcess = Process.Start(new ProcessStartInfo("/usr/bin/app_launcher", "-k " + _guardApp) { UseShellExecute = false });
+                if (_guardGap < GuardGaps.Length)
+                    _guardTimer = Efl.ecore_timer_add(GuardGaps[_guardGap++], GuardCb, IntPtr.Zero);
+            }
+            catch (Exception ex) { Log("guard: " + ex.Message); }
+            return 0;
+        }
+
+        private static bool GuardFinished()
+        {
+            if (_guardProcess == null) return true;
+            if (!_guardProcess.HasExited) return false;
+            _guardProcess.Dispose();
+            _guardProcess = null;
+            return true;
+        }
+
+        private static byte OnSamsungHome(IntPtr data)
+        {
+            try
+            {
+                if (!GuardFinished() && Efl.ecore_time_get() < _samsungHomeDeadline) return 1;
+                // Plain app-control reports success on some TVs without opening Home.
+                var process = Process.Start(new ProcessStartInfo("/usr/bin/app_launcher", "-s com.samsung.tv.csfs") { UseShellExecute = false });
+                process?.Dispose();
+                Log("requested Samsung Home");
+            }
+            catch (Exception ex) { Log("Samsung Home: " + ex.Message); }
+            _samsungHomeTimer = IntPtr.Zero;
+            return 0;
         }
 
         // ------------------------------------------------------------------ launching
@@ -709,9 +759,10 @@ namespace Launcher
                 }
                 if (e.AppId == "com.samsung.tv.csfs")
                 {
-                    // Samsung's Home ignores a plain app-control request from here (logged as launched, never shown);
-                    // the platform's own launcher starts it.
-                    Log("launch " + e.AppId + " rc=" + Libc.system("/usr/bin/app_launcher -s " + e.AppId + " >/dev/null 2>&1 &"));
+                    CancelGuard();
+                    if (_samsungHomeTimer != IntPtr.Zero) Efl.ecore_timer_del(_samsungHomeTimer);
+                    _samsungHomeDeadline = Efl.ecore_time_get() + 1.5;
+                    _samsungHomeTimer = Efl.ecore_timer_add(0.15, SamsungHomeCb, IntPtr.Zero);
                     return;
                 }
                 if (SendLaunch(e.AppId)) { Log("launch " + e.AppId); return; }
@@ -856,7 +907,7 @@ namespace Launcher
                 string guard = Arg(args, "--kill-on-home");
                 if (guard != null)
                 {
-                    if (Catalog.ValidAppId(guard)) { _guardApp = guard; _guardCmd = GuardCommand(guard); Log("guard: " + guard + " is closed after each Home press: " + _guardCmd); }
+                    if (Catalog.ValidAppId(guard)) { _guardApp = guard; Log("guard: " + guard + " is closed after each Home press"); }
                     else Log("guard: bad app id ignored");
                 }
                 SetupInput(args);

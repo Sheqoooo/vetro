@@ -32,15 +32,18 @@ var LIVE = {
     RF: {slug: 'livetv', label: 'Live TV', iconPackage: null}
 };
 
-// The system tiles open the Samsung app store, Settings, and Samsung Home.
+// The store uses a square app tile. Relaunch only the store on selection: an
+// accepted app-control request can leave an existing store session in the background.
+var STORE = 'com.samsung.tv.store';
+var STORE_ROW = ['apps-installieren', 'Apps installieren', STORE, '', '', STORE].join('\t');
+
 // Settings sends the System Menu key, which the TV routes to Samsung's own menu app.
 // The input list is not here: it is one page up in the launcher.
 var SYSTEM_ROWS = [
-    'apps-installieren\tApps installieren\tsys:com.samsung.tv.store',
     'settings\tSettings\tkey:XF86SysMenu\torg.tizen.menu',
     'samsunghome\tSamsung Home\tsys:com.samsung.tv.csfs'
 ];
-var RESERVED_SLUGS = ['source'].concat(SYSTEM_ROWS.map(function (row) { return row.split('\t')[0]; }));
+var RESERVED_SLUGS = ['source', 'apps-installieren'].concat(SYSTEM_ROWS.map(function (row) { return row.split('\t')[0]; }));
 
 function script() {
     var sizes = '224x224 304x304 152x152 104x104 icon';
@@ -118,7 +121,7 @@ function build(parsed, options) {
         return entries[entries.length - 1];
     }
     parsed.order.forEach(function (item) {
-        if (entries.length >= MAX_ENTRIES - SYSTEM_ROWS.length) { skipped.push({item: item, reason: 'The dock holds ' + MAX_ENTRIES + ' entries'}); return; }
+        if (entries.length >= MAX_ENTRIES - SYSTEM_ROWS.length - 1) { skipped.push({item: item, reason: 'The dock holds ' + MAX_ENTRIES + ' entries'}); return; }
         var kind = item.slice(0, item.indexOf('@')), ident = item.slice(item.indexOf('@') + 1);
         if (kind === 's/livetv') {
             var live = LIVE[ident];
@@ -147,7 +150,7 @@ function tsv(built) {
     built.entries.forEach(function (e) {
         lines.push([e.slug, e.label, e.appId, '', e.icon || '', e.killFirst || ''].join('\t').replace(/\t+$/, ''));
     });
-    return lines.concat(SYSTEM_ROWS).join('\n') + '\n';
+    return lines.concat(STORE_ROW, SYSTEM_ROWS).join('\n') + '\n';
 }
 
 // The registry can point at an icon that is no longer there (TV Plus does). One more read-only
