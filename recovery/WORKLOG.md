@@ -1701,3 +1701,28 @@ hoher Ebene als eigener Prüfpfad identifiziert. Bei Kaltstart ist Samsungs alte
 App-Prelaunch für diese Modellgeneration nicht verfügbar. Siehe
 FAST-START-DIAGNOSIS.md. Keine TV-Änderung, kein Neustart und keine neue Messung
 am Gerät. Rücknahme besteht in dieser Stufe nur aus Dokumentationsänderungen.
+## 2026-11-18 — Plan für eine eigene Vetro-Startoberfläche
+
+Vorhandenen sichtbaren Launcher-Modus, Home-Verarbeitung und Dashboard geprüft.
+Geplante Änderungen mit Prüfpunkten in VETRO-HOME-PLAN.md festgehalten.
+Nur Dokumentation geändert. Umsetzung, Tests und Installation stehen aus.
+
+## 2026-11-18 — Kachel „Apps installieren“ für Vetro
+
+Der Besitzer möchte den Samsung-App-Store direkt aus Vetro öffnen. Das TV-Inventar
+bestätigt die vorhandene aktivierte App-ID com.samsung.tv.store. Ein einzelner
+normaler Startaufruf wurde vom TV mit Exit 0 angenommen. Sichtbestätigung steht
+aus, keine App aus dem Store installiert.
+
+Der Katalog erzeugt die Kachel bei den Systemaktionen und reserviert deren ID.
+Die Tests für Katalog und Dock prüfen Eintrag und Grenze von 40 Kacheln.
+Die Dock-Testfixture verwendet eine simulierte Uptime, weil die Mac-Umgebung
+die echte Uptime-Abfrage mit EPERM ablehnt. Katalog-, Dock-, UI- und
+Integrationstests sowie 17 Python-Parserprüfungen bestanden. Die gesamte
+App-Suite stoppt im bestehenden Home-Cache-Shelltest mit leerer Ausgabe.
+
+Lokales signiertes WGT unter eigenem Namen gebaut. ZIP-Integrität,
+Signaturdateien und Übereinstimmung der enthaltenen Katalogdatei geprüft.
+Das frühere Installationspaket bleibt verfügbar. Die neue Version ist noch
+nicht auf dem TV. Der bisherige Installer ist auf Erstinstallation begrenzt.
+Ein Upgrade und dessen Rücknahme wurden auf dem Gerät noch nicht geprüft.

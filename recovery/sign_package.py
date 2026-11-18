@@ -1,19 +1,26 @@
 #!/usr/bin/env python3
 """Run the unchanged Vetro signer with existing project certificates; no TV access."""
+import argparse
 import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-name", default="vetro-integration-SIGNED.wgt")
+    args = parser.parse_args()
+    if not re.fullmatch(r"vetro-[a-zA-Z0-9-]+\.wgt", args.output_name):
+        parser.error("Choose a vetro-*.wgt filename inside dist")
     repo = Path(__file__).resolve().parents[1]
     project = repo.parent
     private = project / "recovery/private"
     profile = private / "apps2samsung/Certificate/Jelly2Sams - Partner"
-    output = repo / "dist/vetro-integration-SIGNED.wgt"
-    if output.exists():
+    output = repo / "dist" / args.output_name
+    if output.exists() or output.is_symlink():
         raise SystemExit("Signed output already exists; preserve it instead of overwriting")
     for name in ("author.p12", "distributor.p12", "password.txt"):
         if not (profile / name).is_file() or (profile / name).is_symlink():

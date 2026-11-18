@@ -32,13 +32,15 @@ var LIVE = {
     RF: {slug: 'livetv', label: 'Live TV', iconPackage: null}
 };
 
-// Two pills close the row. Settings sends the System Menu key, which the TV routes to Samsung's own menu app
-// (org.tizen.menu, menu.json); starting csfs would only show Home. The second one goes back to Samsung's Home.
+// The system tiles open the Samsung app store, Settings, and Samsung Home.
+// Settings sends the System Menu key, which the TV routes to Samsung's own menu app.
 // The input list is not here: it is one page up in the launcher.
 var SYSTEM_ROWS = [
+    'apps-installieren\tApps installieren\tsys:com.samsung.tv.store',
     'settings\tSettings\tkey:XF86SysMenu\torg.tizen.menu',
     'samsunghome\tSamsung Home\tsys:com.samsung.tv.csfs'
 ];
+var RESERVED_SLUGS = ['source'].concat(SYSTEM_ROWS.map(function (row) { return row.split('\t')[0]; }));
 
 function script() {
     var sizes = '224x224 304x304 152x152 104x104 icon';
@@ -110,7 +112,7 @@ function build(parsed, options) {
     var entries = [], skipped = [], slugs = {};
     function add(slug, label, appId, icon) {
         var base = slug, n = 2;
-        while (slugs[slug] || slug === 'source' || slug === 'settings') slug = base.slice(0, 36) + '-' + n++;
+        while (slugs[slug] || RESERVED_SLUGS.indexOf(slug) >= 0) slug = base.slice(0, 36) + '-' + n++;
         slugs[slug] = true;
         entries.push({slug: slug, label: label, appId: appId, icon: icon || null, killFirst: null});
         return entries[entries.length - 1];
