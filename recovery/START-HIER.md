@@ -1,3 +1,8 @@
+**Bestätigung vom 18. November 2026:** Der Besitzer bestätigt auf die Frage
+nach Home, normalem Fernsehen und Samsung TV Plus: funktioniert weiterhin.
+AirPlay, Bildschirmspiegelung und Einstellungen wurden damit nicht gesondert
+bestätigt. Keine weitere Änderung am TV vorgenommen.
+
 **Aktueller Neustart gemessen:** Vetro-Dienst 12,592 s, Leiste 44,732 s.
 Gegenüber vorher 49,464 s etwa 4,7 s gewonnen. Alle 15 optionalen Komponenten
 bleiben deaktiviert und fehlen in laufender App-Liste; Multi-View-Vorladen

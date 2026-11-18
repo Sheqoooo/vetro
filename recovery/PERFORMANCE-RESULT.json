@@ -36,11 +36,8 @@
   "hostSettingsChanged": false,
   "newBootMeasured": true,
   "functionalTestsPending": [
-    "live TV",
-    "Samsung TV Plus",
     "AirPlay",
     "screen mirroring",
-    "Home",
     "settings"
   ],
   "rollback": "Original per-component effective flags saved privately; timing baseline retained locally. Restore this profile before removing original native start trial.",
@@ -70,6 +67,12 @@
   "previousOriginalLauncherBootSeconds": 107.296,
   "additionalLauncherGainSeconds": 4.732,
   "repeatBootPending": true,
-  "homeVisualConfirmationPending": true,
-  "instantSamsungFreeStartupProven": false
+  "homeVisualConfirmationPending": false,
+  "instantSamsungFreeStartupProven": false,
+  "ownerConfirmedWorking": [
+    "Home",
+    "live TV",
+    "Samsung TV Plus"
+  ],
+  "ownerConfirmationDate": "2026-11-18"
 }

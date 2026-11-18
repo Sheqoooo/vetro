@@ -1387,3 +1387,16 @@ vorbereiten; keine pauschale Samsung-freie Sofortstart-Zusage.
   praktische Prüfung gewünschter Funktionen durch Besitzer ausstehend,
   Wiederholungsboot/Strom-Aus-Ein ebenfalls. Kein Nachweis einer komplett
   Samsung-freien Anzeige ab Einschalten. Keine weitere aggressivere Abschaltung.
+
+
+## 2026-11-18 — Home, normales Fernsehen und TV Plus bestätigt
+
+- **Status / Prüfung:** Auf die konkrete Frage nach Home, normalem Fernsehen und
+  Samsung TV Plus bestätigt der Besitzer „Funktioniert weiterhin“.
+  Diese drei praktischen Prüfungen nach dem 12-s-/Reduktionsprofil bestanden.
+- **Durchführung:** Ausschließlich anonymisierten Ergebnisbeleg und Dokumentation
+  aktualisiert. Keine TV-Verbindung oder TV-/Mac-Einstellungsänderung dafür.
+- **Ergebnis / Grenzen:** Profil bleibt aktiv. Vorher gemessener Leistenstart
+  44,732 s, keine neue Zeitmessung. AirPlay, Bildschirmspiegelung und Einstellungen
+  nicht gesondert bestätigt; Wiederholungsboot/Strom-Aus-Ein und Hardware-Rücknahme
+  des Profils bleiben ungeprüft. Rücknahmejournal unverändert privat vorhanden.

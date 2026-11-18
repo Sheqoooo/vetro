@@ -1,3 +1,8 @@
+**Bestätigung vom 18. November 2026:** Der Besitzer bestätigt auf die Frage
+nach Home, normalem Fernsehen und Samsung TV Plus: funktioniert weiterhin.
+AirPlay, Bildschirmspiegelung und Einstellungen wurden damit nicht gesondert
+bestätigt. Keine weitere Änderung am TV vorgenommen.
+
 **Boot-Ergebnis:** Neuer Kernelboot bestätigt, passive Messung vollständig.
 Erste native Anfrage 12,567 s, Erfolg/Exit 0 bei 14,630 s. Vetro-Dienstprozess
 12,592 s; erster HTTP-Sichtpunkt 18,27 s; Launcherprozess 44,732 s, laufend.
