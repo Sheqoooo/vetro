@@ -1544,3 +1544,50 @@ nach dieser neuesten Stufe steht aus. Kein weiterer kontrollierter Boot nach der
 letzten Consent-Auswahl oder Hardware-Rollback durchgeführt. Rücknahme dieser
 technischen Stufe bleibt lokal vorbereitet; persönliche UI-Ablehnungen werden
 dadurch nicht automatisch zurückgenommen.
+
+
+## 2026-11-18 — TV-Plus-Vergleich vorbereitet; erste Fern-Boot-Anforderung ungültig
+
+- **Freigabe / Ziel:** Besitzer stimmt dem konkret vorgeschlagenen rücknehmbaren
+  TV-Plus-Deaktivierungsversuch mit mehreren Neustarts zu. Zwei frische On- und
+  zwei Off-Läufe vorgesehen; frühere Messung vor jüngstem Privacy-Profil kein
+  sauberer alleiniger A-Vergleich.
+- **Ausgang / Umfang:** Frisch nur TV Plus und TVPlusDeeplinker identifiziert,
+  beide enabled mit onboot/autorestart=false. Vollständige Flags privat
+  gesichert. Andere Datenschutz-/Start-/App-Konfigurationen unverändert lassen.
+- **Werkzeug / Tests:** tvplus_comparison.py, Default-plan ohne Netz, fixe
+  zwei Komponenten, Intentjournal, neue Boot-ID und proc/stat-Zeitmessung,
+  Kontrollfingerprint, zwei Läufe je Zustand, praktische 2-s-/Spannweitenregel,
+  Originalwert-Rücknahme bei fehlendem Gewinn/Fehler. Sechs lokale Tests
+  bestanden; keine Hardware-Rücknahme oder abgeschlossene Messung behauptet.
+- **Erster Versuch:** Ein gewöhnlicher systemctl-reboot-Aufruf an den TV im
+  ausdrücklich freigegebenen Neustartvergleich. Antwort unklar, danach 180 s
+  reine Beobachtung; keine neue Boot-ID, Uptime lief weiter. Lauf nicht als
+  Kernelboot gewertet; keine TV-Plus-Flagänderung oder weitere Bootanforderung.
+  Prozesssuche auf Mac nur für eigenen laufenden Vergleich scheitert
+  „sysmond service not found / Cannot get process list“; keine Eskalation.
+  Erste Skriptversion endet an ihrer festen Frist mit RuntimeError. Keine
+  erzwungene Reboot-/Schutzumgehung versucht.
+- **Korrektur:** Aktuelle Fassung fordert ausschließlich Besitzer-Neustarts an,
+  keine Software-Reboot-Befehle mehr. Neuer privater Vergleich mit frischer
+  Baseline, WAIT_FOR_OWNER_REBOOT A1. Besitzer um bekannten Power-Neustart
+  gebeten. Alle sechs lokalen Tests nach Änderung erneut bestanden.
+- **Weitere kleine Fehlbedienung:** Erster Tool-Orchestrierungsblock enthielt
+  zusätzliche schließende Klammer und wurde vor irgendeinem verschachtelten
+  Werkzeugaufruf abgewiesen. Korrigiert; keine Dateisystem-/TV-Wirkung.
+- **Stand / Rücknahme:** Noch keine TV-Plus-Deaktivierung. Vorbereitung und
+  ungültigen ersten Lauf getrennt dokumentiert. Messung und Hardware-Rücknahme
+  noch offen, Rohdaten/Originalflags nur lokal privat.
+
+
+### Manuellen Vergleich mit ausreichendem Zeitfenster gestartet
+
+Ersten noch wartenden manuellen Lauf per privater CANCEL-Datei abgebrochen,
+bevor neue Boot-ID oder TV-Plus-Flagänderung. Aktuelle Skriptfassung hat 900 s
+manuelles Beobachtungsfenster statt 180 s, Abbruchprüfung vor Flagänderungen und
+in Beruhigungsphasen. Alle sechs lokalen Tests erneut bestanden. Neuer privater
+Lauf mit exklusivem Ordner und frischem vollständigem Ausgangsstand gestartet,
+WAIT_FOR_OWNER_REBOOT A1. TV Plus bleibt zur Baseline eingeschaltet.
+TVPLUS-COMPARISON-RESULT.json kennzeichnet null gültige Boots/kein Leistungsurteil.
+Der ungültige Fern-Bootversuch und der verworfene manuelle Warteordner fließen
+nicht in Messwerte ein. Exakten aktuellen Journalpfad nur lokal hinterlegt.

@@ -1,0 +1,24 @@
+{
+  "status": "waiting_for_owner_reboot_A1",
+  "tvPlusDisabled": false,
+  "baselineFlagsSavedPrivately": true,
+  "plannedSequence": [
+    "A1 enabled",
+    "A2 enabled",
+    "B1 disabled",
+    "B2 disabled"
+  ],
+  "completedValidBoots": 0,
+  "performanceConclusion": null,
+  "onlyTargets": [
+    "com.samsung.tv.tvplus",
+    "com.samsung.tv.tvPlusDeeplinker"
+  ],
+  "sharedAdFrameworkChanged": false,
+  "otherProfilesChanged": false,
+  "rollbackPrepared": true,
+  "hardwareRollbackTested": false,
+  "localTestsPassed": 6,
+  "rebootsOperatedByOwner": true,
+  "remoteRebootAttemptProducedNoNewBoot": true
+}

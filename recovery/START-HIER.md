@@ -1,3 +1,10 @@
+**Aktueller Auftrag: rücknehmbaren TV-Plus-Geschwindigkeitsvergleich durchführen.**
+Besitzer stimmt zu. Zwei Neustarts mit und zwei ohne geplant; erste frische
+Vergleichsmessung mit TV Plus vorbereitet. Noch keine TV-Plus-Flagänderung.
+Fern-Neustartversuch ohne neue Boot-ID abgebrochen; aktueller Ablauf nutzt
+ausschließlich die Fernbedienung des Besitzers.
+[Messprotokoll und Rücknahme](TVPLUS-COMPARISON.md).
+
 **Aktueller Abschluss dieser Datenschutzstufe:** Beide optionalen Zustimmungen
 (Interessenwerbung und Anzeigeinformationsdienste) nun lesend als aus bestätigt,
 auch aus dem tatsächlich laufenden Consent-Dienst heraus. 25 optionale
