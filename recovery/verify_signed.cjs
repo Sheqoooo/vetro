@@ -20,10 +20,11 @@ function canonical(node, mode = '--exc-c14n') {
     return child.execFileSync('/usr/bin/xmllint', ['--nocatalogs', '--nonet', mode, '-'],
         {input: copy.toString()});
 }
-async function verify(input = path.join(repo, 'dist/vetro-integration-SIGNED.wgt')) {
+async function verify(input = path.join(repo, 'dist/vetro-integration-SIGNED.wgt'),
+    receiptPath = path.join(__dirname, 'SIGNED-BUILD.json')) {
     const zip = await JSZip.loadAsync(fs.readFileSync(input), {checkCRC32: true});
     const names = Object.keys(zip.files).filter(n => !zip.files[n].dir);
-    const receipt = JSON.parse(fs.readFileSync(path.join(__dirname, 'SIGNED-BUILD.json'), 'utf8'));
+    const receipt = JSON.parse(fs.readFileSync(receiptPath, 'utf8'));
     if (!/^[a-f0-9]{40}$/.test(receipt.source_revision)) throw Error('Missing pinned build revision');
     // Documentation-only commits change HEAD, but not the package sources. Check
     // those sources against the pinned build commit instead of requiring HEAD.
@@ -109,4 +110,4 @@ async function verify(input = path.join(repo, 'dist/vetro-integration-SIGNED.wgt
         signatureChecks: results, tvAcceptanceTested: false, certificateChainTrustIndependentlyVerified: false}, null, 2));
 }
 module.exports = {verify};
-if (require.main === module) verify(process.argv[2]).catch(e => {console.error(e.message); process.exitCode = 1;});
+if (require.main === module) verify(process.argv[2], process.argv[3]).catch(e => {console.error(e.message); process.exitCode = 1;});

@@ -34,12 +34,19 @@ async function absent(client, filename) {
     }
     throw Error('Staging file already exists; preserve it and review before writing');
 }
-async function execute(host) {
+async function execute(host, updateReceiptPath) {
     if (net.isIP(host) !== 4) throw Error('One approved TV IPv4 address required');
-    const file = path.join(repo, 'dist/vetro-integration-SIGNED.wgt');
+    const updating = !!updateReceiptPath;
+    const selected = updating ? JSON.parse(fs.readFileSync(updateReceiptPath, 'utf8')) : receipt;
+    if (!/^vetro-[A-Za-z0-9-]+\.wgt$/.test(selected.file) || !/^[a-f0-9]{64}$/.test(selected.sha256)) {
+        throw Error('Invalid signed package receipt');
+    }
+    const file = path.join(repo, 'dist', selected.file);
+    const remoteWgt = remoteDir + '/vetro-' + selected.sha256.slice(0, 16) + '.wgt';
+    const installCommand = 'shell:0 vd_appinstall vetrotvapp.app ' + remoteWgt;
     const wgt = fs.readFileSync(file);
-    if (hash(wgt) !== receipt.sha256) throw Error('Signed package hash changed');
-    await verify(file);
+    if (hash(wgt) !== selected.sha256) throw Error('Signed package hash changed');
+    await verify(file, updateReceiptPath);
     const profile = fs.readFileSync(path.join(privateRoot, 'apps2samsung/Certificate/Jelly2Sams - Partner/device-profile.xml'));
     if (profile.length < 1 || profile.length > 1024 * 1024) throw Error('Invalid local device profile size');
     const journalRoot = path.join(privateRoot, 'deployments');
@@ -57,11 +64,26 @@ async function execute(host) {
         if (!caps.split('\n').some(l => l.trim() === 'sdk_toolpath:' + remoteDir)) throw Error('Unexpected TV staging path');
         const before = await sdb.exec(client, 'shell:0 vd_applist', {timeout: 8000});
         fs.writeFileSync(path.join(dir, 'apps-before.txt'), before, {flag: 'wx', mode: 0o600});
-        if (!before.trim() || /vetrotvapp/.test(before)) throw Error('Existing Vetro or unreadable app list; stop instead of updating');
-        await absent(client, remoteProfile);
+        const alreadyInstalled = /\bvetrotvapp\.app\b/.test(before);
+        if (!before.trim() || (updating ? !alreadyInstalled : /vetrotvapp/.test(before))) {
+            throw Error('TV app list does not match the selected installation mode');
+        }
+        let uploadProfile = true;
+        if (updating) {
+            try {
+                const residentProfile = await sync.pull(client, remoteProfile);
+                if (!residentProfile.equals(profile)) throw Error('Existing device profile differs');
+                uploadProfile = false;
+            } catch (e) {
+                if (e.code !== 'SDB_SYNC_FAIL' || e.message.trim() !== 'No such file or directory') throw e;
+            }
+        }
+        if (uploadProfile) await absent(client, remoteProfile);
         await absent(client, remoteWgt);
-        journal({stage: 'checked-before-write', plan});
-        for (const [name, bytes] of [[remoteProfile, profile], [remoteWgt, wgt]]) {
+        journal({stage: 'checked-before-write', updating, sha256: selected.sha256, installCommand});
+        const uploads = uploadProfile ? [[remoteProfile, profile]] : [];
+        uploads.push([remoteWgt, wgt]);
+        for (const [name, bytes] of uploads) {
             journal({stage: 'upload-submitting', remote: name, sha256: hash(bytes)});
             await sync.push(client, name, bytes);
             const readback = await sync.pull(client, name);
@@ -69,7 +91,7 @@ async function execute(host) {
             journal({stage: 'upload-readback-verified', remote: name});
         }
         journal({stage: 'install-submitting'});
-        const reply = await sdb.exec(client, plan.installCommand, {timeout: 120000});
+        const reply = await sdb.exec(client, installCommand, {timeout: 120000});
         fs.writeFileSync(path.join(dir, 'install-reply.txt'), reply, {flag: 'wx', mode: 0o600});
         const after = await sdb.exec(client, 'shell:0 vd_applist', {timeout: 8000});
         fs.writeFileSync(path.join(dir, 'apps-after.txt'), after, {flag: 'wx', mode: 0o600});
@@ -86,6 +108,8 @@ if (require.main === module) {
     if (process.argv.length === 2 || (process.argv.length === 3 && process.argv[2] === '--plan')) console.log(JSON.stringify(plan, null, 2));
     else if (process.argv.length === 4 && process.argv[2] === '--confirm-install') {
         execute(process.argv[3]).catch(e => {console.error(e.message); process.exitCode = 1;});
-    } else {console.error('Use --plan; execute only after owner approval with --confirm-install TV_IP'); process.exitCode = 2;}
+    } else if (process.argv.length === 5 && process.argv[2] === '--confirm-update') {
+        execute(process.argv[3], process.argv[4]).catch(e => {console.error(e.message); process.exitCode = 1;});
+    } else {console.error('Use --plan, --confirm-install TV_IP, or --confirm-update TV_IP RECEIPT'); process.exitCode = 2;}
 }
 module.exports = {plan, absent, deviceMatches};

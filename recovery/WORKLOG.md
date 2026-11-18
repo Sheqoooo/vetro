@@ -1726,3 +1726,43 @@ Signaturdateien und Übereinstimmung der enthaltenen Katalogdatei geprüft.
 Das frühere Installationspaket bleibt verfügbar. Die neue Version ist noch
 nicht auf dem TV. Der bisherige Installer ist auf Erstinstallation begrenzt.
 Ein Upgrade und dessen Rücknahme wurden auf dem Gerät noch nicht geprüft.
+
+### Store-Ziel bestätigt, Updatepaket vollständig geprüft
+
+Besitzer bestätigt die sichtbare Samsung-Apps-Seite nach dem direkten
+Startaufruf. Das bestätigt den Einstieg auf diesem Gerät. Die Kachel im
+laufenden Vetro ist erst nach einem Update separat zu testen.
+
+Neues WGT vom sauberen Quellstand mit dem bisherigen Autorenzertifikat signiert.
+verify_signed.cjs akzeptiert für diesen Build einen separaten Revisionsbeleg.
+Alle 81 Paketdateien gegen den Build geprüft. Beide RSA-Signaturen und alle
+referenzierten Prüfsummen stimmen. Das ursprünglich installierte WGT bleibt
+als eigenes Artefakt erhalten. Die Annahme eines Updates und eines eventuellen
+Downgrades auf diesem Fernseher ist offen. Die Erstinstallationsroutine
+verweigert ein vorhandenes Vetro, daher für diesen Schritt ein In-place-Update
+über den regulären Tizen-Entwicklerzugang vorbereiten. Vor Ausführung muss
+der TV-Verbindungsdialog den Mac statt des TV-Loopbacks als Entwicklerhost
+eintragen. Keine Software am TV installiert oder deinstalliert.
+
+### Update vorbereitet, Entwickler-Host weiterhin TV-Loopback
+
+Die Installationsroutine hat einen getrennten Update-Einstieg. Sie verlangt die
+bereits installierte Vetro-App, prüft das signierte Paket und die Gerätezuteilung
+und liest die Übertragung zurück. Ein vorhandenes Geräteprofil wird nur bei
+identischem Inhalt wiederverwendet. Die Syntax und der lokale Erstinstallations-
+Plan wurden geprüft. Update und Rücknahme sind auf Hardware noch ungeprüft.
+Zwei lesende Statusabfragen zeigen Entwicklermodus aktiv und Entwickler-Host
+weiterhin beim TV selbst. Daher kein Upload oder Installationsversuch.
+
+### Update mit der Store-Kachel eingespielt
+
+Nach Besitzer-Neustart meldete der TV den Mac als Entwickler-Host. Das
+Update mit --confirm-update und privatem Build-Beleg ausgeführt. Verifier
+bestätigte Paketinhalt, beide RSA-Signaturen und alle Referenz-Prüfsummen.
+Gerätezuteilung und vorhandene Vetro-Installation geprüft. Vorhandenes
+Geräteprofil identisch vorgefunden und wiederverwendet. Nur das geprüfte
+WGT übertragen, vollständig zurückgelesen und über Tizens Installationsweg
+aktualisiert. TV meldete install completed, App weiterhin gelistet. Keine
+App explizit gestartet. Private Transaktionsdaten verbleiben im Projekt.
+Besitzer um Rückstellung des Entwickler-Hosts auf TV-Loopback und Neustart
+gebeten. Sichtbarer Kacheltest und Downgrade-Prüfung stehen aus.
