@@ -1766,3 +1766,11 @@ aktualisiert. TV meldete install completed, App weiterhin gelistet. Keine
 App explizit gestartet. Private Transaktionsdaten verbleiben im Projekt.
 Besitzer um Rückstellung des Entwickler-Hosts auf TV-Loopback und Neustart
 gebeten. Sichtbarer Kacheltest und Downgrade-Prüfung stehen aus.
+
+### Neue Kachel nach dem Neustart im laufenden Vetro bestätigt
+
+Der TV meldet wieder seinen lokalen Entwickler-Host. Vetros Dienst meldet die
+Quellrevision 0dcc3a1c54f6cf0829a95965107e8467ec04eaf2 und einen verbundenen
+Agenten. Die Leiste läuft. Ihr Katalog enthält „Apps installieren“ mit Ziel
+sys:com.samsung.tv.store. Die Abfrage benötigte keinen Neustart oder manuellen
+App-Start durch den Agenten. Den Klick auf der Fernbedienung prüft der Besitzer.
