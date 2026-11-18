@@ -1,5 +1,5 @@
 {
-  "status": "waiting_for_native_off_B2",
+  "status": "measured_native_restore_pending",
   "baselineFlagsSavedPrivately": true,
   "plannedSequence": [
     "A1 enabled",
@@ -7,8 +7,14 @@
     "B1 disabled",
     "B2 disabled"
   ],
-  "completedValidBoots": 3,
-  "performanceConclusion": null,
+  "completedValidBoots": 4,
+  "performanceConclusion": {
+    "meanOnSeconds": 39.12,
+    "meanOffSeconds": 47.356,
+    "meanDifferenceOffMinusOnSeconds": 8.236,
+    "clearPracticalGain": false,
+    "causalSlowdownEstablished": false
+  },
   "onlyTargets": [
     "com.samsung.tv.tvplus",
     "com.samsung.tv.tvPlusDeeplinker"
@@ -49,6 +55,19 @@
       "serviceStartBootSeconds": 12.312,
       "launcherStartBootSeconds": 56.464,
       "bootTimelineCaptureComplete": true
+    },
+    {
+      "phase": "B",
+      "run": 2,
+      "nativeDeactivation": true,
+      "tvPlusOffVerified": true,
+      "ownerConfirmedNoAutomaticProgramme": true,
+      "newKernelBootConfirmed": true,
+      "serviceStartBootSeconds": 12.124,
+      "launcherStartBootSeconds": 38.248,
+      "bootTimelineCaptureComplete": false,
+      "distinctNewBootsDuringCapture": 2,
+      "observationMode": "Latest boot timing verified with same boot ID before and after readback"
     }
   ],
   "lateBaselineObservationDisclosed": true,

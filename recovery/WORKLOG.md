@@ -1674,3 +1674,17 @@ Neustart, korrigiert sofort „noch nicht neugestartet“; ohne tatsächlichen W
 der Kernel-Boot-ID kein B2 gezählt. Keine weiteren Flag-/Systemänderungen.
 Native Hersteller-Rücknahme beschrieben, weiterhin ungeprüft; Paketflag-Rollback
 bereits erfolgreich hardwaregeprüft. Ergebnis/aktuelles Protokoll korrigiert.
+
+
+### Zweite native Off-Messung und Auswertung
+
+Besitzer bestätigt, dass kein TV-Plus-Programm automatisch lief. Recorder per q
+beendet. Zwei neue Boot-IDs im Messfenster machen den zusammengefassten Verlauf
+für einen einzelnen Boot ungeeignet. Daher Dienst und Leiste erneut gelesen, mit
+identischer neuer Boot-ID direkt vor und nach den Abfragen. Letzter Boot:
+Dienst 12,124 s, Leistenprozess 38,248 s und läuft. Vorheriger nativer Off-Wert
+56,464 s. Mittelwerte mit TV Plus 39,120 s, ohne 47,356 s. Kein gemessener
+Zeitgewinn. Kleine Stichprobe und feste Reihenfolge beweisen keinen kausalen
+Nachteil. Der frühere unwirksame Paketflag-Lauf bleibt ausgeschlossen.
+Besitzer um Wiederaktivierung über Samsungs Quellenmenü gebeten. Bis zur
+Bestätigung gilt die native Rücknahme als offen.

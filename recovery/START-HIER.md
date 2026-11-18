@@ -1,18 +1,5 @@
-**Aktuell: letzter nativer TV-Plus-Off-Neustart steht aus.**
-Gültige On-Prozesszeiten 36,216 / 42,024 s; erste echte native Off-Zeit 56,464 s.
-Noch kein Leistungsurteil. Die irrtümlich als Off behandelte Paketflag-Messung
-ist verworfen und ihre Änderungen sind vollständig auf ursprüngliche effektive
-Flags zurückgestellt. Native Samsung-Deaktivierung vom Besitzer durchgeführt,
-danach kein automatisches Programm bestätigt. Read-only-B2-Capture wartet auf
-neue Boot-ID; früh gemeldeter Neustart wurde vom Besitzer zurückgenommen.
-[Messungen, Grenzen und Rücknahme](TVPLUS-COMPARISON.md).
-
-**TV-Plus-Test korrigiert:** Die bloße Deaktivierung zweier App-Einträge ließ
-das TV-Plus-Programm weiterlaufen. Versuch abgebrochen und ursprüngliche Flags
-nachweislich wiederhergestellt; kein Leistungsurteil aus dieser falschen Off-Phase.
-Besitzer hat TV Plus anschließend über Samsungs eigenes Entfernen/Deaktivieren
-ausgeschaltet und nach neuem Boot kein automatisches TV-Plus-Programm bestätigt.
-Neue echte Off-Messung läuft, andere Profile bleiben erhalten.
+**TV-Plus-Vergleich gemessen.** Die Leiste startete mit TV Plus nach 36,216 und 42,024 s, ohne nach 56,464 und 38,248 s. Kein gemessener Startvorteil. Die Rücknahme über Samsungs Menü steht noch aus.
+[Messungen und Rücknahme](TVPLUS-COMPARISON.md).
 
 **Aktueller Auftrag: rücknehmbaren TV-Plus-Geschwindigkeitsvergleich durchführen.**
 Besitzer stimmt zu. Zwei Neustarts mit und zwei ohne geplant; erste frische

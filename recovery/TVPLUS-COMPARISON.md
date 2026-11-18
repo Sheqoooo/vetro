@@ -1,9 +1,9 @@
-# TV Plus: nativer Vergleich läuft, zweiter Off-Boot noch offen
+# TV Plus: kein gemessener Startvorteil
 
 Stand 18. November 2026. Besitzer hat rücknehmbaren TV-Plus-Test mit mehreren
 Neustarts freigegeben. Aktuell über Samsungs normale Funktion deaktiviert;
 Besitzer bestätigt nach echtem Boot kein automatisch laufendes TV-Plus-Programm.
-Kein Leistungsurteil, bis der zweite echte Off-Lauf vorliegt.
+Die mittlere Leistenprozesszeit lag mit TV Plus bei 39,120 s und ohne bei 47,356 s. Die kleine Stichprobe belegt keinen kausalen Nachteil.
 [Anonymisierter Stand](TVPLUS-COMPARISON-RESULT.json).
 
 | Zustand | Lauf | Dienstprozess ab Boot | Leistenprozess ab Boot | Einschränkung |
@@ -11,7 +11,7 @@ Kein Leistungsurteil, bis der zweite echte Off-Lauf vorliegt.
 | Vor nativer Deaktivierung | A1 | 13,036 s | 36,216 s | Späte proc/stat-Nachlese nach bestätigtem Boot-ID-Wechsel |
 | Vor nativer Deaktivierung | A2 | 12,556 s | 42,024 s | Regulär beobachtet |
 | Nativ deaktiviert, Programm aus bestätigt | B1 | 12,312 s | 56,464 s | Regulär beobachtet |
-| Nativ deaktiviert | B2 | offen | offen | Besitzer-Neustart steht aus |
+| Nativ deaktiviert, Programm aus bestätigt | B2 | 12,124 s | 38,248 s | Zwei neue Boot-IDs im Capture; Prozesszeiten des letzten Boots separat geprüft |
 
 Primärmetrik ist Prozessstart der Leiste, **keine visuell bestätigte vollständige
 Bedienbereitschaft**. Alte ~45-s-Werte stammen aus einem anderen Profilstand.
