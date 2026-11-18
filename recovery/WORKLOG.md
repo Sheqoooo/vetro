@@ -1798,3 +1798,12 @@ kompiliert und ausgeführt: 5.022 Prüfungen bestanden. Relevante JS-Katalog-,
 Dock-, UI-, Design- und Paketgrenzentests bestanden. Keine TV-Installation zu
 diesem Zeitpunkt. Das bisherige signierte Paket bleibt für Rücknahme verfügbar,
 ein Downgrade auf dem Gerät ist noch ungeprüft.
+
+### Korrekturpaket erfolgreich installiert
+
+Nach Besitzer-Neustart Entwickler-Host am TV geprüft. Signiertes Paket mit
+quadratischer Store-Kachel und korrigiertem nativen Launcher über den vorhandenen
+Update-Weg installiert. Lokale Paketprüfung verglich 82 Dateien und beide
+Signaturen. Übertragungsrücklese und TV-Installationsbestätigung erfolgreich.
+Besitzer um Rückstellung des Entwickler-Hosts und Neustart gebeten. Sichttest
+(Store zweimal öffnen, Rückweg zu Samsung Home) und Downgrade sind offen.
