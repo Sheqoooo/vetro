@@ -1,3 +1,32 @@
+**Aktueller Abschluss dieser Datenschutzstufe:** Beide optionalen Zustimmungen
+(Interessenwerbung und Anzeigeinformationsdienste) nun lesend als aus bestätigt,
+auch aus dem tatsächlich laufenden Consent-Dienst heraus. 25 optionale
+Komponenten aus beiden Profilen deaktiviert, sieben Analyse-/Loghosts gefiltert;
+Komponenten/Filter haben den vom Besitzer gemeldeten Neustart überstanden.
+TV Plus bleibt ausdrücklich erhalten, Werbung im Stream kann bleiben.
+AirPlay nach der neuesten Stufe noch praktisch prüfen.
+[Umfang und Rücknahme](PRIVACY-PROFILE.md), [Beleg](PRIVACY-RESULT.json).
+
+Die folgenden älteren Statusblöcke dokumentieren die zeitliche Entwicklung.
+
+**Nach Besitzer-Neustart geprüft:** Alle 25 optionalen Komponenten aus beiden
+Profilen weiter deaktiviert und nicht als laufende Apps gelistet. Filter mit
+sieben Hostnamen wieder aktiv. TV Plus bleibt auf ausdrücklichen Wunsch erhalten.
+Samsung-Einstellungen über Vetro-Zahnrad vom Besitzer bestätigt.
+Eine separate Anzeigeinformations-Zustimmung ist noch aktiv; regulärer UI-Opt-out
+läuft. Keine vollständige Trackingfreiheit behauptet.
+
+**18. November: weitere Werbe-/Tracking-Reduktion eingerichtet.**
+Zehn weitere eigenständige Komponenten deaktiviert, sieben exakte Analyse-/Log-
+Hosts lokal am TV gefiltert. TV Plus soll ausdrücklich erhalten bleiben und
+funktioniert laut Besitzer weiterhin. Antennen-/Kabelempfang ist nicht angeschlossen;
+frühere allgemeine Fernseh-Bestätigung bezog sich auf TV Plus.
+Interessenwerbung gespeichert aus; separate Anzeigeinformations-Zustimmung
+noch aktiv und regulärer UI-Opt-out offen. Kein Null-Tracking-Nachweis.
+[Umfang, Grenzen und Rücknahme](PRIVACY-PROFILE.md), [Beleg](PRIVACY-RESULT.json).
+
+Die folgenden älteren Abschnitte sind Änderungsgeschichte.
+
 **Besitzerpräferenz, 18. November 2026:** Bildschirmspiegelung ist nicht wichtig;
 der entsprechende Funktionstest entfällt. Keine weitere Abschaltung daraus
 abgeleitet. AirPlay bleibt bestätigt und soll erhalten bleiben.

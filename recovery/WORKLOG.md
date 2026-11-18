@@ -1423,3 +1423,124 @@ vorbereiten; keine pauschale Samsung-freie Sofortstart-Zusage.
   keine TV-Verbindung oder TV-/Mac-Einstellung verändert.
 - **Grenzen:** Einstellungen bleiben separat ungeprüft; Wiederholungsboot,
   Strom-Aus/Ein und Hardware-Rücknahme weiterhin offen. Rücknahmedaten erhalten.
+
+
+## 2026-11-18 — Weitere Werbe-/Tracking-Komponenten und TV-lokaler Analysefilter
+
+- **Freigabe:** Besitzer will jede nicht für gewünschte Funktionen notwendige
+  Werbe-/Tracking-Funktion abtrennen. Später geklärt: kein Antennen-/Kabel-TV
+  angeschlossen; frühere TV-Bestätigungen meinten TV Plus. TV Plus nach expliziter
+  Nachfrage behalten, vom Besitzer nach neuer Reduktion als funktionierend
+  bestätigt. AirPlay/Streaming/HDMI/Bild/Ton/Einstellungen/Input erhalten.
+  Keine neue Mac-/Routerberechtigung angefordert.
+- **Lesende Vorbereitung:** Inventar/Privacy/Filter-/Menüstatus frisch gelesen.
+  Aktuelle offizielle Samsung-ACR-, LAT- und deutsche TV-Plus-Dokumentation
+  geprüft; ausgewählte tatsächliche Hersteller-Manifeste und Repo-Schutzregeln
+  gelesen. Zehn genaue neue Komponenten ausgewählt; gemeinsame Home-Adagent-
+  Bibliothek und TV-Plus-Adwebframework bewusst erhalten, Privacy-UIs nicht
+  pauschal nach Tracking-Kategorie deaktiviert.
+- **Vorbereitung / Prüfungen:** privacy_profile.py mit fester Allowlist,
+  Default-plan ohne Netz, Privatsicherung vor Änderungen, Intent vor Request,
+  genauer Rücknahme erstellt. Vier Mocktests bestanden: ursprüngliches Disable
+  erhalten, verlorene Antwort nach Mutation rücknehmbar, fremden Filter bewahren,
+  geschützte/gefälschte Ziele verweigern. Vorhandene local-dns-/blocklist-Tests
+  bestanden. Diese Prüfungen sind keine Hardware-Rücknahme.
+- **Durchführung:** Im Repository
+  `python3 -B recovery/privacy_profile.py apply --tv TV_IP --owner-approved`.
+  Bestehenden Root-Endpunkt mit einzelnem pkgcmd -D --global pro fester ID genutzt;
+  je Inventar mit refresh=1 zurückgelesen. Analytics, CIS/CIS-API, Content-Grab,
+  Targeted-Ad, drei PISA/Adagent-Dienste und zwei eigenständige AdPlayer deaktiviert.
+  Keine Deinstallation, kein Broadcast-/App-/Konto-Datenreset.
+- **Netzfilter:** Nur vorhandene Vetro-Funktion /dns apply für sieben exakte
+  Analyse-/Diagnosehosts. Anfänglich disabled/empty, keine fremde Liste ersetzt.
+  Eigene TV-Dateien und Vetro-markierte hosts-Bindmounts in erreichbaren TV-
+  Namensräumen; keine Host-/Routereinstellung. enabled/applied=true ohne
+  Namespacewarnungen. In PID-1- und Vetro-Dienst-Umgebung sieben IPv4-Einträge
+  und Auflösung eines Analysehosts zur IPv6-Nulladresse unabhängig zurückgelesen.
+  Resolveradressen unverändert. Zweck teils aus vorhandener Firmwareanalyse
+  abgeleitet; kein kompletter Verkehrsmitschnitt. Direkte IP/DoH/Cache/neue Namen
+  bleiben mögliche Umgehungen. TV-Plus-Adservergruppe nicht blockiert.
+- **Ergebnis:** completed=true, genau zehn zusätzliche disabled-Flags, sonstige
+  beobachtete disabled- und alle onboot/autorestart-Felder unverändert. Alle zehn
+  Ziele fehlen in laufender App-Liste. Geschützte Funktions-/Datenschutzkomponenten
+  bleiben enabled. Neue öffentliche Ergebnisdatei enthält keine Geräteidentitäten.
+- **Einwilligungen:** Besitzer fand Optionen nicht. Vorhandene Privacy-Choices-
+  Webapp normal gestartet; TV und Besitzer bestätigen sichtbare Seite. Besitzer
+  meldet „alle abgelehnt“. Lesende erneute Privacy-Abfrage unverändert; Schema
+  und Titel/Zustimmung/Notice-Felder selektiv geprüft. Interessenwerbung ist aus,
+  Anzeigeinformations-Zustimmung bleibt an. Allgemeine Smart-Hub-Bedingungen/
+  Datenschutzhinweis bleiben akzeptiert. Kein TCFEnabled-/ACR-Enum als Zustimmung
+  oder Ein/Aus-Wert geraten, keine Werbe-ID ausgelesen, keine Consent-DB-Schreiberei.
+- **UI-Fehlversuche:** Native HomeSetting-App normal gestartet, auf Besitzerbitte
+  einmal wiederholt. TV meldet Start, Besitzer sieht nichts: nicht als sichtbarer
+  Erfolg gewertet. Ausgewählte öffentliche Manifest-/Panelmetadaten gelesen;
+  strings auf TV nicht vorhanden, deshalb keine Installation oder willkürlichen
+  Parameterexperimente. Stattdessen normale Menü-Taste per signiertem
+  input_keyevent ausgelöst und regulären AGB-/Datenschutz-Pfad erklärt.
+  Besitzer hat zwischendurch selbst neu gestartet und bittet um erneuten Aufruf.
+- **Dokumentation / Rücknahme:** PRIVACY-PROFILE/RESULT, START-HIER und vorherigen
+  PERFORMANCE-RESULT bezüglich nicht angeschlossenem Live-TV korrigiert.
+  Privates Originalzustands-/Intentjournal vorhanden. Restore stellt effektive
+  neue Komponentenflags und eigenen Filter zurück, nicht frühere Performance-
+  Stufen oder persönliche Einwilligungen. Hardware-Rücknahme ungeprüft;
+  partielle Transportfehler verlangen gezielte Prüfung. Keinerlei pauschaler
+  Schutz vor allen Samsung-/Drittanbietertrackingwegen behauptet.
+- **Offen:** Nach Besitzer-Neustart Zustand/Filter prüfen, native Datenschutz-
+  Zustimmung regulär abwählen, erneut lesend validieren. Keine neue Leistungs-
+  messung und kein Strom-Aus/Ein-Test in dieser Stufe behauptet.
+
+
+### Fortsetzung — Neustartprüfung und manueller Zugang zu Consent-Menü
+
+Besitzer meldet selbst durchgeführten Neustart; es war zuvor kein Recorder
+arretiert. Erste Statusabfragen während Startup: Dienst erreichbar/Agent verbunden,
+Telemetrie-Uptime etwa 43,75 s; erste Filterabfrage noch nicht verfügbar.
+Daraus keine exakte Boot-/Leistenmessung abgeleitet. Nach Bereitschaft erneut
+gezielt gelesen: alle 25 installierten optionalen IDs beider Profile disabled,
+keine in laufender App-Liste. Filter automatisch enabled/applied mit sieben
+Hostnamen. Kein neuer Apply-/Stop-/Startauftrag für diese Persistenzprüfung.
+
+Owner bestätigt TV Plus nach der neuen Stufe funktionierend. Präzisiert: kein
+Antennen-/Kabel-TV angeschlossen, klassischer Empfang wurde nicht praktisch
+getestet. Separate Nachfrage, ob TV Plus ebenfalls abgeschaltet werden soll:
+ausdrücklich Nein. Ad-Webframework/CoBA-Adagent bleiben daher erhalten.
+
+Consent-Status gezielt anhand der Datenbanktitel zugeordnet: Interessenwerbung
+aus, Anzeigeinformations-Zustimmung noch an; allgemeine Bedingungen/Smart-Hub-
+Datenschutzhinweis an. Kein erfundener Wert oder pauschales Alles-aus-Protokoll.
+Erneute native HomeSetting-Aufrufe und normale XF86Menu-Ereignisse zwar technisch
+angenommen, vom Besitzer als unsichtbar gemeldet. Das ist kein UI-Erfolg; keine
+weiteren zufälligen Launcher-Parameter eingesetzt oder Zusatzsoftware installiert.
+Anleitung zum manuellen Home/Zahnrad: Besitzer bestätigt offene Samsung-
+Einstellungen. Nun reguläre AGB/Datenschutz/Anzeigeinformationsdienste-Abwahl
+durch Besitzer und unabhängige Leseprüfung ausstehend. Das bereits funktionierende
+Zahnrad wird nicht wegen der erfolglosen Fern-Taste als defekt bewertet.
+
+
+### Abschluss — beide optionalen Zustimmungen regulär aus, unabhängig rückgelesen
+
+Besitzer gelangt über Vetro-Zahnrad in Samsung-Einstellungen, zunächst Meldung,
+Zustimmung sei bereits entfernt. Darauf eigene Aussage „noch an“ als zu sicher
+zurückgenommen und widersprüchlichen Zeitstand nur lesend untersucht.
+PID des laufenden HomeDataControl-Dienstes anhand festen ausführbaren Pfads
+identifiziert; dessen Mount-Namensraum separat nur lesend abgefragt. Ergebnis
+viewing/syncplus jeweils 0. Besitzer stellt anschließend klar, dass die
+Anzeigeinformations-Zustimmung zuvor doch gegeben war.
+
+Zur eindeutigen aktuellen Prüfung beide Ansichten unmittelbar nacheinander
+gelesen: Root- und tatsächlicher Dienstkontext jeweils viewing=0 und syncplus=0,
+Exit 0. Damit beide konkreten optionalen Zustimmungen aktuell aus bestätigt.
+Die zeitlich getrennten älteren Werte beweisen keinen Namespace-/Vetro-Bug;
+deshalb keine entsprechende Produktkorrektur erfunden oder ungeprüft installiert.
+Kein Datenbankschreibzugriff oder Ersetzen persönlicher Einwilligungen durch
+den Agenten. Allgemeine Bedingungen nicht automatisch widerrufen.
+
+PRIVACY-RESULT/PROFILE und START-HIER mit aktuellem Abschlussstand ergänzt,
+historischen Ablauf erhalten. Einschränkungen bleiben: TV Plus ausdrücklich
+gewünscht/werbefinanziert, gemeinsame Funktionsbibliotheken erhalten,
+Hostnamenfilter umgehbar/keine vollständige Netzverkehrsanalyse, LAT-API nicht
+bestätigt. AirPlay war beim vorherigen Profil erfolgreich; ein praktischer Test
+nach dieser neuesten Stufe steht aus. Kein weiterer kontrollierter Boot nach der
+letzten Consent-Auswahl oder Hardware-Rollback durchgeführt. Rücknahme dieser
+technischen Stufe bleibt lokal vorbereitet; persönliche UI-Ablehnungen werden
+dadurch nicht automatisch zurückgenommen.

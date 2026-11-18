@@ -69,7 +69,6 @@
   "instantSamsungFreeStartupProven": false,
   "ownerConfirmedWorking": [
     "Home",
-    "live TV",
     "Samsung TV Plus",
     "AirPlay"
   ],
@@ -77,5 +76,6 @@
   "ownerWaivedFunctionalTests": [
     "screen mirroring"
   ],
-  "screenMirroringChangedAfterWaiver": false
+  "screenMirroringChangedAfterWaiver": false,
+  "liveTvReceptionStatus": "Not connected; earlier general confirmation referred to TV Plus"
 }
